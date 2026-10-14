@@ -624,3 +624,10 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 #skill,#skill *,#attack,#attack *,#ultimate,#ultimate *,#counter-button,#counter-button *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 #skill img,#skill svg,#skill span,#skill i,#skill b{pointer-events:none;-webkit-user-drag:none}
 #battle img{-webkit-user-drag:none}
+
+
+/* V135: restart every ranged sub-effect and preloaded ultimate layers. */
+.hit:not(.flash)::before,.hit:not(.flash)::after{animation:none!important}
+.ultimate-impact img{position:absolute;inset:0}
+.ultimate-impact img[hidden]{display:none!important}
+.hit.flash,.ultimate-impact.ult-burst{will-change:transform,opacity}
