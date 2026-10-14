@@ -1,6 +1,8 @@
 (() => {
 'use strict';
 const $=id=>document.getElementById(id);
+function setText(id,value){const n=$(id),t=String(value);if(n.textContent!==t)n.textContent=t;}
+function setHTML(id,value){const n=$(id);if(n._renderedHTML!==value){n._renderedHTML=value;n.innerHTML=value;}}
 const sfxNames=['trialConcluded',...['nono','ren','luna','liria','mayoi','mai','moa','souka','shion','akina','anna','erin','sigrid','doll','chikage','canon','koyomi','haru'].map(id=>'domainVoice-'+id),'nonoBuff1','nonoBuff2','engageDamage','meleeUltimate','rangedUltimate','swapOnly','chikageDefense','enemyHit','break','death','meleeCharge','rangedCharge','yellow','perfect','good','bad','purple','assaultBlock','red','blue','domainReady','domainStart','domainEnd','meleeTag','rangedAttack','rangedTag','meleeAttack'];
 const sfxPool={};let pendingSfx=[];
 function soundNode(key){const list=sfxPool[key]||(sfxPool[key]=[]);let a=list.find(a=>a.paused||a.ended);if(!a){a=new BattleAudio.Track('assets/combat/audio/'+key+'.mp3');a.preload='auto';list.push(a);}return a;}
@@ -10,7 +12,7 @@ function tickSfx(dt){for(const q of pendingSfx)q.delay-=dt;const ready=pendingSf
 const mobileMedia={};
 function audioTrack(id){return mobileMedia[id]||(mobileMedia[id]=new BattleAudio.Track($(id).getAttribute('src')));}
 let audioPrepared=false,audioPreparing=false,mobileBlocked=false,mobileVideo=null;
-function showAudioGate(message){mobileBlocked=true;BattleAudio.suspend();$('safari-audio-gate').hidden=false;$('safari-audio-message').textContent=message;$('battle').classList.add('safari-audio-hold');}
+function showAudioGate(message){mobileBlocked=true;BattleAudio.suspend();$('safari-audio-gate').hidden=false;setText('safari-audio-message',message);$('battle').classList.add('safari-audio-hold');}
 function hideAudioGate(){mobileBlocked=false;$('safari-audio-gate').hidden=true;$('battle').classList.remove('safari-audio-hold');last=performance.now();}
 function primeBattleAudio(){
  const token=audioSession;audioPreparing=true;audioPrepared=false;
@@ -18,6 +20,7 @@ function primeBattleAudio(){
  BattleAudio.unlock().catch(()=>{if(token===audioSession)showAudioGate('소리를 재생하려면 아래 버튼을 눌러주세요.');});
  const voices=s.party.map(n=>'domainVoice-'+roster[n].id),keys=sfxNames.filter(k=>!k.startsWith('domainVoice-')).concat(voices);
  const urls=[audioTrack('battle-bgm').src,audioTrack('trial-sound').src,...keys.map(k=>'assets/combat/audio/'+k+'.mp3')];
+ BattleAudio.retain(urls);
  BattleAudio.preload(urls).then(()=>{if(token!==audioSession)return;audioPreparing=false;audioPrepared=true;if(!BattleAudio.ready)showAudioGate('소리를 켜고 전투를 시작해주세요.');}).catch(()=>{if(token!==audioSession)return;audioPreparing=false;showAudioGate('오디오를 불러오지 못했습니다. 네트워크를 확인한 뒤 다시 시도해주세요.');});
 }
 $('safari-audio-retry').onclick=()=>{
@@ -70,8 +73,8 @@ function actionCost(kind,level=1,stage=projectedSkill().stage){return kind==='sk
 function closeChain(id){const b=s.battleStates[id],r=battleRules[id];if(b&&r&&b.stage>1){b.ct=Math.max(b.ct,skillReference[id]?.ct[b.stage-2]??r.ct);b.stage=id==='akina'&&b.fire===0?3:1;}}
 function renderBattleSkill(){
  const r=battleRules[activeMember().id],b=battleState();
- $('skill-stages').innerHTML=r?Array.from({length:r.stages},(_,i)=>`<i class="${b.ct===0&&b.stage===i+1?'lit':''}">${['Ⅰ','Ⅱ','Ⅲ'][i]}</i>`).join(''):'';
- $('skill-ct').hidden=!r||b.ct===0;$('skill-ct-value').textContent=b.ct;
+ setHTML('skill-stages',r?Array.from({length:r.stages},(_,i)=>`<i class="${b.ct===0&&b.stage===i+1?'lit':''}">${['Ⅰ','Ⅱ','Ⅲ'][i]}</i>`).join(''):'');
+ $('skill-ct').hidden=!r||b.ct===0;setText('skill-ct-value',b.ct);
  $('skill').classList.toggle('cooling',!!r&&b.ct>0);
  const showCharge=!!r?.chargeMs&&(!r.chargeStages||r.chargeStages.includes(b.stage));$('charge-arc').hidden=!showCharge;$('charge-arc').style.display=showCharge?'':'none';$('skill').classList.toggle('has-charge',showCharge);
  const doubleCost=activeMember().id==='sigrid'&&s.charging&&s.chargeElapsed>=900;$('skill-extra-cost').style.display=doubleCost?'block':'none';
@@ -147,7 +150,7 @@ function floatDamage(side,amount){
 }
 function updateEngageDamage(){
  if(!s.engageDamage||s.phase!=='ENGAGE')return;
- $('engage-damage').hidden=false;$('engage-damage-value').textContent=damageText(s.engageDamage);
+ $('engage-damage').hidden=false;setText('engage-damage-value',damageText(s.engageDamage));
  pulse('engage-damage','damage-pop');playSfx('engageDamage');
 }
 function tickDamageNumbers(dt){
@@ -201,7 +204,7 @@ function tickCharacterEffects(){if(s.magicChain){s.magicChain.turns=s.magicChain
 function resize(){const headerHeight=document.querySelector?.('.site-header')?.getBoundingClientRect?.().height||76;const availableHeight=Math.max(1,(window.visualViewport?.height||innerHeight)-headerHeight-18-64-8-12);const scale=Math.max(.001,Math.min(Math.max(1,innerWidth-24)/1920,availableHeight/1080,1));const width=1920*scale+'px';$('viewport').style.width=width;$('battle-controls').style.width=width;$('battle-effect-strip').style.width=width;$('viewport').style.height=1080*scale+'px';$('battle').style.transform=`scale(${scale})`;}
 
 addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);resize();
-function log(msg,side='ally',actor){const labels={ally:'아군 행동',enemy:'적 행동',effect:'효과 변화',system:'진행'};const who=actor||(side==='ally'?activeMember().name:side==='enemy'?'마네킹':'');const t=`${s.round}R ${s.phase} · ${msg}`;history.unshift({round:s.round,phase:s.phase,msg,side,who});history.length=Math.min(history.length,120);if(side!=='effect')$('status').textContent=t;$('log').replaceChildren(...history.flatMap((item,index)=>{const group=[];if(index===0||history[index-1].round!==item.round){const divider=document.createElement('li');divider.className='round-divider';divider.setAttribute('aria-label',item.round+'라운드');const badge=document.createElement('span');badge.textContent=item.round+'R';divider.replaceChildren(badge);group.push(divider);}const el=document.createElement('li');el.className='log-entry side-'+item.side;const meta=document.createElement('div');meta.className='log-meta';const badge=document.createElement('span');badge.className='log-badge side-'+item.side;badge.textContent=labels[item.side];const stamp=document.createElement('span');stamp.textContent=item.round+'R '+item.phase+(item.who?' · '+item.who:'');meta.replaceChildren(badge,stamp);const body=document.createElement('div');body.className='log-message';body.textContent=item.msg;el.replaceChildren(meta,body);return [...group,el];}));}
+function log(msg,side='ally',actor){const labels={ally:'아군 행동',enemy:'적 행동',effect:'효과 변화',system:'진행'};const who=actor||(side==='ally'?activeMember().name:side==='enemy'?'마네킹':'');const t=`${s.round}R ${s.phase} · ${msg}`;history.unshift({round:s.round,phase:s.phase,msg,side,who});history.length=Math.min(history.length,120);if(side!=='effect')setText('status',t);$('log').replaceChildren(...history.flatMap((item,index)=>{const group=[];if(index===0||history[index-1].round!==item.round){const divider=document.createElement('li');divider.className='round-divider';divider.setAttribute('aria-label',item.round+'라운드');const badge=document.createElement('span');badge.textContent=item.round+'R';divider.replaceChildren(badge);group.push(divider);}const el=document.createElement('li');el.className='log-entry side-'+item.side;const meta=document.createElement('div');meta.className='log-meta';const badge=document.createElement('span');badge.className='log-badge side-'+item.side;badge.textContent=labels[item.side];const stamp=document.createElement('span');stamp.textContent=item.round+'R '+item.phase+(item.who?' · '+item.who:'');meta.replaceChildren(badge,stamp);const body=document.createElement('div');body.className='log-message';body.textContent=item.msg;el.replaceChildren(meta,body);return [...group,el];}));}
 const allyEffectNames={domainEcho:'영지 추가 공격',liriaSkill:'전투 스킬 피해 증가',nonoCrit:'치명타 확률 증가',nonoUltimate:'궁극기 피해 증가',champion:'챔피언',timeStrike:'타격 강화',noticePower:'예고장 타격 강화',plunderCrit:'강탈 치명타 강화',insight:'통찰',coolReason:'냉철한 이성',knighthood:'기사도',cherryCrit:'벚꽃 치명타 강화',tagGuard:'태그 디펜스',earthPower:'대지의 힘'};
 function effectDuration(turns){if(Array.isArray(turns)){const n=[...turns].sort((a,b)=>a-b);return n.length?'중첩별 '+n.map(t=>t+'R').join(' · '):'종료';}return turns==null?'라운드 제한 없음':turns+'R 남음';}
 function collectEffectRows(){const rows=[];for(const [id,e] of Object.entries(s.enemyEffects)){if(!e.stacks)continue;rows.push({key:'enemy:'+id,side:'enemy',target:'마네킹',name:enemyEffectNames[id]||id,type:id==='guard'?'버프':['cherry','notice','chain','spear'].includes(id)?'표식':'디버프',count:e.stacks,detail:'',duration:effectDuration(e.turns)});}
@@ -227,19 +230,19 @@ function setAllyCharacter(){const m=activeMember();$('ally').dataset.character=m
 function setVisualSource(el,src){if(el.dataset.visualSrc!==src){el.dataset.visualSrc=src;el.src=src;}}
 const warmVisuals=new Map();
 function warmPartyVisuals(){if(typeof Image==='undefined')return;for(const i of s.party){for(const src of Object.values(visualFor(roster[i])).filter(v=>typeof v==='string')){if(warmVisuals.has(src))continue;const img=new Image();warmVisuals.set(src,img);img.src=src;img.decode?.().catch(()=>{});}}}
-function syncActiveVisual(){const m=activeMember(),v=visualFor(m),icon=$('ultimate-character-icon'),ally=$('ally');setAllyCharacter();if(s?.nonoBuffTime>0&&m.id==='nono'){$('scene').classList.add('nono-buff-active');$('nono-buff-one').hidden=s.nonoBuffLevel!==1;$('nono-buff-two').hidden=s.nonoBuffLevel!==2;}else if(!s?.poseTime){const defending=s?.specialVisual==='chikage-defense'&&m.id==='chikage'&&v.defense;setVisualSource(ally,defending?v.defense:v.standing);ally.alt=defending?m.name+' 태그 디펜스':m.name;ally.classList.toggle('pose-defense',!!defending);}setVisualSource(icon,v.ultimate);icon.alt=m.name+' 궁극기';icon.hidden=false;$('ultimate').classList.add('has-custom-ultimate');}
+function syncActiveVisual(){if(s?.running&&!s.ultimateMovie)warmUltimateMovie(activeMember().id);const m=activeMember(),v=visualFor(m),icon=$('ultimate-character-icon'),ally=$('ally');setAllyCharacter();if(s?.nonoBuffTime>0&&m.id==='nono'){$('scene').classList.add('nono-buff-active');$('nono-buff-one').hidden=s.nonoBuffLevel!==1;$('nono-buff-two').hidden=s.nonoBuffLevel!==2;}else if(!s?.poseTime){const defending=s?.specialVisual==='chikage-defense'&&m.id==='chikage'&&v.defense;setVisualSource(ally,defending?v.defense:v.standing);ally.alt=defending?m.name+' 태그 디펜스':m.name;ally.classList.toggle('pose-defense',!!defending);}setVisualSource(icon,v.ultimate);icon.alt=m.name+' 궁극기';icon.hidden=false;$('ultimate').classList.add('has-custom-ultimate');}
 function clearPose(){$('scene').classList.remove('nono-buff-active');$('nono-buff-one').hidden=true;$('nono-buff-two').hidden=true;$('ally').classList.remove('nono-buff','nono-buff-1','nono-buff-2');const m=activeMember(),v=visualFor(m),ally=$('ally');setAllyCharacter();ally.classList.remove('pose-attack','pose-parry','strike','hurt','tag-enter','shield-cast','parry-follow','survivor-arrival');$('scene').classList.remove('assault-clash','parry-recoil');if(s?.specialVisual==='chikage-defense'&&m.id==='chikage'&&v.defense){setVisualSource(ally,v.defense);ally.alt=m.name+' 태그 디펜스';ally.classList.add('pose-defense');}else{setVisualSource(ally,v.standing);ally.alt=m.name;ally.classList.remove('pose-defense');}syncActiveVisual();}
 function clearEnemy(){$('enemy').hidden=false;$('enemy-attack').hidden=true;$('enemy').classList.remove('hurt','attack-still');}
 function enemyMotion(){$('enemy').classList.remove('hurt');$('hit').classList.remove('flash');$('scene').classList.remove('clash');s.enemyTime=700;$('enemy').hidden=true;$('enemy-attack').hidden=false;pulse('enemy-attack','thrust');}
 function pose(kind,time){s.poseTime=time;const m=activeMember(),v=visualFor(m);setAllyCharacter();setVisualSource($('ally'),v.attack);$('ally').alt=m.name+' 공격';$('ally').classList.remove('pose-attack','pose-parry');$('ally').classList.add('pose-'+kind);}
 function showScreen(name){for(const key of ['selection','loading','battle'])$(key+'-screen').hidden=key!==name;resize();}
-function filterRoster(){const q=$('character-search').value.trim().toLowerCase();let count=0;Array.from($('roster-grid').children).forEach((el,i)=>{const m=roster.find(m=>m.id===el.characterId);el.hidden=(!m.name.toLowerCase().includes(q)&&!m.id.includes(q))||Object.keys(filters).some(k=>filters[k].size&&!filters[k].has(m[k]));if(!el.hidden)count++;});$('roster-count').textContent=count+' 명';$('empty-search').hidden=count!==0;}
+function filterRoster(){const q=$('character-search').value.trim().toLowerCase();let count=0;Array.from($('roster-grid').children).forEach((el,i)=>{const m=roster.find(m=>m.id===el.characterId);el.hidden=(!m.name.toLowerCase().includes(q)&&!m.id.includes(q))||Object.keys(filters).some(k=>filters[k].size&&!filters[k].has(m[k]));if(!el.hidden)count++;});setText('roster-count',count+' 명');$('empty-search').hidden=count!==0;}
 function badges(m){return `<div class="portrait-meta"><span class="rarity ${m.rarity.toLowerCase()}"><b>${m.rarity}</b></span><span><img src="assets/combat/${m.element}.png" alt="${m.element}"></span><span><img src="assets/combat/${m.role}.png" alt="${m.role}"></span></div>`;}
 function formation(){
- $('formation-count').textContent=selected.length+' / 4';
+ setText('formation-count',selected.length+' / 4');
  $('roster-grid').replaceChildren(...roster.map((m,i)=>{const b=document.createElement('button');b.characterId=m.id;b.elementOrder=['caelum','chaos','homines','nox','lux','terra'].indexOf(m.element);b.className='roster-choice'+(selected.includes(i)?' selected':'');b.disabled=s?.running||(!selected.includes(i)&&selected.length===4);b.setAttribute('aria-pressed',String(selected.includes(i)));b.innerHTML=`<img src="assets/combat/${m.portrait}" alt=""><span>${m.name}</span>${badges(m)}`;b.onclick=()=>{selected=selected.includes(i)?selected.filter(x=>x!==i):[...selected,i];s.party=[...selected];s.active=0;formation();render();};return b;}).sort((a,b)=>a.elementOrder-b.elementOrder));
  $('formation-slots').replaceChildren(...Array.from({length:4},(_,i)=>{const b=document.createElement('button');const m=roster[selected[i]];b.className='formation-slot';b.disabled=s?.running;b.innerHTML=m?`<span class="slot-number">${i+1}</span><img src="assets/combat/${m.portrait}" alt=""><span class="slot-name">${m.name}</span><span class="slot-remove">편성 해제</span>${badges(m)}`:`<span class="slot-number">${i+1}</span><span class="slot-placeholder"><b>+</b><span>파티원 선택</span></span>`;b.onclick=()=>{if(!m){$('character-search').focus?.();return;}selected.splice(i,1);s.party=[...selected];s.active=0;formation();render();};return b;}));
- $('start').disabled=s.running||selected.length===0;$('start').textContent=selected.length?'게임 시작':'파티원을 선택해주세요';filterRoster();
+ $('start').disabled=s.running||selected.length===0;setText('start',selected.length?'게임 시작':'파티원을 선택해주세요');filterRoster();
 }
 function reserved(){return s.commands.reduce((sum,k,i)=>sum+(s.commandCosts[i]??skills[k].cost),0);}
 function canRequest(kind,level=1){if(mobileBlocked)return false;if(s.paused||s.ultimateMovie||s.ultimateImpact)return false;if(s.deathTransition)return false;const b=projectedSkill(),autoReserve=s.autoAttackAfterParry?skills.attack.cost:0;
@@ -331,11 +334,11 @@ function render(){
  syncActiveVisual();renderBattleSkill();
  $('break-banner').hidden=!(s.breakFxTime>0);
  if(s.breakRest){$('runner').hidden=true;}
- $('round').textContent=s.round+'R';$('phase').textContent=s.phase;
+ setText('round',s.round+'R');setText('phase',s.phase);
  $('phase-wrap').hidden=['READY','INTRO','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase);$('timeline').hidden=s.breakRest||['READY','INTRO','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase);
  $('enemy-bp').style.transform=`scaleX(${s.enemyBP/100})`;$('break-label').hidden=!s.enemyBroken;
- $('enemy-hp').style.transform=`scaleX(${s.enemyHP/100})`;$('enemy-hp-text').textContent=`${Number(s.enemyHP.toFixed(2))} / 100`;
- $('ap-value').textContent=s.ap;const displayAP=s.apClearing>0?s.clearCount:s.ap;
+ $('enemy-hp').style.transform=`scaleX(${s.enemyHP/100})`;setText('enemy-hp-text',`${Number(s.enemyHP.toFixed(2))} / 100`);
+ setText('ap-value',s.ap);const displayAP=s.apClearing>0?s.clearCount:s.ap;
  const signature=[displayAP,s.apClearing>0,s.apFill>0].join(':');if(signature!==s.apSignature){s.apSignature=signature;
  $('stars').replaceChildren(...Array.from({length:5},(_,i)=>{const x=document.createElement('i'),overflow=Math.max(0,displayAP-5);x.className='star'+(i>=5-Math.min(5,displayAP)?' on':'')+(i>=5-Math.min(5,overflow)?' bonus':'');x.setAttribute('aria-label',i>=5-Math.min(5,overflow)?'추가 AP (기본 AP 위에 표시)':'기본 AP');
  if(s.apClearing>0)x.classList.add('clearing');else if(s.apFill>0){x.classList.add('charging');x.style.animationDelay=Math.max(0,(4-i)*110-s.apFillElapsed)+'ms';}return x;}));}
@@ -345,8 +348,8 @@ function render(){
  $('end').disabled=!(s.running&&!s.deathTransition&&s.phase==='ENGAGE'&&s.canAct&&!s.busy&&!s.poseTime&&!s.enemyTime&&!s.commands.length);$('start').disabled=s.running||!selected.length;
  $('counter').hidden=!(s.running&&((s.phase==='ACTION'&&s.pattern==='counter')||s.gradeTime>0));
  $('aura').classList.toggle('soft',s.pattern!=='normal');$('aura').classList.toggle('active',s.running&&s.phase==='ACTION'&&!s.breakRest);$('aura').style.setProperty('--intent',patterns[s.pattern].color);
- $('reservation').textContent=s.commands.length?'예약: '+s.commands.map(k=>skills[k].name).join(' → '):'';
- const member=activeMember(),bs=battleState(),reference=skillReference[member.id];$('skill').title=reference?(reference.skills[bs.stage-1]+' · CT '+bs.ct):'전투 스킬 [W]';$('ultimate').title=reference?reference.ultimate+' · 요구 US '+reference.us:'궁극기 [E]';$('character-resource').textContent=(reference?reference.skills[bs.stage-1]+' · ':'')+(member.id==='mayoi'?'보석 '+bs.gemCycle.map(k=>gemNames[k]).join('/')+(bs.diamondTurns?' · 다이아몬드':'')+' · ':'')+(member.id==='ren'?'저주 누적 '+bs.curseApplied+' / 7 · ':'')+(member.id==='shion'?'봉제인형 '+bs.plush+' / 4 · ':'')+(member.id==='nono'?'테우르기스트의 빛 '+bs.light+' / 10 · ':'')+(s.magicChain?'마력 연쇄 '+s.magicChain.turns.length+' / 50 · ':'')+(member.id==='souka'?'시간의 궤적 '+(bs.timeTrace||0)+' / 10 · ':'')+(member.id==='mai'?'적중된 창 '+(s.enemyEffects.spear?.stacks||0)+' / 20 · ':'')+(member.id==='haru'?'공격력 +'+(5*Math.min(5,1+Math.floor((s.round-1)/10)))+'% · ':'')+(member.id==='akina'?'그리스의 불 '+bs.fire+' / 3 · ':'')+(reference?.tagSpecialCT?'태그 스페셜 CT '+bs.tagCT+' · ':reference?.tagDefenseCT?'태그 디펜스 CT '+bs.tagCT+' · ':'')+(battleRules[member.id]?'전투 스킬 '+bs.stage+'단 · CT '+bs.ct:'')+' · US '+Math.round((s.energy[s.active]||0)*(reference?.us||2000)/100)+' / '+(reference?.us||2000)+(bs.shield?' · 보호막 '+bs.shield:'')+(domainRules[member.id]?' · 영지 '+bs.domainCount+' / '+domainRules[member.id][1]:'');
+ setText('reservation',s.commands.length?'예약: '+s.commands.map(k=>skills[k].name).join(' → '):'');
+ const member=activeMember(),bs=battleState(),reference=skillReference[member.id];$('skill').title=reference?(reference.skills[bs.stage-1]+' · CT '+bs.ct):'전투 스킬 [W]';$('ultimate').title=reference?reference.ultimate+' · 요구 US '+reference.us:'궁극기 [E]';setText('character-resource',(reference?reference.skills[bs.stage-1]+' · ':'')+(member.id==='mayoi'?'보석 '+bs.gemCycle.map(k=>gemNames[k]).join('/')+(bs.diamondTurns?' · 다이아몬드':'')+' · ':'')+(member.id==='ren'?'저주 누적 '+bs.curseApplied+' / 7 · ':'')+(member.id==='shion'?'봉제인형 '+bs.plush+' / 4 · ':'')+(member.id==='nono'?'테우르기스트의 빛 '+bs.light+' / 10 · ':'')+(s.magicChain?'마력 연쇄 '+s.magicChain.turns.length+' / 50 · ':'')+(member.id==='souka'?'시간의 궤적 '+(bs.timeTrace||0)+' / 10 · ':'')+(member.id==='mai'?'적중된 창 '+(s.enemyEffects.spear?.stacks||0)+' / 20 · ':'')+(member.id==='haru'?'공격력 +'+(5*Math.min(5,1+Math.floor((s.round-1)/10)))+'% · ':'')+(member.id==='akina'?'그리스의 불 '+bs.fire+' / 3 · ':'')+(reference?.tagSpecialCT?'태그 스페셜 CT '+bs.tagCT+' · ':reference?.tagDefenseCT?'태그 디펜스 CT '+bs.tagCT+' · ':'')+(battleRules[member.id]?'전투 스킬 '+bs.stage+'단 · CT '+bs.ct:'')+' · US '+Math.round((s.energy[s.active]||0)*(reference?.us||2000)/100)+' / '+(reference?.us||2000)+(bs.shield?' · 보호막 '+bs.shield:'')+(domainRules[member.id]?' · 영지 '+bs.domainCount+' / '+domainRules[member.id][1]:''));
  const partySignature=JSON.stringify([s.party,s.active,s.hp,s.energy,s.running,s.phase,s.pattern,s.ap,s.apClearing>0,!!s.busy,!!s.poseTime,!!s.enemyTime,s.commands.length,s.canAct,s.tagDefenseActive,s.autoAttackAfterParry,s.specialVisual,s.battleStates,!!s.domainVisual,s.charging,!!s.deathTransition]);
  if(s.partySignature!==partySignature){
   s.partySignature=partySignature;
@@ -450,7 +453,7 @@ function beginVictory(){
 function revealVictoryResult(){
  const t=s.victorySequence;if(!t||t.stage==='complete')return;
  t.stage='complete';$('victory-video').pause?.();$('victory-skip-hint').hidden=true;
- $('victory-fade').hidden=true;$('result-text').textContent='전투 승리';$('result').hidden=false;
+ $('victory-fade').hidden=true;setText('result-text','전투 승리');$('result').hidden=false;
  log('적 처치 · '+metadata[t.winner].name+' 승리','system');formation();
 }
 function playVictoryVideo(t){
@@ -490,7 +493,7 @@ $('victory-screen').addEventListener?.('pointerup',e=>{
 });
 $('victory-screen').addEventListener?.('dblclick',skipVictoryVideo);
 
-function finishBattleResult(won,deathAlreadyPlayed=false){if(!s.running)return;tickDamageNumbers(10000);clearUltimateImpact();clearUltimateMovie();if(won)clearDeathVisual();s.hitFxQueue=[];$('projectile-fx').classList.remove('flying');stopBattleAudio();if(!deathAlreadyPlayed)playSfx('death');s.deathTransition=null;clearDomainVisual();cancelCharge();s.running=false;s.busy=0;s.commands=[];cancelAnimationFrame(raf);clearPose();clearEnemy();$('scene').classList.remove('clash');$('result').hidden=false;$('result-text').textContent=won?'전투 승리':'게임 오버';render();formation();log(won?'적 처치':'아군 전투 불능','system');}
+function finishBattleResult(won,deathAlreadyPlayed=false){if(!s.running)return;tickDamageNumbers(10000);clearUltimateImpact();clearUltimateMovie();if(won)clearDeathVisual();s.hitFxQueue=[];$('projectile-fx').classList.remove('flying');stopBattleAudio();if(!deathAlreadyPlayed)playSfx('death');s.deathTransition=null;clearDomainVisual();cancelCharge();s.running=false;s.busy=0;s.commands=[];cancelAnimationFrame(raf);clearPose();clearEnemy();$('scene').classList.remove('clash');$('result').hidden=false;setText('result-text',won?'전투 승리':'게임 오버');render();formation();log(won?'적 처치':'아군 전투 불능','system');}
 function engage(canAct,msg,side='ally'){s.phase='ENGAGE';s.canAct=canAct;s.advance=canAct?ENGAGE_WAIT_MS:1400;s.busy=s.enemyTime||0;$('runner').hidden=true;log(msg,side);if(s.hp[s.active]<=0&&!replaceFallenAlly())return;if(s.enemyHP<=0){if(s.hitFxQueue.length)s.victoryPending=true;else{finish(true);return;}}render();}
 function clearDeathVisual(){$('ally').classList.remove('death-dissolve');$('scene').classList.remove('ally-fallen');$('death-fx').classList.remove('burst');}
 function replaceFallenAlly(){if(s.deathTransition)return false;const old=s.active;let next=-1;for(let offset=1;offset<s.party.length;offset++){const i=(old+offset)%s.party.length;if(s.hp[i]>0){next=i;break;}}
@@ -511,7 +514,7 @@ function takeHit(){if(s.breakRest)return;if(s.pattern!=='counter')playSfx('enemy
 
 const CLASH_MS={PERFECT:1120,GOOD:1480,assaultBlock:1880};
 function prepareClash(key){const ms=CLASH_MS[key];$('scene').style.setProperty('--clash-duration',ms+'ms');queueSfx(key==='PERFECT'?'perfect':key==='GOOD'?'good':key,Math.round(ms*.05));return ms;}
-function gradeResult(grade){const clashMs=grade==='FAIL'?0:prepareClash(grade);if(grade==='FAIL')playSfx('bad');s.grade=grade;s.gradeTime=grade==='FAIL'?1100:clashMs;$('grade').textContent=grade==='GOOD'?'GOOD!':grade;$('grade').hidden=false;$('counter').classList.remove('perfect','good','fail');$('counter').classList.add(grade.toLowerCase());if(grade!=='FAIL'){pose('parry',clashMs);pulse('scene','clash');s.busy=clashMs+260;s.autoAttackAfterParry=true;log(grade+' 패링 성공 · 일반 공격 자동 연계');}else{s.autoAttackAfterParry=false;$('scene').classList.remove('clash');}render();}
+function gradeResult(grade){const clashMs=grade==='FAIL'?0:prepareClash(grade);if(grade==='FAIL')playSfx('bad');s.grade=grade;s.gradeTime=grade==='FAIL'?1100:clashMs;setText('grade',grade==='GOOD'?'GOOD!':grade);$('grade').hidden=false;$('counter').classList.remove('perfect','good','fail');$('counter').classList.add(grade.toLowerCase());if(grade!=='FAIL'){pose('parry',clashMs);pulse('scene','clash');s.busy=clashMs+260;s.autoAttackAfterParry=true;log(grade+' 패링 성공 · 일반 공격 자동 연계');}else{s.autoAttackAfterParry=false;$('scene').classList.remove('clash');}render();}
 function resolveFailure(){cancelCharge();const wasCounter=s.pattern==='counter';takeHit();engage(s.pattern==='normal',patterns[s.pattern].name+' 피격','enemy');if(wasCounter&&s.running)gradeResult('FAIL');}
 
 
@@ -534,6 +537,11 @@ function tickUltimateImpact(dt){
 }
 
 const ultimateMovies=new Set(['nono','ren','luna','liria','mayoi','mai','moa','souka','shion','akina','anna','erin','sigrid','doll','chikage','canon','koyomi','haru']);
+function warmUltimateMovie(id){
+ if(!ultimateMovies.has(id))return;
+ const v=$('ultimate-video'),src='assets/combat/ultimates/'+id+'.mp4';if(v.dataset.preparedSrc===src)return;
+ v.onended=null;v.onerror=null;v.preload='auto';v.dataset.preparedSrc=src;v.src=src;v.load?.();
+}
 function clearUltimateMovie(){
  const v=$('ultimate-video');v.onended=null;v.onerror=null;v.pause?.();
  $('ultimate-movie').hidden=true;$('battle').classList.remove('playing-ultimate');
@@ -542,7 +550,7 @@ function clearUltimateMovie(){
 function playUltimateMovie(id,done){
  const v=$('ultimate-video'),token={id};s.ultimateMovie=token;
  $('ultimate-movie').hidden=false;$('battle').classList.add('playing-ultimate');
- v.src='assets/combat/ultimates/'+id+'.mp4';v.currentTime=0;v.volume=1;
+ warmUltimateMovie(id);if(v.error)v.load?.();v.currentTime=0;v.volume=1;
  const complete=()=>{if(s.ultimateMovie!==token)return;clearUltimateMovie();if(id==='chikage'||id==='nono')done();else startUltimateImpact(id,done);};
  v.onended=complete;v.onerror=complete;
  try{if(v.play)tryVideo(v,complete,()=>!!s.ultimateMovie);else complete();}catch{complete();}
@@ -672,10 +680,10 @@ function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.v
  else if(s.phase==='ENGAGE'&&!locked&&!s.charging){if(s.ap===0&&!s.commands.length)s.advance=Math.min(s.advance,350);s.advance-=dt;if(s.advance<=0)next();}
  render();if(s.running)raf=requestAnimationFrame(tick);
 }
-function reset(){skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:100,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};history.length=0;$('log').replaceChildren();$('status').textContent='파티를 편성하고 전투 시작을 눌러주세요.';$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
+function reset(){skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:100,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};history.length=0;$('log').replaceChildren();setText('status','파티를 편성하고 전투 시작을 눌러주세요.');$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
 function start(){if(s.running||!selected.length)return;reset();s.running=true;for(const i of s.party){const id=roster[i].id;stateFor(id);if(id==='koyomi')grantUS(id,750);}s.phase='LOADING';s.loadingTime=650;s.ap=0;primeBattleAudio();warmPartyVisuals();showScreen('loading');$('loading-progress').style.width='0%';formation();render();last=performance.now();raf=requestAnimationFrame(tick);}
 for(const group of Object.keys(filters)){for(const value of [...new Set(roster.map(m=>m[group]))]){$('filter-'+group+'-'+value).onclick=()=>{const set=filters[group];if(set.has(value))set.delete(value);else set.add(value);$('filter-'+group+'-'+value).classList.toggle('active',set.has(value));$('filter-'+group+'-'+value).setAttribute('aria-pressed',String(set.has(value)));filterRoster();};}}$('clear-filters').onclick=()=>{for(const group of Object.keys(filters)){for(const value of filters[group]){$('filter-'+group+'-'+value).classList.remove('active');$('filter-'+group+'-'+value).setAttribute('aria-pressed','false');}filters[group].clear();}$('character-search').value='';filterRoster();};
-$('character-search').oninput=filterRoster;$('collapse-list').onclick=()=>{const body=$('character-list-body');body.hidden=!body.hidden;$('collapse-list').textContent=body.hidden?'목록 펼치기':'목록 접기';$('collapse-list').setAttribute('aria-expanded',String(!body.hidden));};
+$('character-search').oninput=filterRoster;$('collapse-list').onclick=()=>{const body=$('character-list-body');body.hidden=!body.hidden;setText('collapse-list',body.hidden?'목록 펼치기':'목록 접기');$('collapse-list').setAttribute('aria-expanded',String(!body.hidden));};
 for(const k of Object.keys(skills))$(k).onclick=()=>attack(k);
 let pointerSkill=false,skillPointer=null,suppressSkillClickUntil=0;
 const skillButton=$('skill');
@@ -713,3 +721,4 @@ for(const id of ['attack','skill','ultimate','counter-button'])$(id).addEventLis
 for(const id of ['ally','enemy','hit'])$(id).addEventListener?.('animationend',e=>{if(e.target!==$(id))return;$(id).classList.remove('flash','hurt','strike');});
 window.mobileAudioStatus=()=>({...BattleAudio.status(),prepared:audioPrepared,preparing:audioPreparing,blocked:mobileBlocked});window.combatSnapshot=()=>JSON.parse(JSON.stringify(s));reset();
 })();
+
