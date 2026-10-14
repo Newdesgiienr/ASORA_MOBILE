@@ -37,6 +37,11 @@ window.BattleAudio={Track,load,
  suspend(){if(ctx&&ctx.state!=='suspended')ctx.suspend().catch(()=>{});},
  get ready(){return !!ctx&&ctx.state==='running';},get state(){return ctx?.state||'not-started';},
  preload(urls){return Promise.all(urls.map(load));},
+ retain(urls){const keep=new Set(urls);for(const track of tracks)if(!track.paused)keep.add(track.src);
+ for(const url of buffers.keys())if(!keep.has(url))buffers.delete(url);
+ for(const track of tracks)if(track.paused&&!keep.has(track.src))track._buffer=null;
+ },
  status(){return {state:this.state,cached:buffers.size,loading:activeLoads,queued:queue.length,playing:[...tracks].filter(t=>!t.paused).map(t=>t.src)};}
 };
 })();
+

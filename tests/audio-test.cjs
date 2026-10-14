@@ -9,7 +9,9 @@ const w={AudioContext:Context,dispatchEvent(){}};const c={window:w,navigator:{},
  const b=new A.Track('slow');const play=b.play();b.pause();const count=starts;await play;assert.equal(starts,count);assert.equal(b.paused,true);
  const d=new A.Track('b');d.loop=true;await d.play();assert.equal(d._source.loop,true);d.volume=.7;assert.equal(d._gain.gain.value,.7);d.pause();d.currentTime=0;assert.equal(d.currentTime,0);
  failed=true;let errors=0;const e=new A.Track('bad');e.onerror=()=>errors++;await assert.rejects(e.play());assert.equal(errors,1);failed=false;await e.play();assert.equal(e.paused,false);
+ e.pause();A.retain(['b']);assert.equal(A.status().cached,1);assert.equal(e._buffer,null);
  A.suspend();assert.equal(A.ready,false);await A.unlock();assert.equal(A.ready,true);assert.equal(contexts,1);
  const game=fs.readFileSync(__dirname+'/../combat-safari.js','utf8'),html=fs.readFileSync(__dirname+'/../combat.html','utf8');assert.ok(!game.includes('new Audio('));assert.ok(game.includes("s.phase==='LOADING'&&!audioPrepared"));assert.ok(game.includes('if(mobileBlocked||document.hidden)'));assert.ok(html.indexOf('safari-audio.js')<html.indexOf('combat-safari.js'));assert.ok(!html.includes('src="combat.js"'));
  console.log('PASS: shared context; bounded/deduplicated preload; pause/resume offsets; natural ended; cancel pending play; loop/volume; fetch retry; suspend/unlock; isolated entry and combat gates');
 })().catch(e=>{console.error(e);process.exitCode=1;});
+
