@@ -1,0 +1,23 @@
+{
+  "reference": "canon/attack-normalized.png",
+  "referenceCharacterBodyBBox": [
+    674,
+    364,
+    879,
+    619
+  ],
+  "referenceCharacterBodyHeight": 255,
+  "chikageDefense": {
+    "path": "chikage/defense-normalized.png",
+    "characterBodyBBox": [
+      723,
+      364,
+      830,
+      619
+    ],
+    "characterBodyHeight": 255,
+    "bodyCenterX": 776.5,
+    "referenceBodyCenterX": 776.5,
+    "normalization": "entire defense illustration scaled to 0.7634730539, then aligned by character body bottom and center to Canon attack character body"
+  }
+}

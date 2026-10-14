@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="아스트라에 오라티오 캐릭터 전투 데이터베이스" name="description"/>
+<title>캐릭터 | Astrae Oratio Battle Lab</title>
+<link href="styles.css?v=65" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-topbar">
+<div class="brand">
+<a aria-label="Astrae Oratio Battle Lab 캐릭터 페이지" class="brand-mark" href="characters.html">AO</a>
+<div class="brand-copy">
+<a class="brand-title" href="characters.html"><strong>ASTRAE ORATIO BATTLE LAB</strong></a>
+<div class="brand-lower">
+<small>아스트라에 오라티오 전투 데이터베이스</small>
+<nav aria-label="페이지 이동" class="site-nav"><a href="glossary.html">용어 사전</a><a aria-current="page" class="active" href="characters.html">캐릭터</a><a href="artifacts.html">아티팩트</a><a href="vignettes.html">비네트</a><a href="score-trial.html">스코어 트라이얼</a><a href="combat.html">전투 시뮬레이션</a></nav>
+</div>
+</div>
+</div>
+</header>
+<main class="page-shell" id="top">
+<header class="page-heading character-page-heading" id="characters">
+<div class="page-heading-copy">
+<span>CHARACTER DATABASE</span>
+<h1>캐릭터</h1>
+</div>
+<label class="search-field">
+<span>캐릭터 검색</span>
+<input id="character-search" placeholder="이름, 스킬, 효과, 용어 검색" type="search"/>
+</label>
+</header>
+<nav aria-label="캐릭터 바로가기" class="character-jumpbar" data-card-count="18" data-static-order="true" id="character-jumpbar"><a aria-label="하나모리 모아 정보로 이동" class="character-jump-button" data-character-target="character-moa" href="#character-moa"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/moa.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">하나모리</span><span class="jump-name-line">모아</span></span></a><a aria-label="안나 M. 바텐베르크 정보로 이동" class="character-jump-button" data-character-target="character-anna" href="#character-anna"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/anna.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">안나 M.</span><span class="jump-name-line">바텐베르크</span></span></a><a aria-label="엔류 코요미 정보로 이동" class="character-jump-button" data-character-target="character-koyomi" href="#character-koyomi"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/koyomi.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">엔류</span><span class="jump-name-line">코요미</span></span></a><a aria-label="시그리드 울브헤른 정보로 이동" class="character-jump-button" data-character-target="character-sigrid" href="#character-sigrid"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/sigrid.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">시그리드</span><span class="jump-name-line">울브헤른</span></span></a><a aria-label="아키츠 아키나 정보로 이동" class="character-jump-button" data-character-target="character-akina" href="#character-akina"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/akina.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">아키츠</span><span class="jump-name-line">아키나</span></span></a><a aria-label="인형 정보로 이동" class="character-jump-button" data-character-target="character-doll" href="#character-doll"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/doll.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">인형</span></span></a><a aria-label="케이코 마요이 정보로 이동" class="character-jump-button" data-character-target="character-mayoi" href="#character-mayoi"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/mayoi.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">케이코</span><span class="jump-name-line">마요이</span></span></a><a aria-label="미츠코에 루나 정보로 이동" class="character-jump-button" data-character-target="character-luna" href="#character-luna"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/luna.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">미츠코에</span><span class="jump-name-line">루나</span></span></a><a aria-label="타나카 에린 정보로 이동" class="character-jump-button" data-character-target="character-erin" href="#character-erin"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/erin.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">타나카</span><span class="jump-name-line">에린</span></span></a><a aria-label="아사쿠라 마이 정보로 이동" class="character-jump-button" data-character-target="character-mai" href="#character-mai"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/mai.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">아사쿠라</span><span class="jump-name-line">마이</span></span></a><a aria-label="타카라베 치카게 정보로 이동" class="character-jump-button" data-character-target="character-chikage" href="#character-chikage"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/chikage.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">타카라베</span><span class="jump-name-line">치카게</span></span></a><a aria-label="나가타니 카논 정보로 이동" class="character-jump-button" data-character-target="character-canon" href="#character-canon"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/canon.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">나가타니</span><span class="jump-name-line">카논</span></span></a><a aria-label="나츠메 소우카 정보로 이동" class="character-jump-button" data-character-target="character-souka" href="#character-souka"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/souka.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">나츠메</span><span class="jump-name-line">소우카</span></span></a><a aria-label="카가미하라 하루 정보로 이동" class="character-jump-button" data-character-target="character-haru" href="#character-haru"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/haru.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">카가미하라</span><span class="jump-name-line">하루</span></span></a><a aria-label="시라누이 렌 정보로 이동" class="character-jump-button" data-character-target="character-ren" href="#character-ren"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/ren.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">시라누이</span><span class="jump-name-line">렌</span></span></a><a aria-label="노와타리 시온 정보로 이동" class="character-jump-button" data-character-target="character-shion" href="#character-shion"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/shion.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">노와타리</span><span class="jump-name-line">시온</span></span></a><a aria-label="후지와라 리리아 정보로 이동" class="character-jump-button" data-character-target="character-liria" href="#character-liria"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/liria.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">후지와라</span><span class="jump-name-line">리리아</span></span></a><a aria-label="하이바라 노노 정보로 이동" class="character-jump-button" data-character-target="character-nono" href="#character-nono"><span class="character-jump-portrait"><img alt="" decoding="async" height="54" loading="eager" src="assets/cards/nono.webp" width="54"/></span><span class="character-jump-name"><span class="jump-name-line">하이바라</span><span class="jump-name-line">노노</span></span></a></nav>
+<div class="list-toolbar">
+<div class="toolbar-primary">
+<span class="character-total">등록 캐릭터 <b id="character-count">18</b></span>
+<div aria-label="속성 및 역할군 필터" class="character-filters">
+<div aria-label="속성 필터" class="filter-group">
+<span class="filter-group-label">속성</span>
+<div class="filter-buttons">
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="caelum" data-tooltip="속성 · 카에룸" type="button"><img alt="카에룸" src="assets/caelum.png"/></button>
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="chaos" data-tooltip="속성 · 카오스" type="button"><img alt="카오스" src="assets/chaos.png"/></button>
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="homines" data-tooltip="속성 · 호미네스" type="button"><img alt="호미네스" src="assets/homines.png"/></button>
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="nox" data-tooltip="속성 · 녹스" type="button"><img alt="녹스" src="assets/nox.png"/></button>
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="lux" data-tooltip="속성 · 룩스" type="button"><img alt="룩스" src="assets/lux.png"/></button>
+<button class="filter-icon-button" data-filter-group="element" data-filter-value="terra" data-tooltip="속성 · 테라" type="button"><img alt="테라" src="assets/terra.png"/></button>
+</div>
+</div>
+<span aria-hidden="true" class="filter-divider"></span>
+<div aria-label="역할군 필터" class="filter-group">
+<span class="filter-group-label">역할군</span>
+<div class="filter-buttons">
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="defender" data-tooltip="역할군 · 디펜더" type="button"><img alt="디펜더" src="assets/defender.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="anchor" data-tooltip="역할군 · 앵커" type="button"><img alt="앵커" src="assets/anchor.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="supporter" data-tooltip="역할군 · 서포터" type="button"><img alt="서포터" src="assets/supporter.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="breaker" data-tooltip="역할군 · 브레이커" type="button"><img alt="브레이커" src="assets/breaker.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="attacker" data-tooltip="역할군 · 어태커" type="button"><img alt="어태커" src="assets/attacker.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="sweeper" data-tooltip="역할군 · 스위퍼" type="button"><img alt="스위퍼" src="assets/sweeper.png"/></button>
+</div>
+</div>
+<button aria-hidden="true" class="reset-filters is-placeholder" disabled id="reset-filters" type="button">필터 해제</button>
+</div>
+</div>
+<div class="toolbar-actions">
+<button id="expand-all" type="button">모두 펼치기</button>
+<button id="collapse-all" type="button">모두 접기</button>
+</div>
+</div>
+<section aria-label="캐릭터 목록" class="character-list" id="character-list">
+<!-- 모아 -->
+<!-- 안나 -->
+<!-- 인형 -->
+<!-- 마요이 -->
+<details class="character-card" data-element="caelum" data-role="breaker" id="character-moa">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="하나모리 모아 초상화" class="character-portrait-image portrait-moa" decoding="async" height="88" src="assets/cards/moa.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/breaker.png"/></span>
+</span>
+<div class="character-name-group"><h2>하나모리 모아</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag hot">픽업</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">브레이커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="하나모리 모아 내부 이동" class="section-nav">
+<button data-target="moa-skills" type="button">스킬</button>
+<button data-target="moa-ability" type="button">고유 능력</button>
+<button data-target="moa-domain" type="button">영지 선언</button>
+<button data-target="moa-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="moa-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-moa-repin-de-justis">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>레핀 드 쥐스티스</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 1000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>734.3%</b> 피해.</p>
+<p>대상이 <button class="term-link" data-term="notice">#괴도의 예고장</button> 보유 시 치명타 확률 15%만큼 <button class="term-link" data-term="plunder">#강탈</button> 부여 <span class="subtle">(유지 라운드 7)</span>.</p>
+<p><button class="term-link" data-term="notice">#괴도의 예고장</button> 제거.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">칸 드 콩바</span> : <strong class="skill-variant-inline">괴도의 지팡이술, 첫 번째</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>366.6%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">칸 드 콩바</span> : <strong class="skill-variant-inline">괴도의 지팡이술, 두 번째</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>400%</b> 피해.</p>
+<p><button class="term-link" data-term="fracture">#파쇄</button> 1중첩 소모.</p>
+<p><button class="term-link" data-term="fracture">#파쇄</button> 소모 시마다 <b>500%</b> 추가 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>226.5%</b> 피해.</p>
+<p><button class="term-link" data-term="notice">#괴도의 예고장</button> 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG SPECIAL</span><h4>태그 스페셜 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p><button class="term-link" data-term="assault-block">#강습 차단</button> 판정.</p>
+<p>적 1인에게 <b>476.8%</b> 피해.</p>
+<p><button class="term-link" data-term="fracture">#파쇄</button> 1중첩 소모.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="moa-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>한밤의 수호자</h4></header>
+<div class="row-body"><p><button class="term-link" data-term="notice">#괴도의 예고장</button> 부여 시 타격력 <b>20.1%</b> 증가 <span class="subtle">(최대 1중첩 / 유지 라운드 1)</span>.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="moa-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 6회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="moa-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">01 → 04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">차가운 밤, 어두운 그림자</div><div class="potential-detail">아군 전체에게 <button class="term-link" data-term="magic-release">#마력 개방</button> 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">야경꾼의 발자국</div><div class="potential-detail">전투 스킬 피해량 30% 증가. ‘괴도의 지팡이술, 첫 번째’ 사용 시 대상에게 <button class="term-link" data-term="fracture">#파쇄</button> 1중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">낭만을 추구하는 자</div><div class="potential-detail">태그 스페셜 스킬 피해량 15% 증가. 태그 스페셜 스킬 사용 시 대상에게 <button class="term-link" data-term="notice">#괴도의 예고장</button> 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">바람과 함께 사라지다</div><div class="potential-detail"><button class="term-link" data-term="plunder">#강탈</button> 3회 부여 시 AP +1.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">한밤중에 피어난 장미</div><div class="potential-detail">얼티메이트 스킬 피해량 15% 증가. 최대 US 포인트 100% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="caelum" data-role="attacker" id="character-anna">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="안나 M. 바텐베르크 초상화" class="character-portrait-image portrait-anna" decoding="async" height="88" src="assets/cards/anna.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>안나 M. 바텐베르크</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">어태커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="안나 M. 바텐베르크 내부 이동" class="section-nav">
+<button data-target="anna-skills" type="button">스킬</button>
+<button data-target="anna-ability" type="button">고유 능력</button>
+<button data-target="anna-domain" type="button">영지 선언</button>
+<button data-target="anna-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="anna-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>드라이파허 블리츠슈니트</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>391.2%</b> 피해.</p>
+<p>파쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">전투의 예술</span> : <strong class="skill-variant-inline">번개 같은 찌르기</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>252.5%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">전투의 예술</span> : <strong class="skill-variant-inline">번뜩이는 삼단베기</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>255.2%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">전투의 예술</span> : <strong class="skill-variant-inline">정수리 낙하 베기</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>291.6%</b> 피해.</p>
+<p>파쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>150%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="anna-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>기사도의 정신</h4></header>
+<div class="row-body">
+<p>얼티메이트 스킬 사용 시 전투 스킬 피해량 <b>35.6%</b> 증가 <span class="subtle">(유지 라운드 2)</span>.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="anna-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 9회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="anna-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">01 → 04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">앰버의 광채</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">칼날에 흐르는 뇌성</div><div class="potential-detail">카운터 스킬 사용 시 번개 같은 찌르기의 AP 소모량 0 <span class="subtle">(최대 1회 / 유지 라운드 1)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">자각하는 마음</div><div class="potential-detail">번개 같은 찌르기 사용 시 대상에게 파쇄 1중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">기사의 덕목</div><div class="potential-detail">얼티메이트 스킬 사용 시 전투 스킬 재사용 대기 시간 초기화.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">새로운 맹세</div><div class="potential-detail">얼티메이트 스킬의 AP 소모량 -1.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="caelum" data-role="sweeper" id="character-koyomi">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="엔류 코요미 초상화" class="character-portrait-image portrait-koyomi" decoding="async" height="88" src="assets/cards/koyomi.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/sweeper.png"/></span>
+</span>
+<div class="character-name-group"><h2>엔류 코요미</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">스위퍼</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="엔류 코요미 내부 이동" class="section-nav">
+<button data-target="koyomi-skills" type="button">스킬</button>
+<button data-target="koyomi-ability" type="button">고유 능력</button>
+<button data-target="koyomi-domain" type="button">영지 선언</button>
+<button data-target="koyomi-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="koyomi-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>불사르는 염룡, 스바로지츠의 숨결이여!</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 3000</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>589.9%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">엔류 가의 마녀술</span> : <strong class="skill-variant-inline">염룡의 화염구</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>234.2%</b> 피해.</p>
+<p>파쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">엔류 가의 마녀술</span> : <strong class="skill-variant-inline">염룡의 파도</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>225.1%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">엔류 가의 마녀술</span> : <strong class="skill-variant-inline">염룡의 소낙비</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>282.9%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>183%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="koyomi-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>염룡의 혈맥</h4></header>
+<div class="row-body"><p>전투 시작 시 US 포인트 +750.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="koyomi-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>얼티메이트 스킬 2회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="koyomi-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">01 → 04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">이어받은 불씨</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">타오르기 시작한 불꽃</div><div class="potential-detail">전투 스킬 사용 시 대상에게 화상 1단계 부여.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">혈맥에 깃든 염룡</div><div class="potential-detail">고유 능력의 US 포인트 회복량 100% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">스바로지츠의 계승자</div><div class="potential-detail">태그 어택 스킬 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">그 이름, 맹염소녀</div><div class="potential-detail">얼티메이트 스킬 피해량 20% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="caelum" data-role="sweeper" id="character-sigrid">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="시그리드 울브헤른 초상화" class="character-portrait-image portrait-sigrid" decoding="async" height="88" src="assets/cards/sigrid.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/sweeper.png"/></span>
+</span>
+<div class="character-name-group"><h2>시그리드 울브헤른</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">스위퍼</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="시그리드 울브헤른 내부 이동" class="section-nav">
+<button data-target="sigrid-skills" type="button">스킬</button>
+<button data-target="sigrid-ability" type="button">고유 능력</button>
+<button data-target="sigrid-domain" type="button">영지 선언</button>
+<button data-target="sigrid-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="sigrid-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-sigrid-ragnarok">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>쇄도하는 라그나로크</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>415.5%</b> 피해.</p>
+<p>자신의 고유 능력 적용 중 <b>207.8%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">울브헤른식 도끼술</span> : <strong class="skill-variant-inline">내리치는 번개</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 1단계]</b></p>
+<p>적 전체에게 <b>283.3%</b> 피해.</p>
+</div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 2단계]</b></p>
+<p>스킬 사용 시 AP 2 소모.</p>
+<p>적 전체에게 <b>360.9%</b> 피해.</p>
+<p>파쇄 1중첩 소모.</p>
+</div>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">울브헤른식 도끼술</span> : <strong class="skill-variant-inline">몰아치는 폭풍우</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>203.7%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>165%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="sigrid-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>광전사의 혈통</h4></header>
+<div class="row-body"><p>전투 시작 시 공격력 <b>16.6%</b> 증가 <span class="subtle">(유지 라운드 6)</span>.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="sigrid-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 4회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="sigrid-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order">
+<span class="node-unlock-label">개방 순서</span>
+<span class="node-unlock-route">01 → 02 → 03</span>
+<span class="node-unlock-route">01 → 04 → 05</span>
+</div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">추운 나라에서 온 소녀</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">온화한 바이킹</div><div class="potential-detail">얼티메이트 스킬 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">스칼라그림손의 힘</div><div class="potential-detail">내리치는 번개를 차지 2단계로 사용 시 대상에게 파쇄 1중첩 소모.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">야를의 후예</div><div class="potential-detail">고유 능력 유지 라운드 11로 변경.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">발할라의 방식으로</div><div class="potential-detail">고유 능력 공격력 증가량 100% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="caelum" data-role="attacker" id="character-akina">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="아키츠 아키나 초상화" class="character-portrait-image portrait-akina" decoding="async" height="88" src="assets/cards/akina.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>아키츠 아키나</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">어태커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="아키츠 아키나 내부 이동" class="section-nav">
+<button data-target="akina-skills" type="button">스킬</button>
+<button data-target="akina-ability" type="button">고유 능력</button>
+<button data-target="akina-domain" type="button">영지 선언</button>
+<button data-target="akina-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="akina-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-akina-chemistry-alchemy-explosion">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>화학, 연금술, 그리고 폭발</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>639.1%</b> 피해.</p>
+<p>화상 4단계 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">특제 마도구 등장!</span> : <strong class="skill-variant-inline">아키나 특제 &lt;그리스의 불&gt;</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">AP 1</span></div>
+<p>그리스의 불 1개 소모.</p>
+<p>적 1인에게 <b>114.8%</b> 피해.</p>
+<p>화상 1단계 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">특제 마도구 등장!</span> : <strong class="skill-variant-inline">아키나 특제 드롭스</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">AP 1</span></div>
+<p>그리스의 불 1개 소모.</p>
+<p>적 1인에게 <b>125.2%</b> 피해.</p>
+<p>화상 1단계 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">특제 마도구 등장!</span> : <strong class="skill-variant-inline">즉석 충전</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>보유한 그리스의 불이 0개일 시 사용.</p>
+<p>그리스의 불 3개 충전.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>128.2%</b> 피해.</p>
+<p>파쇄 1중첩 부여.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="akina-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>아키나류 연금술</h4></header>
+<div class="row-body">
+<p>전투 시작 시 그리스의 불 3개 충전.</p>
+<p>아키나 특제 드롭스 사용 시 50% 확률로 전투 스킬 재사용 대기시간 초기화.</p>
+<p>그리스의 불 1개 충전.</p>
+<p>AP +1, US 포인트 +50.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="akina-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 10회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="akina-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order">
+<span class="node-unlock-label">개방 순서</span>
+<span class="node-unlock-route">01 → 02 → 03</span>
+<span class="node-unlock-route">04 → 05</span>
+</div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">화학과 연금술</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">번뜩이는 아이디어</div><div class="potential-detail">즉석 충전 사용 시 아키나 특제 &lt;그리스의 불&gt;의 재사용 대기시간 초기화.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">실험의 중요성</div><div class="potential-detail">그리스의 불 최대 보유량 6개로 변경. 즉석 충전 사용 시 그리스의 불 충전량 6개로 변경.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">실패는 성공의 어머니</div><div class="potential-detail">전투 스킬 피해량 25% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">마그눔 오푸스</div><div class="potential-detail">얼티메이트 스킬 피해량 25% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="chaos" data-role="attacker" id="character-doll">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="인형 초상화" class="character-portrait-image portrait-doll" decoding="async" height="88" src="assets/cards/doll.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/chaos.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>인형</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag basic">기본지급</span>
+<span class="character-tag">카오스</span>
+<span class="character-tag">어태커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="인형 내부 이동" class="section-nav">
+<button data-target="doll-skills" type="button">스킬</button>
+<button data-target="doll-ability" type="button">고유 능력</button>
+<button data-target="doll-domain" type="button">영지 선언</button>
+<button data-target="doll-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="doll-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>테룸 아르보리스</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 1000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>538%</b> 피해.</p>
+<p><button class="term-link" data-term="curse">#저주</button> 2중첩 부여.</p>
+<p><button class="term-link" data-term="guard">#가드</button> 1단계 감소.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">무명식 개</span> : <strong class="skill-variant-inline">무명 찌르기 - 개</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>279.9%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">무명식 개</span> : <strong class="skill-variant-inline">연격</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>279.9%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>208.5%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="doll-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>대지의 힘</h4></header>
+<div class="row-body">
+<p>HP 70% 이하일 시 자신에게 최대 HP의 <b>27.9%</b> 만큼 <button class="term-link" data-term="shield">#보호막</button> 부여 <span class="subtle">(유지 라운드 5)</span>.</p>
+<p>공격력 <b>20%</b> 증가 <span class="subtle">(최대 1회)</span>.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="doll-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>얼티메이트 스킬 2회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="doll-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">미래와 과거의 교차점</div><div class="potential-detail">아군 전체에게 <button class="term-link" data-term="magic-release">#마력 개방</button> 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">조형 최적화</div><div class="potential-detail">전투 스킬 피해량 20% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">가장 충실한 자</div><div class="potential-detail">고유 능력 발동 시 US 포인트 +1000 <span class="subtle">(최대 1회)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">소리없이 움트는 새싹</div><div class="potential-detail">고유 능력 <button class="term-link" data-term="shield">#보호막</button>량 100% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">마음에 이르는 길</div><div class="potential-detail">얼티메이트 스킬 피해량 20% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="homines" data-role="breaker" id="character-mayoi">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="케이코 마요이 초상화" class="character-portrait-image portrait-mayoi" decoding="async" height="88" src="assets/cards/mayoi.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/breaker.png"/></span>
+</span>
+<div class="character-name-group"><h2>케이코 마요이</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">호미네스</span>
+<span class="character-tag">브레이커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="케이코 마요이 내부 이동" class="section-nav">
+<button data-target="mayoi-skills" type="button">스킬</button>
+<button data-target="mayoi-ability" type="button">고유 능력</button>
+<button data-target="mayoi-domain" type="button">영지 선언</button>
+<button data-target="mayoi-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="mayoi-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>카두케우스 루시스</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>444.6%</b> 피해.</p>
+<p>다이아몬드 보유 중일 시 <b>889.2%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">보석 마법</span> : <strong class="skill-variant-inline">손에 잡히는 대로 빔</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>142%</b> 피해.</p>
+<p>자신에게 루비, 토파즈, 에메랄드 중 하나를 무작위 부여.</p>
+<p>4번째 사용 시 다이아몬드 부여 후 사용 횟수 초기화.</p>
+<p>이미 부여한 보석은 초기화 전까지 다시 부여되지 않음.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">보석 마법</span> : <strong class="skill-variant-inline">한꺼번에 빔</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>409.2%</b> 피해.</p>
+<p>다이아몬드 보유 중일 시 연쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>171.7%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="mayoi-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>보석 마법사</h4></header>
+<div class="row-body" data-auto-terms="off">
+<p>루비: 공격력 <b>20%</b> 증가 <span class="subtle">(유지 라운드 1)</span>.</p>
+<p>토파즈: 치명타 확률 <b>+10%</b> <span class="subtle">(유지 라운드 1)</span>.</p>
+<p>에메랄드: 타격력 <b>20%</b> 증가 <span class="subtle">(유지 라운드 1)</span>.</p>
+<p>다이아몬드: 루비, 에메랄드, 토파즈의 효과 모두 적용 <span class="subtle">(유지 라운드 1)</span>.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="mayoi-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 8회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="mayoi-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 03 → 04</span><span class="node-unlock-route">01 → 03 → 05</span><span class="node-unlock-route">02 → 03 → 04</span><span class="node-unlock-route">02 → 03 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">루비는 고고하게</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">황홀한 에메랄드와 같이</div><div class="potential-detail">전투 스킬 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">반짝임은 다이아몬드로</div><div class="potential-detail">고유 능력의 보석 효과량 1.5배 증가.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">사파이어의 지혜를 담아</div><div class="potential-detail">한꺼번에 빔 사용 시 대상에게 연쇄 1중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">페리도트는 마땅히</div><div class="potential-detail">최대 US 포인트 100% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="homines" data-role="anchor" id="character-luna">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="미츠코에 루나 초상화" class="character-portrait-image portrait-luna" decoding="async" height="88" src="assets/cards/luna.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/anchor.png"/></span>
+</span>
+<div class="character-name-group"><h2>미츠코에 루나</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">호미네스</span>
+<span class="character-tag">앵커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="미츠코에 루나 내부 이동" class="section-nav">
+<button data-target="luna-skills" type="button">스킬</button>
+<button data-target="luna-ability" type="button">고유 능력</button>
+<button data-target="luna-domain" type="button">영지 선언</button>
+<button data-target="luna-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="luna-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>레지아노이 피스탈레트</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>842.5%</b> 피해.</p>
+<p>연쇄 2중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">겨울의 결정</span> : <strong class="skill-variant-inline">빙결파동</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>372.8%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">겨울의 결정</span> : <strong class="skill-variant-inline">얼어붙은 발자국</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>410%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">겨울의 결정</span> : <strong class="skill-variant-inline">빙결폭발</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>475%</b> 피해.</p>
+<p>연쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>163.5%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="luna-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>얼음의 축복</h4></header>
+<div class="row-body"><p>아군이 적에게 연쇄 부여 시마다 <b>50%</b> 피해.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="luna-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 6회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+<p>아군이 스킬 사용 시마다 적 1인에게 루나의 능력치 기준 <b>200%</b> 추가 피해 <span class="subtle">(유지 라운드 3)</span>.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="luna-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">01 → 04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">얼어붙은 날갯짓</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">눈뜨는 겨울 숲</div><div class="potential-detail">태그 어택 스킬 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">차가운 거울</div><div class="potential-detail">고유 능력의 피해량 100% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">눈송이의 정령</div><div class="potential-detail">빙결폭발 피해량 40% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">빙하를 걷는 멜로디</div><div class="potential-detail">자신의 영지 선언 발동 중 얼티메이트 스킬 피해량 30% 증가 <span class="subtle">(유지 라운드 3)</span>.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="homines" data-role="breaker" id="character-erin">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="타나카 에린 초상화" class="character-portrait-image portrait-erin" src="assets/erin-portrait.png"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/breaker.png"/></span>
+</span>
+<div class="character-name-group"><h2>타나카 에린</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">호미네스</span>
+<span class="character-tag">브레이커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="타나카 에린 내부 이동" class="section-nav">
+<button data-target="erin-skills" type="button">스킬</button>
+<button data-target="erin-ability" type="button">고유 능력</button>
+<button data-target="erin-domain" type="button">영지 선언</button>
+<button data-target="erin-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="erin-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-erin-clew-solus">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>클리우 솔러시</h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 1000</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>657.6%</b> 피해.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">별빛 마법</span> : <strong class="skill-variant-inline">빛의 울림</strong></h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>278.8%</b> 피해.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">별빛 마법</span> : <strong class="skill-variant-inline">연쇄 투척</strong></h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>278.8%</b> 피해.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">별빛 마법</span> : <strong class="skill-variant-inline">반짝반짝 볼</strong></h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>278.8%</b> 피해.</p><p>연쇄 1중첩 부여.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>150.6%</b> 피해.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG SPECIAL</span><h4>태그 스페셜 스킬</h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 6</span><span class="row-badge">AP 1</span></div><p>강습 차단 판정.</p><p>적 1인에게 <b>266.5%</b> 피해.</p><p>연쇄 1중첩 부여.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="erin-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>간파</h4></header><div class="row-body"><p>얼티메이트 스킬 사용 시 타격력 <b>28.6%</b> 증가 <span class="subtle">(유지 라운드 2)</span>.</p></div></article></div>
+</section>
+<section class="character-section" id="erin-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 9회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div>
+</section>
+<section class="character-section" id="erin-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">경계의 표상</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">인내와 고독의 틈새</div><div class="potential-detail">빛의 울림, 반짝반짝 불의 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">별빛의 비산</div><div class="potential-detail">강습 차단 성공 시 아군 전체의 치명타 확률 +15% <span class="subtle">(유지 라운드 3)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">수렴하는 꿈</div><div class="potential-detail">태그 어택 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">수평선 너머의 망각</div><div class="potential-detail">적이 브레이크될 시 AP +1.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="homines" data-role="attacker" id="character-mai">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="아사쿠라 마이 초상화" class="character-portrait-image portrait-mai" decoding="async" height="88" src="assets/cards/mai.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>아사쿠라 마이</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags"><span class="character-tag">통상</span><span class="character-tag">호미네스</span><span class="character-tag">어태커</span></div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="아사쿠라 마이 내부 이동" class="section-nav"><button data-target="mai-skills" type="button">스킬</button><button data-target="mai-ability" type="button">고유 능력</button><button data-target="mai-domain" type="button">영지 선언</button><button data-target="mai-nodes" type="button">마력 노드</button></nav>
+<section class="character-section" id="mai-skills"><header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header><div class="reading-list">
+<article class="reading-row" id="skill-mai-athletria-strike"><header class="row-heading"><span class="row-type">ULTIMATE</span><h4>아틀레트리아의 일격</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 1000</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>339.5%</b> 피해.</p><p>적중된 창 1개 부여.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">아틀레트리아의 체술</span> : <strong class="skill-variant-inline">전력 투창</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div><div class="skill-stage"><p class="stage-title"><b>[차지 1단계]</b></p><p>적 1인에게 <b>106.6%</b> 피해.</p><p>적중된 창 1개 부여.</p></div><div class="skill-stage"><p class="stage-title"><b>[차지 2단계]</b></p><p>적 1인에게 <b>224.4%</b> 피해.</p><p>대상의 적중된 창 1개마다 <b>200%</b> 추가 피해.</p><p>적중된 창 모두 제거.</p></div></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">아틀레트리아의 체술</span> : <strong class="skill-variant-inline">삼단 투창</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div><div class="skill-stage"><p class="stage-title"><b>[차지 1단계]</b></p><p>적 1인에게 <b>116.2%</b> 피해.</p><p>적중된 창 1개 부여.</p></div><div class="skill-stage"><p class="stage-title"><b>[차지 2단계]</b></p><p>적 1인에게 <b>224.4%</b> 피해.</p><p>적중된 창 1개마다 <b>200%</b> 추가 피해.</p></div></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>134.7%</b> 피해.</p></div></article>
+</div></section>
+<section class="character-section" id="mai-ability"><header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header><div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>챔피언의 가능성</h4></header><div class="row-body"><p>얼티메이트 스킬 사용 시 치명타 확률 <b>+12.5%</b> 증가 <span class="subtle">(유지 라운드 4)</span>.</p></div></article></div></section>
+<section class="character-section" id="mai-domain"><header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header><div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 12회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div></section>
+<section class="character-section" id="mai-nodes"><header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header><div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">04 → 05</span></div><div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">육상부의 에이스</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">담대한 마음가짐</div><div class="potential-detail">전력 투창 또는 삼단 투창을 차지 2단계로 사용 시 피해량 20% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">꾸준한 단련</div><div class="potential-detail">태그 어택 스킬 사용 시 대상에게 적중된 창 1개 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">거침없는 도움닫기</div><div class="potential-detail">적중된 창 3회 부여 시마다 치명타 확률 +25% <span class="subtle">(유지 라운드 1)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">올림피아의 아틀레트리아</div><div class="potential-detail">얼티메이트 스킬 사용 시 대상의 치명타 저항률 -20% <span class="subtle">(유지 라운드 1)</span>.</div></article>
+</div></section>
+</div></details><details class="character-card" data-element="homines" data-role="defender" id="character-chikage">
+<summary class="character-summary"><div class="character-identity"><span class="character-portrait"><img alt="타카라베 치카게 초상화" class="character-portrait-image portrait-chikage" decoding="async" height="88" src="assets/cards/chikage.webp" width="76"/></span><span class="character-identity-icons"><span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span><span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span><span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/defender.png"/></span></span><div class="character-name-group"><h2>타카라베 치카게</h2></div></div><div aria-label="캐릭터 키워드" class="character-tags"><span class="character-tag">통상</span><span class="character-tag">호미네스</span><span class="character-tag">디펜더</span></div><span aria-hidden="true" class="summary-action"><i></i></span></summary>
+<div class="character-content"><nav aria-label="타카라베 치카게 내부 이동" class="section-nav"><button data-target="chikage-skills" type="button">스킬</button><button data-target="chikage-ability" type="button">고유 능력</button><button data-target="chikage-domain" type="button">영지 선언</button><button data-target="chikage-nodes" type="button">마력 노드</button></nav>
+<section class="character-section" id="chikage-skills"><header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header><div class="reading-list">
+<article class="reading-row" id="skill-chikage-weierstrass-phase-barrier"><header class="row-heading"><span class="row-type">ULTIMATE</span><h4>바이어슈트라스의 위상 방벽</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div><p>아군 전체에게 최대 HP의 <b>53.4%</b> 만큼 보호막 부여 <span class="subtle">(유지 라운드 4)</span>.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-parent-name">위상 마법 스크롤</span> : <strong class="skill-variant-inline">공간 제어 스크롤</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div><div class="skill-stage"><p class="stage-title"><b>[차지 1단계]</b></p><p>적 1인에게 <b>301.1%</b> 피해.</p></div><div class="skill-stage"><p class="stage-title"><b>[차지 2단계]</b></p><p>자신에게 최대 HP의 <b>30.1%</b>만큼 보호막 부여 <span class="subtle">(유지 라운드 4)</span>.</p></div></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>162.6%</b> 피해.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">TAG DEFENSE</span><h4>태그 디펜스 스킬</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 10</span></div><p>수호 판정.</p><p>아군 전체의 받는 피해 감소율 <b>+15%</b> <span class="subtle">(유지 라운드 1)</span>.</p></div></article>
+</div></section>
+<section class="character-section" id="chikage-ability"><header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header><div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>냉철한 이성</h4></header><div class="row-body"><p>얼티메이트 스킬 사용 시 아군 전체의 방어력 <b>12%</b> 증가 <span class="subtle">(유지 라운드 4)</span>.</p></div></article></div></section>
+<section class="character-section" id="chikage-domain"><header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header><div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 3회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div></section>
+<section class="character-section" id="chikage-nodes"><header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header><div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 04</span><span class="node-unlock-route">02 → 04</span><span class="node-unlock-route">02 → 05</span><span class="node-unlock-route">03 → 05</span></div><div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">위상마법의 본질</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">초월공간 해석법</div><div class="potential-detail">공간 제어 스크롤 피해량 45% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">승리를 위한 마음가짐</div><div class="potential-detail">공간 제어 스크롤 사용 시 대상에게 연쇄 1중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">유비무환의 스크롤</div><div class="potential-detail">태그 디펜스 스킬 사용 시 아군 전체의 받는 피해 감소율 +10% <span class="subtle">(유지 라운드 1)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">위상술사의 진심</div><div class="potential-detail">최대 US 포인트 100% 증가.</div></article>
+</div></section>
+</div></details><details class="character-card" data-element="nox" data-role="sweeper" id="character-canon">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="나가타니 카논 초상화" class="character-portrait-image portrait-canon" decoding="async" height="88" src="assets/cards/canon.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/nox.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/sweeper.png"/></span>
+</span>
+<div class="character-name-group"><h2>나가타니 카논</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">녹스</span>
+<span class="character-tag">스위퍼</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="나가타니 카논 내부 이동" class="section-nav">
+<button data-target="canon-skills" type="button">스킬</button>
+<button data-target="canon-ability" type="button">고유 능력</button>
+<button data-target="canon-domain" type="button">영지 선언</button>
+<button data-target="canon-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="canon-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-canon-uguisukagura-dance">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>우구이스카구라의 춤사위</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>1024%</b> 피해.</p>
+<p>대상에게 벚꽃 표식이 있으면 적 전체에게 <b>1024%</b> 피해.</p>
+<p>위 조건으로 피해를 준 이후 벚꽃 표식 소모.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-parent-name">우구이스카구라류</span> : <strong class="skill-variant-inline">춤추는 무녀의 전투술</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 1단계]</b></p>
+<p>적 1인에게 <b>177.4%</b> 피해.</p>
+<p>벚꽃 표식 부여.</p>
+</div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 2단계]</b></p>
+<p>대상에게 벚꽃 표식이 있으면 적 전체에게 <b>403%</b> 피해.</p>
+<p>위 조건으로 피해를 준 이후 벚꽃 표식 소모.</p>
+</div>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>148.2%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="canon-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>휘파람새를 쫓아 달리듯이</h4></header>
+<div class="row-body"><p>벚꽃 표식 부여 시마다 치명타 확률 <b>+16%</b> <span class="subtle">(유지 라운드 1)</span>.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="canon-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 6회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기 시간 초기화.</p>
+<p>AP +2, US +275.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="canon-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 03 → 04</span><span class="node-unlock-route">01 → 03 → 05</span><span class="node-unlock-route">02 → 03 → 04</span><span class="node-unlock-route">02 → 03 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">휘파람새의 날갯짓</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">아스라이 피어난 춤사위</div><div class="potential-detail">춤추는 무녀의 전투술을 차지 2단계로 사용 시 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">안개 속에서 반짝이는 검극</div><div class="potential-detail">태그 어택 스킬 피해량 20% 증가. 태그 어택 스킬 사용 시 대상에게 벚꽃 표식 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">꽃잎을 스치우는 사명</div><div class="potential-detail">최대 US 포인트 100% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">페리도트는 마땅히</div><div class="potential-detail">영지 선언 시 적 전체에게 벚꽃 표식 부여.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="nox" data-role="breaker" id="character-souka">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="나츠메 소우카 초상화" class="character-portrait-image portrait-souka" decoding="async" height="88" src="assets/cards/souka.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/nox.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/breaker.png"/></span>
+</span>
+<div class="character-name-group"><h2>나츠메 소우카</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">녹스</span>
+<span class="character-tag">브레이커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="나츠메 소우카 내부 이동" class="section-nav">
+<button data-target="souka-skills" type="button">스킬</button>
+<button data-target="souka-ability" type="button">고유 능력</button>
+<button data-target="souka-domain" type="button">영지 선언</button>
+<button data-target="souka-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="souka-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>떠맡겨진 이상한 세계</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 3000</span><span class="row-badge">AP 1</span></div>
+<p>적 전체에게 <b>303.9%</b> 피해.</p>
+<p>AP +2.</p>
+<p>아군 전체에게 타격력 <b>24.9%</b> 증가 <span class="subtle">(유지 라운드 1)</span>.</p>
+<p>보유 중인 시간의 궤적 2개마다 AP +1.</p>
+<p>시간의 궤적 전부 소모.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">열한번째 밤</span> : <strong class="skill-variant-inline">임시보호 중인 이상한 고양이</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>278.1%</b> 피해.</p>
+<p>저주 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">열한번째 밤</span> : <strong class="skill-variant-inline">토끼굴 속으로</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div>
+<p>시간의 궤적 1개 충전.</p>
+<p>US 포인트 +50.</p>
+<p>50% 확률로 시간의 궤적 1개 추가 충전.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">열한번째 밤</span> : <strong class="skill-variant-inline">빙결폭발</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>475%</b> 피해.</p>
+<p>연쇄 1중첩 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>186.1%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="souka-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>얼음의 축복</h4></header>
+<div class="row-body"><p>전투 스킬 사용 시 US 포인트 +50.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="souka-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 4회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+<p>아군이 스킬 사용 시마다 적 1인에게 루나의 능력치 기준 <b>200%</b> 추가 피해 <span class="subtle">(유지 라운드 3)</span>.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="souka-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order">
+<span class="node-unlock-label">개방 순서</span>
+<span class="node-unlock-route">01 → 02 → 03</span>
+<span class="node-unlock-route">04 → 05</span>
+</div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">이면을 들추는 꼬리</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">시간 위를 거닐고</div><div class="potential-detail">임시보호 중인 이상한 고양이 피해량 40% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">고양이를 지나치는 한 발짝</div><div class="potential-detail">토끼굴 속으로 사용 시 시간의 궤적 충전 확률 100%로 변경.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">망설임을 끊으니</div><div class="potential-detail">태그 어택 스킬 사용 시 시간의 궤적 1개 충전.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">순간이여, 영원하길</div><div class="potential-detail">얼티메이트 스킬 사용 시 아군 전체의 타격력 10% 증가 <span class="subtle">(유지 라운드 1)</span>.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="nox" data-role="attacker" id="character-haru">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="카가미하라 하루 초상화" class="character-portrait-image portrait-haru" decoding="async" height="88" src="assets/cards/haru.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SSR 등급" class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/nox.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>카가미하라 하루</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">녹스</span>
+<span class="character-tag">어태커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="카가미하라 하루 내부 이동" class="section-nav">
+<button data-target="haru-skills" type="button">스킬</button>
+<button data-target="haru-ability" type="button">고유 능력</button>
+<button data-target="haru-domain" type="button">영지 선언</button>
+<button data-target="haru-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="haru-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>디오니시아의 광극, 개막!</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>537.7%</b> 피해.</p>
+<p>대상의 저주가 10중첩 이상일 시 <b>537.7%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">신이교주의적 연극 제의</span> : <strong class="skill-variant-inline">스즈키 쨩, 돌격!</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>252.7%</b> 피해.</p>
+<p>대상의 저주가 10중첩 이상일 시 <b>252.7%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">신이교주의적 연극 제의</span> : <strong class="skill-variant-inline">스즈키 쨩, 난타!</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>252.7%</b> 피해.</p>
+<p>대상의 저주가 10중첩 이상일 시 <b>252.7%</b> 피해.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>153%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="haru-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>슬래셔 무비의 클리셰</h4></header>
+<div class="row-body">
+<p>전투 시작 시 공격력 <b>5%</b> 증가.</p>
+<p>이후 10라운드마다 공격력 <b>5%</b> 증가 <span class="subtle">(최대 5중첩)</span>.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="haru-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 4회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="haru-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order">
+<span class="node-unlock-label">개방 순서</span>
+<span class="node-unlock-route">01 → 02 → 03</span>
+<span class="node-unlock-route">01 → 04 → 05</span>
+</div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">슬래셔 무비의 매력</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">점프 스케어의 원칙</div><div class="potential-detail">일반 스킬 사용 시 100% 피해. 태그 어택 스킬 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">눈부신 특수효과</div><div class="potential-detail">스즈키가 등장하는 스킬 사용 시 대상에게 저주 2중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">서스펜스의 미학</div><div class="potential-detail">전투 스킬 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">경악, 전율, 그리고 고어</div><div class="potential-detail">최대 US 포인트 100% 증가.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="nox" data-role="attacker" id="character-ren">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="시라누이 렌 초상화" class="character-portrait-image portrait-ren" src="assets/cards/ren.webp"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/nox.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/attacker.png"/></span>
+</span>
+<div class="character-name-group"><h2>시라누이 렌</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span><span class="character-tag">녹스</span><span class="character-tag">어태커</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="시라누이 렌 내부 이동" class="section-nav">
+<button data-target="ren-skills" type="button">스킬</button>
+<button data-target="ren-ability" type="button">고유 능력</button>
+<button data-target="ren-domain" type="button">영지 선언</button>
+<button data-target="ren-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="ren-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-ren-ken-arok-sword">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>켄 아록의 검</h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>872.5%</b> 피해.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">헥스블레이드</span> : <strong class="skill-variant-inline">제압</strong></h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>225.6%</b> 피해.</p><p>저주 1중첩 부여.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">헥스블레이드</span> : <strong class="skill-variant-inline">무력화</strong></h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>252%</b> 피해.</p><p>저주 1중첩 부여.</p></div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>140.7%</b> 피해.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="ren-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>마검의 계약</h4></header><div class="row-body"><p>자신이 대상에게 부여한 저주 7중첩마다 <b>595.2%</b> 피해.</p></div></article></div>
+</section>
+<section class="character-section" id="ren-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 6회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div>
+</section>
+<section class="character-section" id="ren-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 02 → 03</span><span class="node-unlock-route">04 → 05</span></div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">그림자입니다, 일단은.</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">임무를 수행할 뿐이에요.</div><div class="potential-detail">전투 스킬 피해량 30% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">실례지만 처리하겠습니다.</div><div class="potential-detail">고유 능력의 피해량 100% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">아직 부족한 실력이죠.</div><div class="potential-detail">태그 어택 스킬 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">위상술사의 진심</div><div class="potential-detail">무력화 또는 태그 어택 스킬 사용 시 대상에게 저주 1중첩 부여.</div></article>
+</div>
+</section>
+</div>
+</details><details class="character-card" data-element="nox" data-role="breaker" id="character-shion">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="노와타리 시온 초상화" class="character-portrait-image portrait-shion" src="assets/shion-portrait.png"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/nox.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/breaker.png"/></span>
+</span>
+<div class="character-name-group"><h2>노와타리 시온</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags"><span class="character-tag">통상</span><span class="character-tag">녹스</span><span class="character-tag">브레이커</span></div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="노와타리 시온 내부 이동" class="section-nav"><button data-target="shion-skills" type="button">스킬</button><button data-target="shion-ability" type="button">고유 능력</button><button data-target="shion-domain" type="button">영지 선언</button><button data-target="shion-nodes" type="button">마력 노드</button></nav>
+<section class="character-section" id="shion-skills"><header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header><div class="reading-list">
+<article class="reading-row" id="skill-shion-storm-in-bag"><header class="row-heading"><span class="row-type">ULTIMATE</span><h4>가방 속의 폭풍</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 3000</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>1014%</b> 피해.</p><p>봉제인형 1개 충전.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">길거리 염동술</span> : <strong class="skill-variant-inline">잠깐 빌리는 거야~</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>봉제인형 모두 소모.</p><p>소모한 봉제인형 1개마다 아군 전체의 US 포인트 +100.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">길거리 염동술</span> : <strong class="skill-variant-inline">한번에 팡!</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>529.7%</b> 피해.</p><p>저주 1중첩 부여.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>150%</b> 피해.</p></div></article>
+</div></section>
+<section class="character-section" id="shion-ability"><header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header><div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>길거리의 자유인</h4></header><div class="row-body"><p>전투 시작 시 봉제인형 1개 충전.</p><p>이후 3라운드마다 봉제인형 1개 충전.</p><p>일반 스킬 사용 시마다 US 포인트 +50.</p><p>일반 스킬 3회 사용 시마다 봉제인형 1개 충전.</p></div></article></div></section>
+<section class="character-section" id="shion-domain"><header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header><div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 4회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div></section>
+<section class="character-section" id="shion-nodes"><header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header><div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 03 → 04</span><span class="node-unlock-route">01 → 03 → 05</span><span class="node-unlock-route">02 → 03 → 04</span><span class="node-unlock-route">02 → 03 → 05</span></div><div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">뒷골목의 염동력자</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">다툼은 익숙해</div><div class="potential-detail">한번에 팡! 피해량 40% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">귀엽지만 날카로운</div><div class="potential-detail">전투 시작 시 봉제인형 2개 충전.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">무자비한 인형놀이</div><div class="potential-detail">얼티메이트 스킬 사용 시 봉제인형 2개 충전.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">사이코키네틱 크라이시스</div><div class="potential-detail">영지 선언 시 US 포인트 +500.</div></article>
+</div></section>
+</div></details>
+<details class="character-card" data-element="lux" data-role="supporter" id="character-liria">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="후지와라 리리아 초상화" class="character-portrait-image portrait-liria" src="assets/liria-portrait.png"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/lux.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/supporter.png"/></span>
+</span>
+<div class="character-name-group"><h2>후지와라 리리아</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags"><span class="character-tag">통상</span><span class="character-tag">룩스</span><span class="character-tag">서포터</span></div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="후지와라 리리아 내부 이동" class="section-nav"><button data-target="liria-skills" type="button">스킬</button><button data-target="liria-ability" type="button">고유 능력</button><button data-target="liria-domain" type="button">영지 선언</button><button data-target="liria-nodes" type="button">마력 노드</button></nav>
+<section class="character-section" id="liria-skills"><header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header><div class="reading-list">
+<article class="reading-row" id="skill-liria-himiko-flute"><header class="row-heading"><span class="row-type">ULTIMATE</span><h4>히미코의 무구 적</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 2000</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>591.7%</b> 피해.</p><p>아군 필드에 마력 연쇄 10중첩 부여.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[1단]</span> <span class="skill-parent-name">고대 무녀의 무가</span> : <strong class="skill-variant-inline">반짝임의 불꽃</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>315%</b> 피해.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[2단]</span> <span class="skill-parent-name">고대 무녀의 무가</span> : <strong class="skill-variant-inline">반짝임의 은총</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div><p>아군 필드에 마력 연쇄 5중첩 부여.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-step-prefix">[3단]</span> <span class="skill-parent-name">고대 무녀의 무가</span> : <strong class="skill-variant-inline">반짝임의 오선보</strong></h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 9</span><span class="row-badge">AP 1</span></div><p>아군 전체의 전투 스킬 피해량 <b>35%</b> 증가 <span class="subtle">(유지 라운드 6)</span>.</p></div></article>
+<article class="reading-row"><header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header><div class="row-body"><div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">AP 1</span></div><p>적 1인에게 <b>153.4%</b> 피해.</p></div></article>
+</div></section>
+<section class="character-section" id="liria-ability"><header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header><div class="reading-list"><article class="reading-row"><header class="row-heading"><span class="row-type">UNIQUE</span><h4>히미코의 혈통</h4></header><div class="row-body"><p>마력 연쇄 소모 20회마다 자신의 공격력 <b>7.5%</b> 증가 <span class="subtle">(최대 3중첩)</span>.</p></div></article></div></section>
+<section class="character-section" id="liria-domain"><header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header><div class="domain-panel"><div class="domain-condition"><b>발동 조건</b><span>전투 스킬 6회 사용</span></div><div class="domain-effects"><p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p><p>AP +2, US +250.</p></div></div></section>
+<section class="character-section" id="liria-nodes"><header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header><div aria-label="마력 노드 개방 순서" class="node-unlock-order"><span class="node-unlock-label">개방 순서</span><span class="node-unlock-route">01 → 03 → 04</span><span class="node-unlock-route">01 → 03 → 05</span><span class="node-unlock-route">02 → 03 → 04</span><span class="node-unlock-route">02 → 03 → 05</span></div><div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">혼자만의 피리 소리</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">계승되는 업</div><div class="potential-detail">태그 어택 사용 시 전투 스킬 재사용 대기시간 -1.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">고대 무녀의 그림자</div><div class="potential-detail">태그 어택 스킬 사용 시 아군 필드에 마력 연쇄 5중첩 부여.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">눈물을 지우는 춤</div><div class="potential-detail">반짝임의 불꽃 피해량 50% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">그 제의는 하늘에 닿아</div><div class="potential-detail">얼티메이트 스킬 사용 시 공격력 30% 증가 <span class="subtle">(유지 라운드 1)</span>.</div></article>
+</div></section>
+</div></details>
+<details class="character-card" data-element="terra" data-role="supporter" id="character-nono">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="하이바라 노노 초상화" class="character-portrait-image portrait-nono" decoding="async" height="88" src="assets/cards/nono.webp" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="SR 등급" class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/terra.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/supporter.png"/></span>
+</span>
+<div class="character-name-group"><h2>하이바라 노노</h2></div>
+</div>
+<div aria-label="캐릭터 키워드" class="character-tags">
+<span class="character-tag">통상</span>
+<span class="character-tag">테라</span>
+<span class="character-tag">서포터</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content">
+<nav aria-label="하이바라 노노 내부 이동" class="section-nav">
+<button data-target="nono-skills" type="button">스킬</button>
+<button data-target="nono-ability" type="button">고유 능력</button>
+<button data-target="nono-domain" type="button">영지 선언</button>
+<button data-target="nono-nodes" type="button">마력 노드</button>
+</nav>
+<section class="character-section" id="nono-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row" id="skill-nono-jegudiel-first-aid">
+<header class="row-heading"><span class="row-type">ULTIMATE</span><h4>예구디엘의 응급조치</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 1</span><span class="row-badge">US 3000</span><span class="row-badge">AP 1</span></div>
+<p>아군 전체의 얼티메이트 스킬 피해량 <b>30%</b> 증가 <span class="subtle">(유지 라운드 5)</span>.</p>
+<p>보유 중인 테우르기스트의 빛 1개마다 아군 전체의 얼티메이트 스킬 피해량 <b>1%</b> 증가 <span class="subtle">(유지 라운드 5)</span>.</p>
+<p>이후 테우르기스트의 빛 전부 소모.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4><span class="skill-parent-name">테우르기스트의 축복</span> : <strong class="skill-variant-inline">조용하고 편안한 빛</strong></h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">원거리</span><span class="row-badge">CT 5</span><span class="row-badge">AP 1</span><span class="row-badge">차지 스킬</span></div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 1단계]</b></p>
+<p>테우르기스트의 빛 2개 충전.</p>
+</div>
+<div class="skill-stage">
+<p class="stage-title"><b>[차지 2단계]</b></p>
+<p>아군 전체의 치명타 확률 <b>+15%</b> <span class="subtle">(유지 라운드 7)</span>.</p>
+</div>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">TAG ATTACK</span><h4>태그 어택 스킬</h4></header>
+<div class="row-body">
+<div class="skill-meta"><span class="row-badge">근거리</span><span class="row-badge">AP 1</span></div>
+<p>적 1인에게 <b>195%</b> 피해.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="nono-ability">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE</span><h4>백의의 직장인</h4></header>
+<div class="row-body"><p>방어력 <b>19.8%</b> 증가.</p></div>
+</article>
+</div>
+</section>
+<section class="character-section" id="nono-domain">
+<header class="section-heading"><span>03</span><div><h3>영지 선언</h3></div></header>
+<div class="domain-panel">
+<div class="domain-condition"><b>발동 조건</b><span>전투 스킬 3회 사용</span></div>
+<div class="domain-effects">
+<p>얼티메이트 스킬, 전투 스킬의 재사용 대기시간 초기화.</p>
+<p>AP +2, US +250.</p>
+</div>
+</div>
+</section>
+<section class="character-section" id="nono-nodes">
+<header class="section-heading"><span>04</span><div><h3>마력 노드</h3></div></header>
+<div aria-label="마력 노드 개방 순서" class="node-unlock-order">
+<span class="node-unlock-label">개방 순서</span>
+<span class="node-unlock-route">01 → 02 → 03</span>
+<span class="node-unlock-route">04 → 05</span>
+</div>
+<div class="potential-list">
+<article class="potential-row"><div class="potential-index">01</div><div class="potential-name">신성한 존재의 손길</div><div class="potential-detail">아군 전체에게 마력 개방 부여.</div></article>
+<article class="potential-row"><div class="potential-index">02</div><div class="potential-name">지친 이에게 휴식을</div><div class="potential-detail">조용하고 편안한 빛을 차지 2단계로 사용 시 아군 전체의 공격력 10% 증가 <span class="subtle">(유지 라운드 3)</span>.</div></article>
+<article class="potential-row"><div class="potential-index">03</div><div class="potential-name">몸에 좋은 거니까요</div><div class="potential-detail">아군이 스킬 3회 사용 시마다 테우르기스트의 빛 1개 충전.</div></article>
+<article class="potential-row"><div class="potential-index">04</div><div class="potential-name">과로의 대가</div><div class="potential-detail">태그 어택 스킬 피해량 40% 증가.</div></article>
+<article class="potential-row"><div class="potential-index">05</div><div class="potential-name">인내하는 테우르기스트</div><div class="potential-detail">최대 US 포인트 100% 증가.</div></article>
+</div>
+</section>
+</div>
+</details></section>
+<div class="empty-state" hidden="" id="character-empty">검색 또는 필터 조건에 맞는 캐릭터가 없습니다.</div>
+</main>
+<div aria-hidden="true" class="tooltip" role="tooltip"></div>
+<script src="terms.js?v=56"></script>
+<script src="app.js?v=56"></script>
+</body>
+</html>

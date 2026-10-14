@@ -1,0 +1,110 @@
+{
+  "moa": {
+    "element": "caelum",
+    "role": "breaker",
+    "rarity": "SSR",
+    "name": "하나모리 모아"
+  },
+  "anna": {
+    "element": "caelum",
+    "role": "attacker",
+    "rarity": "SSR",
+    "name": "안나 M. 바텐베르크"
+  },
+  "koyomi": {
+    "element": "caelum",
+    "role": "sweeper",
+    "rarity": "SSR",
+    "name": "엔류 코요미"
+  },
+  "sigrid": {
+    "element": "caelum",
+    "role": "sweeper",
+    "rarity": "SR",
+    "name": "시그리드 울브헤른"
+  },
+  "akina": {
+    "element": "caelum",
+    "role": "attacker",
+    "rarity": "SR",
+    "name": "아키츠 아키나"
+  },
+  "doll": {
+    "element": "chaos",
+    "role": "attacker",
+    "rarity": "SSR",
+    "name": "인형"
+  },
+  "mayoi": {
+    "element": "homines",
+    "role": "breaker",
+    "rarity": "SSR",
+    "name": "케이코 마요이"
+  },
+  "luna": {
+    "element": "homines",
+    "role": "anchor",
+    "rarity": "SSR",
+    "name": "미츠코에 루나"
+  },
+  "erin": {
+    "element": "homines",
+    "role": "breaker",
+    "rarity": "SR",
+    "name": "타나카 에린"
+  },
+  "mai": {
+    "element": "homines",
+    "role": "attacker",
+    "rarity": "SR",
+    "name": "아사쿠라 마이"
+  },
+  "chikage": {
+    "element": "homines",
+    "role": "defender",
+    "rarity": "SR",
+    "name": "타카라베 치카게"
+  },
+  "canon": {
+    "element": "nox",
+    "role": "sweeper",
+    "rarity": "SSR",
+    "name": "나가타니 카논"
+  },
+  "souka": {
+    "element": "nox",
+    "role": "breaker",
+    "rarity": "SSR",
+    "name": "나츠메 소우카"
+  },
+  "haru": {
+    "element": "nox",
+    "role": "attacker",
+    "rarity": "SSR",
+    "name": "카가미하라 하루"
+  },
+  "ren": {
+    "element": "nox",
+    "role": "attacker",
+    "rarity": "SR",
+    "name": "시라누이 렌"
+  },
+  "shion": {
+    "element": "nox",
+    "role": "breaker",
+    "rarity": "SR",
+    "name": "노와타리 시온"
+  },
+  "liria": {
+    "element": "lux",
+    "role": "supporter",
+    "rarity": "SR",
+    "name": "후지와라 리리아"
+  },
+  "nono": {
+    "element": "terra",
+    "role": "supporter",
+    "rarity": "SR",
+    "name": "하이바라 노노"
+  }
+}

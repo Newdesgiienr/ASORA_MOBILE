@@ -1,0 +1,5 @@
+V128
+피해 숫자 enemy/ally 클래스가 캐릭터 충돌 애니메이션 선택자에 매칭되는 문제 수정
+숫자 전용 damage-target-enemy/ally 클래스로 분리
+강습 차단 단일 피해 팝업 및 기존 피해 계산 유지
+검증 v128-test 및 JS syntax

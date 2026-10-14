@@ -1,0 +1,639 @@
+{
+  "format": "astrae-oratio-v57-character-image-pack",
+  "version": 2,
+  "targetCombatVersion": "v57",
+  "sourceZip": "astrae-oratio-combat-v57(1).zip",
+  "exportedAt": "2026-10-05T13:01:06.288Z",
+  "integration": {
+    "portraitPattern": "assets/cards/<id>.webp",
+    "standingPattern": "assets/character-visuals/<id>/standing.<ext>",
+    "attackPattern": "assets/character-visuals/<id>/attack.<ext>",
+    "ultimatePattern": "assets/character-visuals/<id>/ultimate.<ext>",
+    "currentV57Fallback": {
+      "standing": "assets/ally-dummy.png",
+      "attack": "assets/ally-attack-still.png",
+      "ultimate": "assets/button-ultimate.svg"
+    }
+  },
+  "characters": {
+    "moa": {
+      "index": 0,
+      "id": "moa",
+      "name": "하나모리 모아",
+      "rarity": "SSR",
+      "element": "caelum",
+      "role": "breaker",
+      "portrait": "assets/cards/moa.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/moa/standing.png",
+          "originalName": "CH10027_01_CH10027_01_Action_Idle01_2026-10-05T12-23-36-580Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/moa/attack.png",
+          "originalName": "CH10027_01_CH10027_01_Skill_NS01_Attack01_2026-10-05T12-25-54-892Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/moa/ultimate.png",
+          "originalName": "Icon_US_CH10027__55968cdd103d788b71.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "anna": {
+      "index": 1,
+      "id": "anna",
+      "name": "안나 M. 바텐베르크",
+      "rarity": "SSR",
+      "element": "caelum",
+      "role": "attacker",
+      "portrait": "assets/cards/anna.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/anna/standing.png",
+          "originalName": "CH10002_01_CH10002_01_Action_Idle01_2026-10-05T12-29-03-881Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/anna/attack.png",
+          "originalName": "CH10002_01_CH10002_01_Skill_BSM03_Attack01_2026-10-05T12-31-17-157Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/anna/ultimate.png",
+          "originalName": "Icon_USSkill_10002__43bd30acd3e3d11f0e.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "koyomi": {
+      "index": 2,
+      "id": "koyomi",
+      "name": "엔류 코요미",
+      "rarity": "SSR",
+      "element": "caelum",
+      "role": "sweeper",
+      "portrait": "assets/cards/koyomi.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/koyomi/standing.png",
+          "originalName": "CH10004_01_CH10004_01_Action_Idle01_2026-10-05T12-32-36-036Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/koyomi/attack.png",
+          "originalName": "CH10004_01_CH10004_01_Skill_NS01_Attack01_2026-10-05T12-34-09-126Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/koyomi/ultimate.png",
+          "originalName": "Icon_USSkill_10004__3d010ef80bcbfd5787.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "sigrid": {
+      "index": 3,
+      "id": "sigrid",
+      "name": "시그리드 울브헤른",
+      "rarity": "SR",
+      "element": "caelum",
+      "role": "sweeper",
+      "portrait": "assets/cards/sigrid.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/sigrid/standing.png",
+          "originalName": "CH10015_01_CH10015_01_Action_Idle01_2026-10-05T12-34-56-931Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/sigrid/attack.png",
+          "originalName": "CH10015_01_CH10015_01_Skill_NS03_Attack01_2026-10-05T12-35-32-638Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/sigrid/ultimate.png",
+          "originalName": "Icon_US_CH10015__49205c9793c8601ef5.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "akina": {
+      "index": 4,
+      "id": "akina",
+      "name": "아키츠 아키나",
+      "rarity": "SR",
+      "element": "caelum",
+      "role": "attacker",
+      "portrait": "assets/cards/akina.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/akina/standing.png",
+          "originalName": "CH10007_01_CH10007_01_Action_Idle01_2026-10-05T12-36-41-869Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/akina/attack.png",
+          "originalName": "CH10007_01_CH10007_01_Skill_BSR02_Attack01_2026-10-05T12-37-22-843Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/akina/ultimate.png",
+          "originalName": "Icon_USSkill_CH10007__b4d113e1ae79a37386.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "doll": {
+      "index": 5,
+      "id": "doll",
+      "name": "인형",
+      "rarity": "SSR",
+      "element": "chaos",
+      "role": "attacker",
+      "portrait": "assets/cards/doll.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/doll/standing.png",
+          "originalName": "CH10018_05_CH10018_01_Action_Idle01_2026-10-05T12-39-11-049Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/doll/attack.png",
+          "originalName": "CH10018_01_CH10018_01_Skill_NS03_Attack01_2026-10-05T12-41-02-557Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/doll/ultimate.png",
+          "originalName": "Icon_USSkill_CH10018__4ec90ccc8f4372f576.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "mayoi": {
+      "index": 6,
+      "id": "mayoi",
+      "name": "케이코 마요이",
+      "rarity": "SSR",
+      "element": "homines",
+      "role": "breaker",
+      "portrait": "assets/cards/mayoi.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/mayoi/standing.png",
+          "originalName": "CH10012_01_CH10012_01_Action_Idle01_2026-10-05T12-42-18-360Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/mayoi/attack.png",
+          "originalName": "CH10012_01_CH10012_01_Skill_US01_Attack01_2026-10-05T12-43-26-511Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/mayoi/ultimate.png",
+          "originalName": "Icon_USSkill_CH10012__e9ce08e90b5ec0f275.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "luna": {
+      "index": 7,
+      "id": "luna",
+      "name": "미츠코에 루나",
+      "rarity": "SSR",
+      "element": "homines",
+      "role": "anchor",
+      "portrait": "assets/cards/luna.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/luna/standing.png",
+          "originalName": "CH10011_01_CH10011_01_Action_Idle01_2026-10-05T12-44-30-827Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/luna/attack.png",
+          "originalName": "CH10011_01_CH10011_01_Skill_NS01_Attack01_End01_2026-10-05T12-45-27-134Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/luna/ultimate.png",
+          "originalName": "Icon_USSkill_CH10011__1bb15bac3660babc2f.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "erin": {
+      "index": 8,
+      "id": "erin",
+      "name": "타나카 에린",
+      "rarity": "SR",
+      "element": "homines",
+      "role": "breaker",
+      "portrait": "assets/cards/erin.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/erin/standing.png",
+          "originalName": "CH10001_01_CH10001_01_Action_Idle01_2026-10-05T12-46-08-827Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/erin/attack.png",
+          "originalName": "CH10001_01_CH10001_01_Skill_BSM01_Attack01_2026-10-05T12-46-41-744Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/erin/ultimate.png",
+          "originalName": "Icon_USSkill_10001__eff144a99cde54ce5c.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "mai": {
+      "index": 9,
+      "id": "mai",
+      "name": "아사쿠라 마이",
+      "rarity": "SR",
+      "element": "homines",
+      "role": "attacker",
+      "portrait": "assets/cards/mai.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/mai/standing.png",
+          "originalName": "CH10008_01_CH10008_01_Action_Idle01_2026-10-05T12-47-24-434Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/mai/attack.png",
+          "originalName": "CH10008_01_CH10008_01_Skill_NS02_Attack01_2026-10-05T12-47-59-317Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/mai/ultimate.png",
+          "originalName": "Icon_USSkill_CH10008__0c82fefa9649fbabcd.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "chikage": {
+      "index": 10,
+      "id": "chikage",
+      "name": "타카라베 치카게",
+      "rarity": "SR",
+      "element": "homines",
+      "role": "defender",
+      "portrait": "assets/cards/chikage.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/chikage/standing.png",
+          "originalName": "CH10025_01_CH10025_01_Action_Idle01_2026-10-05T12-50-00-645Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/chikage/attack.png",
+          "originalName": "CH10025_01_CH10025_01_Skill_BSM02_Attack01_2026-10-05T12-50-52-508Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/chikage/ultimate.png",
+          "originalName": "Icon_US_CH10025__35a9fb0ebed66b79c6.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "canon": {
+      "index": 11,
+      "id": "canon",
+      "name": "나가타니 카논",
+      "rarity": "SSR",
+      "element": "nox",
+      "role": "sweeper",
+      "portrait": "assets/cards/canon.webp",
+      "existingV57": true,
+      "inheritV57": true,
+      "images": {},
+      "missing": []
+    },
+    "souka": {
+      "index": 12,
+      "id": "souka",
+      "name": "나츠메 소우카",
+      "rarity": "SSR",
+      "element": "nox",
+      "role": "breaker",
+      "portrait": "assets/cards/souka.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/souka/standing.png",
+          "originalName": "CH10034_01_CH10034_01_Action_Idle01_2026-10-05T12-51-45-624Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/souka/attack.png",
+          "originalName": "CH10034_01_CH10034_01_Skill_SSE01_Attack01_2026-10-05T12-52-23-020Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/souka/ultimate.png",
+          "originalName": "Icon_US_CH10034__9569ec19093bf1202b.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "haru": {
+      "index": 13,
+      "id": "haru",
+      "name": "카가미하라 하루",
+      "rarity": "SSR",
+      "element": "nox",
+      "role": "attacker",
+      "portrait": "assets/cards/haru.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/haru/standing.png",
+          "originalName": "CH10005_01_CH10005_01_Action_Idle01_2026-10-05T12-52-52-603Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/haru/attack.png",
+          "originalName": "CH10005_01_CH10005_01_Skill_NS01_Attack01_2026-10-05T12-53-48-615Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/haru/ultimate.png",
+          "originalName": "Icon_USSkill_CH10005__4748fe5a92a87b2558.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "ren": {
+      "index": 14,
+      "id": "ren",
+      "name": "시라누이 렌",
+      "rarity": "SR",
+      "element": "nox",
+      "role": "attacker",
+      "portrait": "assets/cards/ren.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/ren/standing.png",
+          "originalName": "CH10013_01_CH10013_01_Action_Idle01_2026-10-05T12-54-26-767Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/ren/attack.png",
+          "originalName": "CH10013_01_CH10013_01_Skill_SSE01_Attack01_2026-10-05T12-55-28-915Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/ren/ultimate.png",
+          "originalName": "Icon_USSkill_CH10013__43ca845e914234a8eb.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "shion": {
+      "index": 15,
+      "id": "shion",
+      "name": "노와타리 시온",
+      "rarity": "SR",
+      "element": "nox",
+      "role": "breaker",
+      "portrait": "assets/cards/shion.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/shion/standing.png",
+          "originalName": "CH10021_01_CH10021_01_Action_Idle01_2026-10-05T12-56-07-886Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/shion/attack.png",
+          "originalName": "CH10021_01_CH10021_01_Skill_US01_Attack01_2026-10-05T12-57-01-213Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/shion/ultimate.png",
+          "originalName": "Icon_US_CH10021__0f1a713d7c3d996b73.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "liria": {
+      "index": 16,
+      "id": "liria",
+      "name": "후지와라 리리아",
+      "rarity": "SR",
+      "element": "lux",
+      "role": "supporter",
+      "portrait": "assets/cards/liria.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/liria/standing.png",
+          "originalName": "CH10006_01_CH10006_01_Action_Idle01_2026-10-05T12-59-39-874Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/liria/attack.png",
+          "originalName": "CH10006_01_CH10006_01_Skill_NS03_Attack01_2026-10-05T13-00-35-215Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/liria/ultimate.png",
+          "originalName": "Icon_USSkill_10006__6d3689ebcd82094245.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    },
+    "nono": {
+      "index": 17,
+      "id": "nono",
+      "name": "하이바라 노노",
+      "rarity": "SR",
+      "element": "terra",
+      "role": "supporter",
+      "portrait": "assets/cards/nono.webp",
+      "existingV57": false,
+      "inheritV57": false,
+      "images": {
+        "standing": {
+          "path": "assets/character-visuals/nono/standing.png",
+          "originalName": "CH10026_01_CH10026_01_Action_Idle01_2026-10-05T12-58-08-452Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "attack": {
+          "path": "assets/character-visuals/nono/attack.png",
+          "originalName": "CH10026_01_CH10026_01_Skill_DSR01_Attack01_2026-10-05T12-59-01-053Z.png",
+          "mime": "image/png",
+          "width": 1571,
+          "height": 891
+        },
+        "ultimate": {
+          "path": "assets/character-visuals/nono/ultimate.png",
+          "originalName": "Icon_US_CH10026__39ee0d2532f266aa2c.png",
+          "mime": "image/png",
+          "width": 226,
+          "height": 226
+        }
+      },
+      "missing": []
+    }
+  },
+  "normalization": {
+    "reference": "canon",
+    "standing": "All 18 standing images use tightly-cropped source art and a shared 612px render height.",
+    "attack": "All 18 attack images use Canon attack canvas/bounds as the normalization target.",
+    "canonAttackBBox": [
+      258,
+      73,
+      1297,
+      717
+    ]
+  }
+}

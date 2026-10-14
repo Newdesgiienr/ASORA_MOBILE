@@ -1,0 +1,15 @@
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+let contexts=0,requests=0,starts=0,active=0,peak=0,failed=false,waiters=[];
+class Context{constructor(){contexts++;this.state='suspended';this.currentTime=0;this.sampleRate=44100;global.context=this;}addEventListener(){}resume(){this.state='running';return Promise.resolve();}suspend(){this.state='suspended';return Promise.resolve();}createBuffer(){return {duration:.01};}createBufferSource(){const x={connect(){},disconnect(){},start(){starts++;},stop(){},onended:null};return x;}createGain(){return {gain:{value:1},connect(){},disconnect(){}};}decodeAudioData(bytes,yes){yes({duration:10});}}
+const w={AudioContext:Context,dispatchEvent(){}};const c={window:w,navigator:{},Event:class{},AbortController,setTimeout,clearTimeout,fetch:async url=>{requests++;active++;peak=Math.max(peak,active);await new Promise(r=>setImmediate(r));active--;return {ok:!failed,status:failed?404:200,arrayBuffer:async()=>new ArrayBuffer(2)};}};vm.createContext(c);vm.runInContext(fs.readFileSync(__dirname+'/../safari-audio.js','utf8'),c);const A=w.BattleAudio;
+(async()=>{
+ assert.equal(contexts,0);await A.unlock();assert.equal(contexts,1);assert.equal(A.ready,true);
+ await A.preload(['a','b','c','d','a']);assert.equal(requests,4);assert.ok(peak<=3);
+ const a=new A.Track('a');let ended=0;a.onended=()=>ended++;await a.play();assert.equal(a.paused,false);context.currentTime=3;assert.equal(a.currentTime,3);a.pause();assert.equal(ended,0);assert.equal(a.currentTime,3);await a.play();assert.equal(a.currentTime,3);context.currentTime=5;assert.equal(a.currentTime,5);a._source.onended();assert.equal(ended,1);assert.equal(a.ended,true);
+ const b=new A.Track('slow');const play=b.play();b.pause();const count=starts;await play;assert.equal(starts,count);assert.equal(b.paused,true);
+ const d=new A.Track('b');d.loop=true;await d.play();assert.equal(d._source.loop,true);d.volume=.7;assert.equal(d._gain.gain.value,.7);d.pause();d.currentTime=0;assert.equal(d.currentTime,0);
+ failed=true;let errors=0;const e=new A.Track('bad');e.onerror=()=>errors++;await assert.rejects(e.play());assert.equal(errors,1);failed=false;await e.play();assert.equal(e.paused,false);
+ A.suspend();assert.equal(A.ready,false);await A.unlock();assert.equal(A.ready,true);assert.equal(contexts,1);
+ const game=fs.readFileSync(__dirname+'/../combat-safari.js','utf8'),html=fs.readFileSync(__dirname+'/../combat.html','utf8');assert.ok(!game.includes('new Audio('));assert.ok(game.includes("s.phase==='LOADING'&&!audioPrepared"));assert.ok(game.includes('if(mobileBlocked||document.hidden)'));assert.ok(html.indexOf('safari-audio.js')<html.indexOf('combat-safari.js'));assert.ok(!html.includes('src="combat.js"'));
+ console.log('PASS: shared context; bounded/deduplicated preload; pause/resume offsets; natural ended; cancel pending play; loop/volume; fetch retry; suspend/unlock; isolated entry and combat gates');
+})().catch(e=>{console.error(e);process.exitCode=1;});

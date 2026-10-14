@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="아스트라에 오라티오 전투 데이터베이스" name="description"/>
+<title>스코어 트라이얼 | Astrae Oratio Battle Lab</title>
+<link href="styles.css?v=66" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-topbar">
+<div class="brand">
+<a aria-label="Astrae Oratio Battle Lab" class="brand-mark" href="characters.html">AO</a>
+<div class="brand-copy">
+<a class="brand-title" href="characters.html"><strong>ASTRAE ORATIO BATTLE LAB</strong></a>
+<div class="brand-lower">
+<small>아스트라에 오라티오 전투 데이터베이스</small>
+<nav aria-label="페이지 이동" class="site-nav"><a href="glossary.html">용어 사전</a><a href="characters.html">캐릭터</a><a href="artifacts.html">아티팩트</a><a href="vignettes.html">비네트</a><a aria-current="page" class="active" href="score-trial.html">스코어 트라이얼</a><a href="combat.html">전투 시뮬레이션</a></nav>
+</div>
+</div>
+</div>
+</header>
+<main class="page-shell" id="top">
+<header class="page-heading character-page-heading">
+<div class="page-heading-copy">
+<span>SCORE TRIAL DATABASE</span>
+<h1>스코어 트라이얼</h1>
+</div>
+<label class="search-field">
+<span>보스 검색</span>
+<input id="character-search" placeholder="보스명, 스킬, 효과, 용어 검색" type="search"/>
+</label>
+</header>
+<div class="list-toolbar score-toolbar">
+<div class="toolbar-primary score-toolbar-primary">
+<span class="character-total">등록 보스 <b id="character-count">1</b></span>
+<div aria-label="보스 약점 속성" class="score-weak-filterbar">
+<span class="score-weak-filterbar-label">속성</span>
+<div class="filter-buttons score-weak-filterbar-buttons">
+<button class="filter-icon-button score-static-attribute is-static" tabindex="-1" type="button"><img alt="카에룸" src="assets/caelum.png"/></button>
+<button class="filter-icon-button score-static-attribute is-static" tabindex="-1" type="button"><img alt="호미네스" src="assets/homines.png"/></button>
+<button class="filter-icon-button score-static-attribute is-static" tabindex="-1" type="button"><img alt="카오스" src="assets/chaos.png"/></button>
+</div>
+</div>
+</div>
+<div class="toolbar-actions">
+<button id="expand-all" type="button">모두 펼치기</button>
+<button id="collapse-all" type="button">모두 접기</button>
+</div>
+</div>
+<section aria-label="스코어 트라이얼 보스 목록" class="character-list" id="character-list">
+<details class="character-card" id="boss-astaroth">
+<summary class="character-summary">
+<div class="character-identity">
+<span class="character-portrait"><img alt="아스타로트 초상화" class="character-portrait-image portrait-astaroth" decoding="async" height="88" src="assets/score-trial/astaroth-thumb-v44.png" width="76"/></span>
+<span class="character-identity-icons">
+<span aria-label="BOSS" class="identity-icon-bg boss-emblem"><span>BOSS</span></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/caelum.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/homines.png"/></span>
+<span class="identity-icon-bg"><img alt="" class="character-identity-icon" src="assets/chaos.png"/></span>
+</span>
+<div class="character-name-group"><h2>아스타로트</h2></div>
+</div>
+<div aria-label="보스 키워드" class="character-tags">
+<span class="character-tag hot">스코어 트라이얼</span>
+<span class="character-tag">카에룸</span>
+<span class="character-tag">호미네스</span>
+<span class="character-tag">카오스</span>
+</div>
+<span aria-hidden="true" class="summary-action"><i></i></span>
+</summary>
+<div class="character-content score-trial-content">
+<section class="character-section" id="astaroth-skills">
+<header class="section-heading"><span>01</span><div><h3>스킬</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">BATTLE SKILL</span><h4>방어 태세</h4></header>
+<div class="row-body" data-auto-terms="off">
+<div class="skill-meta"><span class="row-badge">거리 무관</span></div>
+<p>자신에게 <span class="score-static-term">#가드</span> 1단계 부여.</p>
+<p><span class="score-static-term">#가드</span> : 부여된 대상의 받는 피해 감소율을 <b>+50%</b> 증가시킵니다.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE I</span><h4>생명 착취</h4></header>
+<div class="row-body" data-auto-terms="off">
+<div class="skill-meta"><span class="row-badge">거리 무관</span></div>
+<p><span class="score-static-term">#부위의 파괴(머리)</span> 발동 시 사용.</p>
+<p>적 1인에게 피해, <span class="score-static-term">#생명 착취</span> 1단계 부여.</p>
+<p>자신의 공격력, 타격력, 방어력 증가.</p>
+<p><span class="score-static-term">#부위의 파괴(머리)</span> : 아스타로트에게 특정 속성으로 <b>BP 피해</b> 누적 시 파괴.</p>
+<p><span class="score-static-term">#생명 착취</span> : 부여된 대상의 공격력, 타격력, 방어력 감소.</p>
+<p><span class="subtle">[MANIAC] 강화</span> <span class="score-static-term">#생명 착취</span> 2단계 부여.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE II</span><h4>악마의 강하</h4></header>
+<div class="row-body" data-auto-terms="off">
+<div class="skill-meta"><span class="row-badge">거리 무관</span></div>
+<p>적 1인에게 강력한 피해.</p>
+<p><span class="subtle">[EXPERT] 강화</span> <b>BP 피해</b>에 큰 피해.</p>
+<p><span class="subtle">[MANIAC] 강화</span> 사용 빈도 증가.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">ULTIMATE III</span><h4>지옥 폭발</h4></header>
+<div class="row-body" data-auto-terms="off">
+<div class="skill-meta"><span class="row-badge">거리 무관</span></div>
+<p>2라운드간 <span class="score-static-term">#집중</span>.</p>
+<p>집중 종료 시 근거리 적에게 매우 강력한 피해.</p>
+<p><span class="score-static-term">#집중</span> : 강력한 공격을 준비하며, 받는 피해를 감소시킵니다.</p>
+</div>
+</article>
+</div>
+</section>
+<section class="character-section" id="astaroth-abilities">
+<header class="section-heading"><span>02</span><div><h3>고유 능력</h3></div></header>
+<div class="reading-list">
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE I</span><h4>악마의 피부</h4></header>
+<div class="row-body" data-auto-terms="off">
+<p>근거리에서 피격 시 자신에게 <span class="score-static-term">#가드</span> 발동.</p>
+<p><span class="score-static-term">#가드</span> : 부여된 대상의 받는 피해 감소율을 <b>+50%</b> 증가시킵니다.</p>
+</div>
+</article>
+<article class="reading-row">
+<header class="row-heading"><span class="row-type">UNIQUE II</span><h4>부위 파괴 가능</h4></header>
+<div class="row-body" data-auto-terms="off">
+<p><b>BP 피해</b>가 일정량 누적되면 <span class="score-static-term">#부위 파괴</span> 발생.</p>
+<p><span class="score-static-term">#부위의 파괴(왼팔)</span> : 아스타로트에게 <b>BP 피해</b> 누적 시 파괴, 아스타로트가 가드 중 피격 시 부위 파괴 가속.</p>
+<p><span class="score-static-term">#부위의 파괴(머리)</span> : 아스타로트에게 특정 속성으로 <b>BP 피해</b> 누적 시 파괴.</p>
+</div>
+</article>
+</div>
+</section>
+</div>
+</details>
+</section>
+<div class="empty-state" hidden="" id="character-empty">검색 조건에 맞는 보스 정보가 없습니다.</div>
+</main>
+
+
+<script src="app.js?v=54"></script>
+
+</body>
+</html>

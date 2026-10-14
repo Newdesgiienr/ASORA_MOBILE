@@ -1,0 +1,110 @@
+{
+  "moa": {
+    "imageHeight": 543,
+    "bodyTop": 78,
+    "bodyBottom": 518,
+    "shiftPercent": -4.880295
+  },
+  "anna": {
+    "imageHeight": 546,
+    "bodyTop": 87,
+    "bodyBottom": 515,
+    "shiftPercent": -5.128205
+  },
+  "koyomi": {
+    "imageHeight": 513,
+    "bodyTop": 93,
+    "bodyBottom": 473,
+    "shiftPercent": -5.165692
+  },
+  "sigrid": {
+    "imageHeight": 556,
+    "bodyTop": 85,
+    "bodyBottom": 522,
+    "shiftPercent": -4.586331
+  },
+  "akina": {
+    "imageHeight": 583,
+    "bodyTop": 96,
+    "bodyBottom": 546,
+    "shiftPercent": -5.060034
+  },
+  "doll": {
+    "imageHeight": 476,
+    "bodyTop": 39,
+    "bodyBottom": 468,
+    "shiftPercent": -3.256303
+  },
+  "mayoi": {
+    "imageHeight": 525,
+    "bodyTop": 67,
+    "bodyBottom": 507,
+    "shiftPercent": -4.666667
+  },
+  "luna": {
+    "imageHeight": 556,
+    "bodyTop": 86,
+    "bodyBottom": 524,
+    "shiftPercent": -4.856115
+  },
+  "erin": {
+    "imageHeight": 560,
+    "bodyTop": 76,
+    "bodyBottom": 541,
+    "shiftPercent": -5.089286
+  },
+  "mai": {
+    "imageHeight": 493,
+    "bodyTop": 45,
+    "bodyBottom": 485,
+    "shiftPercent": -3.752535
+  },
+  "chikage": {
+    "imageHeight": 544,
+    "bodyTop": 75,
+    "bodyBottom": 518,
+    "shiftPercent": -4.503676
+  },
+  "canon": {
+    "imageHeight": 555,
+    "bodyTop": 85,
+    "bodyBottom": 528,
+    "shiftPercent": -5.225225
+  },
+  "souka": {
+    "imageHeight": 503,
+    "bodyTop": 54,
+    "bodyBottom": 497,
+    "shiftPercent": -4.771372
+  },
+  "haru": {
+    "imageHeight": 479,
+    "bodyTop": 32,
+    "bodyBottom": 479,
+    "shiftPercent": -3.340292
+  },
+  "ren": {
+    "imageHeight": 483,
+    "bodyTop": 39,
+    "bodyBottom": 480,
+    "shiftPercent": -3.726708
+  },
+  "shion": {
+    "imageHeight": 507,
+    "bodyTop": 66,
+    "bodyBottom": 485,
+    "shiftPercent": -4.33925
+  },
+  "liria": {
+    "imageHeight": 530,
+    "bodyTop": 96,
+    "bodyBottom": 489,
+    "shiftPercent": -5.188679
+  },
+  "nono": {
+    "imageHeight": 525,
+    "bodyTop": 95,
+    "bodyBottom": 508,
+    "shiftPercent": -7.428571
+  }
+}

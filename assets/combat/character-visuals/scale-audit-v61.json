@@ -1,0 +1,362 @@
+{
+  "canon": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      73,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      258,
+      73,
+      1297,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "akina": {
+    "attackScaleVsV60": 0.6,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      275,
+      73,
+      1280,
+      717
+    ],
+    "afterBBox": [
+      476,
+      202,
+      1079,
+      588
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "anna": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      514,
+      73,
+      1040,
+      717
+    ],
+    "afterBBox": [
+      514,
+      73,
+      1040,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "chikage": {
+    "attackScaleVsV60": 0.48,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      309,
+      73,
+      1246,
+      717
+    ],
+    "afterBBox": [
+      552,
+      240,
+      1001,
+      549
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "doll": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      336,
+      73,
+      1218,
+      717
+    ],
+    "afterBBox": [
+      336,
+      73,
+      1218,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "erin": {
+    "attackScaleVsV60": 0.9,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      268,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      310,
+      290,
+      1245,
+      694
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "haru": {
+    "attackScaleVsV60": 0.86,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      402,
+      73,
+      1154,
+      717
+    ],
+    "afterBBox": [
+      454,
+      118,
+      1101,
+      672
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "koyomi": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      204,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      258,
+      204,
+      1297,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "liria": {
+    "attackScaleVsV60": 0.82,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      117,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      352,
+      171,
+      1204,
+      663
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "luna": {
+    "attackScaleVsV60": 0.7,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      380,
+      73,
+      1176,
+      717
+    ],
+    "afterBBox": [
+      500,
+      170,
+      1057,
+      621
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "mai": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      353,
+      73,
+      1201,
+      717
+    ],
+    "afterBBox": [
+      353,
+      73,
+      1201,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "mayoi": {
+    "attackScaleVsV60": 0.6,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      128,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      466,
+      246,
+      1089,
+      599
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "moa": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      115,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      258,
+      115,
+      1297,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "nono": {
+    "attackScaleVsV60": 0.82,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      370,
+      73,
+      1184,
+      717
+    ],
+    "afterBBox": [
+      444,
+      131,
+      1111,
+      659
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "ren": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      386,
+      73,
+      1169,
+      717
+    ],
+    "afterBBox": [
+      386,
+      73,
+      1169,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "shion": {
+    "attackScaleVsV60": 0.88,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      89,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      320,
+      126,
+      1234,
+      679
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "sigrid": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      128,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      258,
+      128,
+      1297,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  },
+  "souka": {
+    "attackScaleVsV60": 1.0,
+    "canvas": [
+      1571,
+      891
+    ],
+    "beforeBBox": [
+      258,
+      309,
+      1297,
+      717
+    ],
+    "afterBBox": [
+      258,
+      309,
+      1297,
+      717
+    ],
+    "standingRule": "CSS fixed height 612px, Canon reference"
+  }
+}

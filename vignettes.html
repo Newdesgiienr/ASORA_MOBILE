@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="아스트라에 오라티오 전투 데이터베이스" name="description"/>
+<title>비네트 | Astrae Oratio Battle Lab</title>
+<link href="styles.css?v=68" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-topbar">
+<div class="brand">
+<a aria-label="Astrae Oratio Battle Lab" class="brand-mark" href="characters.html">AO</a>
+<div class="brand-copy">
+<a class="brand-title" href="characters.html"><strong>ASTRAE ORATIO BATTLE LAB</strong></a>
+<div class="brand-lower">
+<small>아스트라에 오라티오 전투 데이터베이스</small>
+<nav aria-label="페이지 이동" class="site-nav"><a href="glossary.html">용어 사전</a><a href="characters.html">캐릭터</a><a href="artifacts.html">아티팩트</a><a href="vignettes.html" class="active" aria-current="page">비네트</a><a href="score-trial.html">스코어 트라이얼</a><a href="combat.html">전투 시뮬레이션</a></nav>
+</div>
+</div>
+</div>
+</header>
+<main class="page-shell artifact-page vignette-page" id="top">
+<header class="page-heading character-page-heading">
+<div class="page-heading-copy"><span>VIGNETTE DATABASE</span><h1>비네트</h1></div>
+<label class="search-field"><span>이름, 효과 검색</span><input id="vignette-search" placeholder="이름, 효과 검색" type="search"/></label>
+</header>
+<div class="list-toolbar artifact-filter-toolbar">
+<div class="toolbar-primary">
+<span class="character-total">등록 비네트 <b id="vignette-count">22</b></span>
+<div aria-label="등급 필터" class="character-filters">
+<div class="filter-group artifact-grade-filter-group">
+<span class="filter-group-label">등급</span>
+<div class="filter-buttons">
+<button class="filter-icon-button artifact-grade-filter vignette-grade-filter" data-filter-value="SSR" data-tooltip="등급 · SSR" type="button"><span class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span></button>
+<button class="filter-icon-button artifact-grade-filter vignette-grade-filter" data-filter-value="SR" data-tooltip="등급 · SR" type="button"><span class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span></button>
+<button class="filter-icon-button artifact-grade-filter vignette-grade-filter" data-filter-value="R" data-tooltip="등급 · R" type="button"><span class="identity-icon-bg rarity-emblem rarity-r"><span>R</span></span></button>
+</div></div>
+<button class="reset-filters" hidden id="vignette-reset-filters" type="button">필터 초기화</button>
+</div>
+</div>
+<div class="toolbar-actions"><button id="vignette-expand-all" type="button">모두 펼치기</button><button id="vignette-collapse-all" type="button">모두 접기</button></div>
+</div>
+<section aria-label="비네트 목록" class="artifact-entry-list vignette-entry-list" id="vignette-list"></section>
+<div class="empty-state" hidden id="vignette-empty">검색 또는 필터 조건에 맞는 비네트가 없습니다.</div>
+</main>
+<div aria-hidden="true" class="tooltip" role="tooltip"></div>
+<script src="terms.js?v=68"></script>
+<script src="vignette.js?v=68"></script>
+</body>
+</html>

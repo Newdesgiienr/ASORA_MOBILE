@@ -1,0 +1,397 @@
+{
+  "moa": {
+    "skills": [
+      "괴도의 지팡이술, 첫 번째",
+      "괴도의 지팡이술, 두 번째"
+    ],
+    "coefficients": [
+      366.6,
+      400
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "ultimate": "레핀 드 쥐스티스",
+    "ultimateCoefficient": 734.3,
+    "us": 1000,
+    "tagCoefficient": 226.5,
+    "tagSpecialCoefficient": 476.8,
+    "tagSpecialCT": 5,
+    "tagAttackCT": 0
+  },
+  "koyomi": {
+    "skills": [
+      "염룡의 화염구",
+      "염룡의 파도",
+      "염룡의 소낙비"
+    ],
+    "coefficients": [
+      234.2,
+      225.1,
+      282.9
+    ],
+    "ct": [
+      9,
+      9,
+      9
+    ],
+    "ultimate": "불사르는 염룡, 스바로지츠의 숨결이여!",
+    "ultimateCoefficient": 589.9,
+    "us": 3000,
+    "tagCoefficient": 183,
+    "tagAttackCT": 0
+  },
+  "sigrid": {
+    "skills": [
+      "내리치는 번개",
+      "몰아치는 폭풍우"
+    ],
+    "coefficients": [
+      [
+        283.3,
+        360.9
+      ],
+      203.7
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "chargeAP": [
+      1,
+      1
+    ],
+    "ultimate": "쇄도하는 라그나로크",
+    "ultimateCoefficient": 415.5,
+    "us": 2000,
+    "tagCoefficient": 165,
+    "chargeAPSource": "2026-10-07 사용자 정정 우선 (ZIP AP2 표기 대체)",
+    "tagAttackCT": 0
+  },
+  "akina": {
+    "skills": [
+      "아키나 특제 <그리스의 불>",
+      "아키나 특제 드롭스",
+      "즉석 충전"
+    ],
+    "coefficients": [
+      114.8,
+      125.2,
+      0
+    ],
+    "ct": [
+      1,
+      1,
+      5
+    ],
+    "ultimate": "화학, 연금술, 그리고 폭발",
+    "ultimateCoefficient": 639.1,
+    "us": 2000,
+    "tagCoefficient": 128.2,
+    "tagAttackCT": 0
+  },
+  "doll": {
+    "skills": [
+      "무명 찌르기 - 개",
+      "연격"
+    ],
+    "coefficients": [
+      279.9,
+      279.9
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "ultimate": "테룸 아르보리스",
+    "ultimateCoefficient": 538,
+    "us": 1000,
+    "tagCoefficient": 208.5,
+    "tagAttackCT": 0
+  },
+  "anna": {
+    "skills": [
+      "번개 같은 찌르기",
+      "번뜩이는 삼단베기",
+      "정수리 낙하 베기"
+    ],
+    "coefficients": [
+      252.5,
+      255.2,
+      291.6
+    ],
+    "ct": [
+      5,
+      5,
+      5
+    ],
+    "ultimate": "드라이파허 블리츠슈니트",
+    "ultimateCoefficient": 391.2,
+    "us": 2000,
+    "tagCoefficient": 150,
+    "tagAttackCT": 0
+  },
+  "canon": {
+    "skills": [
+      "춤추는 무녀의 전투술"
+    ],
+    "coefficients": [
+      [
+        177.4,
+        403
+      ]
+    ],
+    "ct": [
+      1
+    ],
+    "chargeCT": [
+      1,
+      5
+    ],
+    "ultimate": "우구이스카구라의 춤사위",
+    "ultimateCoefficient": 1024,
+    "us": 2000,
+    "tagCoefficient": 148.2,
+    "tagAttackCT": 0
+  },
+  "mayoi": {
+    "skills": [
+      "손에 잡히는 대로 빔",
+      "한꺼번에 빔"
+    ],
+    "coefficients": [
+      142,
+      409.2
+    ],
+    "ct": [
+      1,
+      1
+    ],
+    "ultimate": "카두케우스 루시스",
+    "ultimateCoefficient": 444.6,
+    "diamondUltimateCoefficient": 889.2,
+    "us": 2000,
+    "tagCoefficient": 171.7,
+    "tagAttackCT": 0
+  },
+  "erin": {
+    "skills": [
+      "빛의 울림",
+      "연쇄 투척",
+      "반짝반짝 볼"
+    ],
+    "coefficients": [
+      278.8,
+      278.8,
+      278.8
+    ],
+    "ct": [
+      5,
+      5,
+      5
+    ],
+    "ultimate": "클리우 솔러시",
+    "ultimateCoefficient": 657.6,
+    "us": 1000,
+    "tagCoefficient": 150.6,
+    "tagSpecialCoefficient": 266.5,
+    "tagSpecialCT": 6,
+    "tagAttackCT": 0
+  },
+  "chikage": {
+    "skills": [
+      "공간 제어 스크롤"
+    ],
+    "coefficients": [
+      [
+        301.1,
+        0
+      ]
+    ],
+    "ct": [
+      5
+    ],
+    "chargeAP": [
+      1,
+      1
+    ],
+    "ultimate": "아틀레트리아의 일격",
+    "ultimateCoefficient": 0,
+    "us": 2000,
+    "tagCoefficient": 162.6,
+    "tagDefenseCT": 10,
+    "tagAttackCT": 0
+  },
+  "luna": {
+    "skills": [
+      "겨울의 결정 : 빙결파동",
+      "겨울의 결정 : 얼어붙은 발자국",
+      "겨울의 결정 : 빙결폭발"
+    ],
+    "coefficients": [
+      372.8,
+      410,
+      475
+    ],
+    "ct": [
+      9,
+      9,
+      9
+    ],
+    "ultimate": "레지아노이 피스탈레트",
+    "ultimateCoefficient": 842.5,
+    "us": 2000,
+    "tagCoefficient": 163.5,
+    "tagAttackCT": 0
+  },
+  "mai": {
+    "skills": [
+      "아틀레트리아의 체술 : 전력 투창",
+      "아틀레트리아의 체술 : 삼단 투창"
+    ],
+    "coefficients": [
+      [
+        106.6,
+        224.4
+      ],
+      [
+        116.2,
+        224.4
+      ]
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "chargeAP": [
+      1,
+      1
+    ],
+    "ultimate": "아틀레트리아의 일격",
+    "ultimateCoefficient": 339.5,
+    "us": 1000,
+    "tagCoefficient": 134.7,
+    "tagAttackCT": 0
+  },
+  "souka": {
+    "skills": [
+      "열한번째 밤 : 임시보호 중인 이상한 고양이",
+      "열한번째 밤 : 토끼굴 속으로",
+      "열한번째 밤 : 빙결폭발"
+    ],
+    "coefficients": [
+      278.1,
+      0,
+      475
+    ],
+    "ct": [
+      5,
+      5,
+      9
+    ],
+    "ultimate": "떠맡겨진 이상한 세계",
+    "ultimateCoefficient": 303.9,
+    "us": 3000,
+    "tagCoefficient": 186.1,
+    "tagAttackCT": 0
+  },
+  "haru": {
+    "skills": [
+      "신이교주의적 연극 제의 : 스즈키 쨩, 돌격!",
+      "신이교주의적 연극 제의 : 스즈키 쨩, 난타!"
+    ],
+    "coefficients": [
+      252.7,
+      252.7
+    ],
+    "ct": [
+      9,
+      9
+    ],
+    "ultimate": "디오니시아의 광극, 개막!",
+    "ultimateCoefficient": 537.7,
+    "us": 2000,
+    "tagCoefficient": 153,
+    "tagAttackCT": 0
+  },
+  "ren": {
+    "skills": [
+      "제압",
+      "무력화"
+    ],
+    "coefficients": [
+      225.6,
+      252
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "ultimate": "켄 아록의 검",
+    "ultimateCoefficient": 872.5,
+    "us": 2000,
+    "tagCoefficient": 140.7,
+    "tagAttackCT": 0
+  },
+  "shion": {
+    "skills": [
+      "잠깐 빌리는 거야~",
+      "한번에 팡!"
+    ],
+    "coefficients": [
+      0,
+      529.7
+    ],
+    "ct": [
+      5,
+      5
+    ],
+    "ultimate": "가방 속의 폭풍",
+    "ultimateCoefficient": 1014,
+    "us": 3000,
+    "tagCoefficient": 150,
+    "tagAttackCT": 0
+  },
+  "liria": {
+    "skills": [
+      "반짝임의 불꽃",
+      "반짝임의 은총",
+      "반짝임의 오선보"
+    ],
+    "coefficients": [
+      315,
+      0,
+      0
+    ],
+    "ct": [
+      9,
+      9,
+      9
+    ],
+    "ultimate": "히미코의 무구 적",
+    "ultimateCoefficient": 591.7,
+    "us": 2000,
+    "tagCoefficient": 153.4,
+    "tagAttackCT": 0
+  },
+  "nono": {
+    "skills": [
+      "조용하고 편안한 빛"
+    ],
+    "coefficients": [
+      [
+        0,
+        0
+      ]
+    ],
+    "ct": [
+      5
+    ],
+    "ultimate": "예구디엘의 응급조치",
+    "ultimateCoefficient": 0,
+    "us": 3000,
+    "tagCoefficient": 195,
+    "tagAttackCT": 0
+  }
+}

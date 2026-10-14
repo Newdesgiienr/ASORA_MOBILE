@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="아스트라에 오라티오 전투 데이터베이스" name="description"/>
+<title>아티팩트 | Astrae Oratio Battle Lab</title>
+<link href="styles.css?v=70" rel="stylesheet"/>
+</head>
+<body>
+<header class="app-topbar">
+<div class="brand">
+<a aria-label="Astrae Oratio Battle Lab" class="brand-mark" href="characters.html">AO</a>
+<div class="brand-copy">
+<a class="brand-title" href="characters.html"><strong>ASTRAE ORATIO BATTLE LAB</strong></a>
+<div class="brand-lower">
+<small>아스트라에 오라티오 전투 데이터베이스</small>
+<nav aria-label="페이지 이동" class="site-nav"><a href="glossary.html">용어 사전</a><a href="characters.html">캐릭터</a><a href="artifacts.html" class="active" aria-current="page">아티팩트</a><a href="vignettes.html">비네트</a><a href="score-trial.html">스코어 트라이얼</a><a href="combat.html">전투 시뮬레이션</a></nav>
+</div>
+</div>
+</div>
+</header>
+<main class="page-shell artifact-page" id="top">
+<header class="page-heading character-page-heading">
+<div class="page-heading-copy">
+<span>ARTIFACT DATABASE</span>
+<h1>아티팩트</h1>
+</div>
+<label class="search-field">
+<span>이름, 능력치, 스킬, 효과 검색</span>
+<input id="artifact-search" placeholder="이름, 능력치, 스킬, 효과 검색" type="search"/>
+</label>
+</header>
+
+<div class="list-toolbar artifact-filter-toolbar">
+<div class="toolbar-primary">
+<span class="character-total">등록 아티팩트 <b id="artifact-count">27</b></span>
+<div aria-label="등급 및 역할군 필터" class="character-filters">
+<div aria-label="등급 필터" class="filter-group artifact-grade-filter-group">
+<span class="filter-group-label">등급</span>
+<div class="filter-buttons">
+<button class="filter-icon-button artifact-grade-filter" data-filter-group="grade" data-filter-value="SSR" data-tooltip="등급 · SSR" type="button"><span class="identity-icon-bg rarity-emblem rarity-ssr"><span>SSR</span></span></button>
+<button class="filter-icon-button artifact-grade-filter" data-filter-group="grade" data-filter-value="SR" data-tooltip="등급 · SR" type="button"><span class="identity-icon-bg rarity-emblem rarity-sr"><span>SR</span></span></button>
+<button class="filter-icon-button artifact-grade-filter" data-filter-group="grade" data-filter-value="R" data-tooltip="등급 · R" type="button"><span class="identity-icon-bg rarity-emblem rarity-r"><span>R</span></span></button>
+</div>
+</div>
+<span aria-hidden="true" class="filter-divider"></span>
+<div aria-label="역할군 필터" class="filter-group">
+<span class="filter-group-label">역할군</span>
+<div class="filter-buttons">
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="defender" data-tooltip="역할군 · 디펜더" type="button"><img alt="디펜더" src="assets/defender.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="anchor" data-tooltip="역할군 · 앵커" type="button"><img alt="앵커" src="assets/anchor.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="supporter" data-tooltip="역할군 · 서포터" type="button"><img alt="서포터" src="assets/supporter.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="breaker" data-tooltip="역할군 · 브레이커" type="button"><img alt="브레이커" src="assets/breaker.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="attacker" data-tooltip="역할군 · 어태커" type="button"><img alt="어태커" src="assets/attacker.png"/></button>
+<button class="filter-icon-button" data-filter-group="role" data-filter-value="sweeper" data-tooltip="역할군 · 스위퍼" type="button"><img alt="스위퍼" src="assets/sweeper.png"/></button>
+</div>
+</div>
+<button aria-hidden="true" class="reset-filters is-placeholder" disabled id="artifact-reset-filters" type="button">필터 초기화</button>
+</div>
+</div>
+<div class="toolbar-actions">
+<button id="artifact-expand-all" type="button">모두 펼치기</button>
+<button id="artifact-collapse-all" type="button">모두 접기</button>
+</div>
+</div>
+
+<section aria-label="아티팩트 목록" class="artifact-entry-list" id="artifact-list"></section>
+<div class="empty-state" hidden id="artifact-empty">검색 또는 필터 조건에 맞는 아티팩트가 없습니다.</div>
+</main>
+<div aria-hidden="true" class="tooltip" role="tooltip"></div>
+<script src="terms.js?v=69"></script>
+<script src="artifact.js?v=69"></script>
+</body>
+</html>
