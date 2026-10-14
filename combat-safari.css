@@ -631,3 +631,10 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 .ultimate-impact img{position:absolute;inset:0}
 .ultimate-impact img[hidden]{display:none!important}
 .hit.flash,.ultimate-impact.ult-burst{will-change:transform,opacity}
+
+
+#scene-load-retry{padding:10px 18px;border:1px solid #6e778c;border-radius:6px;background:#202534;color:white;cursor:pointer}
+
+/* Scope native gesture suppression to the battle rectangle, not the page. */
+#viewport,#battle,#battle *{touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+#viewport{overscroll-behavior:contain}
