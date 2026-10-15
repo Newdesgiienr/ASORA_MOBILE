@@ -648,7 +648,7 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 /* Outside scene isolation: reserve damage paints above portraits, below modal/video layers. */
 #reserve-damage-layer{position:absolute;inset:0;z-index:18;pointer-events:none}
 /* V141: paused party skill reader; native-size panel outside scaled battle. */
-.open-party-skills{position:absolute;left:28px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:14px;border:0;background:transparent;color:#fff;font-size:30px;font-weight:700;padding:24px 12px;animation:skill-reader-hint 1.5s ease-in-out infinite}
+.pause-overlay .open-party-skills{position:absolute;left:28px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:14px;border:0;background:transparent;color:#fff;font-size:30px;font-weight:700;padding:24px 12px;animation:skill-reader-hint 1.5s ease-in-out infinite}
 .open-party-skills span{font-size:48px;font-weight:400}
 @keyframes skill-reader-hint{0%,100%{transform:translate(0,-50%)}50%{transform:translate(12px,-50%)}}
 #party-skills-panel{position:absolute;left:0;top:0;bottom:0;width:min(720px,92%);z-index:100;background:#f5f6f8;box-shadow:12px 0 40px #0008;animation:skill-reader-slide .22s ease-out;overflow:hidden}
