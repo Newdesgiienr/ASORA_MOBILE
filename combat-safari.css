@@ -657,3 +657,4 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 #close-party-skills{position:absolute;right:8px;top:4px;z-index:2;background:#343e4c;border:1px solid #626d7b;border-radius:5px;color:white;font-size:13px;height:30px;padding:0 12px;touch-action:manipulation}
 @keyframes skill-reader-slide{from{transform:translateX(-100%)}to{transform:translateX(0)}}
 @media(prefers-reduced-motion:reduce){.open-party-skills,#party-skills-panel{animation:none}}
+.battle.is-paused .open-party-skills{animation-play-state:running!important}
