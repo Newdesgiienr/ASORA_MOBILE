@@ -769,8 +769,37 @@ $('reform-party').onclick=()=>{const party=[...s.party];reset();selected=party;s
 addEventListener('keydown',e=>{if(s.paused){if(e.code==='Escape'){e.preventDefault();resumeBattle();}return;}if(e.repeat||/INPUT|SELECT|TEXTAREA|SUMMARY/.test(document.activeElement.tagName))return;if(e.code==='KeyW'&&chargeAvailable()){e.preventDefault();beginCharge();return;}const map={KeyQ:'attack',KeyW:'skill',KeyE:'ultimate',Space:'counter-button',Enter:'end'};if(map[e.code]){e.preventDefault();$(map[e.code]).click();}if(/^Digit[1-4]$/.test(e.code))tag(Number(e.code.slice(-1))-1);});
 for(const id of ['attack','skill','ultimate','counter-button'])$(id).addEventListener?.('animationend',e=>{if(e.target===$(id)&&e.animationName==='buttonUse')$(id).classList.remove('used');});
 for(const id of ['ally','enemy','hit'])$(id).addEventListener?.('animationend',e=>{if(e.target!==$(id))return;$(id).classList.remove('flash','hurt','strike');});
-// Only the actual battle viewport consumes browser gestures. Clicks and pointerup still propagate.
-for(const type of ['touchmove','gesturestart','gesturechange','gestureend','dblclick'])$('viewport').addEventListener(type,e=>{if(e.cancelable)e.preventDefault();},{passive:false});
+// Battle touch guard: cancel Safari's tap default before it can become zoom.
+// Pointer events still reach charge holds and the victory double-tap handler.
+const battleTouchRoot=$('viewport');
+let battleTap=null,battleTouchClickUntil=0;
+battleTouchRoot.addEventListener('touchstart',e=>{
+ if(e.touches.length!==1){battleTap=null;return;}
+ const t=e.changedTouches[0],button=e.target.closest?.('button');
+ battleTap={id:t.identifier,x:t.clientX,y:t.clientY,button,
+  hold:button===skillButton&&chargeAvailable(),moved:false};
+},{passive:true});
+battleTouchRoot.addEventListener('touchmove',e=>{
+ if(battleTap){const t=[...e.touches].find(t=>t.identifier===battleTap.id);
+  if(!t||Math.hypot(t.clientX-battleTap.x,t.clientY-battleTap.y)>12)battleTap.moved=true;}
+ if(e.cancelable)e.preventDefault();
+},{passive:false});
+battleTouchRoot.addEventListener('touchend',e=>{
+ if(e.cancelable)e.preventDefault();
+ battleTouchClickUntil=performance.now()+800;
+ const tap=battleTap;
+ if(!tap||![...e.changedTouches].some(t=>t.identifier===tap.id))return;
+ battleTap=null;
+ // Touchend suppresses the native click; deliver exactly one to normal buttons.
+ // Charge release is already owned by pointerup / the touch-only fallback.
+ if(!tap.moved&&!tap.hold&&tap.button&&!tap.button.disabled&&battleTouchRoot.contains(tap.button))tap.button.click();
+},{passive:false,capture:true});
+battleTouchRoot.addEventListener('touchcancel',()=>{battleTap=null;},{passive:true});
+battleTouchRoot.addEventListener('click',e=>{
+ // Reject a delayed browser-generated touch click, but allow our click(), mouse and keyboard.
+ if(e.isTrusted&&e.detail>0&&e.pointerType!=='mouse'&&performance.now()<battleTouchClickUntil){e.preventDefault();e.stopImmediatePropagation();}
+},{capture:true});
+for(const type of ['gesturestart','gesturechange','gestureend','dblclick'])battleTouchRoot.addEventListener(type,e=>{if(e.cancelable)e.preventDefault();},{passive:false});
 window.mobileAudioStatus=()=>({...BattleAudio.status(),prepared:audioPrepared,preparing:audioPreparing,blocked:mobileBlocked});window.combatSnapshot=()=>JSON.parse(JSON.stringify(s));reset();
 })();
 
