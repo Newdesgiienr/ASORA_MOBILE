@@ -141,7 +141,7 @@ function expireDomains(){for(const [id,b] of Object.entries(s.battleStates)){if(
 function activateDomain(id){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.domainVisual||s.busy||s.poseTime||s.enemyTime||s.paused||s.ultimateMovie||s.ultimateImpact)return false;const index=s.party.findIndex(n=>roster[n].id===id);if(s.deathTransition||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||s.apClearing||s.charging||index<0||s.hp[index]<=0||!domainRemaining(id))return false;
  const b=stateFor(id),rule=domainRules[id];b.domainExpiresAt=0;b.domainCount=0;b.ct=0;b.ultCT=0;b.stage=id==='akina'&&b.fire===0?3:1;s.ap+=2;grantUS(id,rule[2]);if(id==='luna'||id==='souka')grantBuff(id,'domainEcho',3,{echo:true});s.advance=ENGAGE_WAIT_MS;s.lastDomain={character:id,round:s.round};startDomainVisual(id);$('battle').classList.add('domain-locked');playDomainAudio(id);log(metadata[id].name+' 영지 선언 · CT 초기화 / AP +2 / US +'+rule[2]);render();return true;
 }
-function renderDomains(){const host=$('domain-bars'),ready=s.party.map(n=>roster[n].id).filter(id=>domainRemaining(id)>0),signature=ready.map(id=>id+':'+stateFor(id).domainOffer).join('|');host.hidden=!s.running||!['ACTION','ENGAGE'].includes(s.phase)||!ready.length;
+function renderDomains(){const host=$('domain-bars'),ready=s.party.map(n=>roster[n].id).filter(id=>domainRemaining(id)>0),signature=ready.map(id=>id+':'+stateFor(id).domainOffer).join('|');host.hidden=s.paused||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||!ready.length;
  if(host.dataset.signature!==signature){host.dataset.signature=signature;host.replaceChildren(...ready.map(id=>{const row=document.createElement('div');row.className='domain-bar';row.characterId=id;row.innerHTML='<span class="domain-ribbon">영지 선언</span><button class="domain-orb" type="button"><img src="assets/combat/domain-emblem.svg" alt=""><span class="domain-clock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 1h6v3H9zM17 4l2 2 2-2-2-2z"/><circle cx="12" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 7h2v8l-5-3 1-2 2 1z"/></svg><b></b></span></button>';const button=row.querySelector('button');button.onclick=()=>activateDomain(id);button.title=metadata[id].name+' 영지 선언';return row;}));}
  for(const row of host.children){const id=row.characterId,button=row.querySelector('button');button.disabled=!!s.enemyTransition||!!s.apClearing||s.charging;button.setAttribute('aria-label',metadata[id].name+' 영지 선언 · 남은 '+domainRemaining(id)+'라운드');row.querySelector('b').textContent=domainRemaining(id);}
 }
@@ -445,7 +445,7 @@ function renderEnemyEffects(){const signature=JSON.stringify(s.enemyEffects);if(
  $('enemy-effects').replaceChildren(...Object.entries(s.enemyEffects).filter(([,e])=>e.stacks>0).map(([id,e])=>{const row=document.createElement('div');row.textContent=`[${enemyEffectNames[id]||id}] [${e.stacks}]`;return row;}));
 }
 
-function render(){
+function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION','ENGAGE'].includes(s.phase);
  renderEnemyRoster();
  if(s.enemies.length>1)setText('enemy-name',enemyName());else setText('enemy-name','마네킹');
  renderEffectLedger();
@@ -764,34 +764,40 @@ function tag(index){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.pau
 function next(){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;if(s.deathTransition||s.domainVisual||s.charging)return;if(!s.running||s.commands.length||s.busy||s.poseTime||s.enemyTime)return;for(const id of Object.keys(s.battleStates)){closeChain(id);s.battleStates[id].ct=Math.max(0,s.battleStates[id].ct-1);s.battleStates[id].ultCT=Math.max(0,(s.battleStates[id].ultCT||0)-1);s.battleStates[id].tagCT=Math.max(0,(s.battleStates[id].tagCT||0)-1);s.battleStates[id].tagAttackCT=Math.max(0,(s.battleStates[id].tagAttackCT||0)-1);}tickEnemyEffects();tickCharacterEffects();if(s.enemyHP<=0){finish(true);if(s.enemyTransition)s.enemyTransition.nextAction=true;return;}s.round++;if((s.round-1)%3===0&&partyAlive('shion')){const b=stateFor('shion');b.plush=Math.min(4,b.plush+1);}enterAction();}
 
 
-function closePartySkills(focus=false){
- $('party-skills-panel').hidden=true;$('open-party-skills').setAttribute('aria-expanded','false');
- if(focus&&s.paused)$('open-party-skills').focus();
+let readerOwnsPause=false;
+function closePartySkills(resume=true){
+ const shouldResume=resume&&readerOwnsPause;readerOwnsPause=false;
+ $('party-skills-panel').hidden=true;$('party-skills-shade').hidden=true;
+ $('open-party-skills').setAttribute('aria-expanded','false');
+ if(shouldResume&&s.paused)resumeBattle();
+ if(resume)$('open-party-skills').focus?.();
 }
 function openPartySkills(){
- if(!s.paused)return;
+ if(!s.running||s.paused||!['ACTION','ENGAGE'].includes(s.phase))return;
+ pauseBattle();if(!s.paused)return;
+ readerOwnsPause=true;$('pause-overlay').hidden=true;
  const ids=s.party.map(n=>roster[n].id);
- const url='combat-reader.html?v=141&party='+ids.join(',')+'&active='+activeMember().id;
+ const url='combat-reader.html?v=142&party='+ids.join(',')+'&active='+activeMember().id;
  const frame=$('party-skills-frame');
  if(frame.getAttribute('src')!==url)frame.src=url;
- $('party-skills-panel').hidden=false;$('open-party-skills').setAttribute('aria-expanded','true');
- $('close-party-skills').focus();
+ $('party-skills-shade').hidden=false;$('party-skills-panel').hidden=false;
+ $('open-party-skills').setAttribute('aria-expanded','true');$('close-party-skills').focus?.();
 }
 $('open-party-skills').onclick=openPartySkills;
-$('close-party-skills').onclick=()=>closePartySkills(true);
-addEventListener('message',e=>{if(e.origin===location.origin&&e.source===$('party-skills-frame').contentWindow&&e.data==='close-party-skills')closePartySkills(true);});
+$('close-party-skills').onclick=()=>closePartySkills();
+addEventListener('message',e=>{if(e.origin===location.origin&&e.source===$('party-skills-frame').contentWindow&&e.data==='close-party-skills')closePartySkills();});
 
 let pausedAudio=[];
 function pauseBattle(){
  if(!s.running||s.paused||['READY','LOADING','BGM_PAINT','BGM_WAIT'].includes(s.phase))return;
- s.paused=true;cancelAnimationFrame(raf);
+ s.paused=true;$('open-party-skills').hidden=true;cancelAnimationFrame(raf);
  $('battle').classList.add('is-paused');$('pause-overlay').hidden=false;
  pausedAudio=[$('ultimate-video'),audioTrack('battle-bgm'),audioTrack('trial-sound'),...Object.values(sfxPool).flat()].filter(a=>a?.pause&&!a.paused&&!a.ended);
  for(const a of pausedAudio)a.pause();
  $('resume').focus?.();
 }
 function resumeBattle(){BattleAudio.unlock().catch(()=>showAudioGate('소리를 켜고 계속해주세요.'));
- if(!s.paused)return;closePartySkills();s.paused=false;
+ if(!s.paused)return;closePartySkills(false);s.paused=false;$('open-party-skills').hidden=!s.running||!['ACTION','ENGAGE'].includes(s.phase);
  $('battle').classList.remove('is-paused');$('pause-overlay').hidden=true;
  for(const a of pausedAudio)a.play()?.catch(()=>{});pausedAudio=[];
  last=performance.now();cancelAnimationFrame(raf);
@@ -842,7 +848,7 @@ function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.v
  else if(s.phase==='ENGAGE'&&!locked&&!s.charging){if(s.ap===0&&!s.commands.length)s.advance=Math.min(s.advance,350);s.advance-=dt;if(s.advance<=0)next();}
  render();if(s.running)raf=requestAnimationFrame(tick);
 }
-function reset(){closePartySkills();sceneLoadToken++;sceneReady=false;clearLiveHitEffects();stopChargeHum();skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('reserve-damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:ENEMY_BP_MAX,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};initEnemyRoster();$('enemy').classList.remove('enemy-arrival');$('enemy').hidden=false;history.length=0;$('log').replaceChildren();setText('status','파티를 편성하고 전투 시작을 눌러주세요.');$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
+function reset(){closePartySkills(false);sceneLoadToken++;sceneReady=false;clearLiveHitEffects();stopChargeHum();skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('reserve-damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:ENEMY_BP_MAX,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};initEnemyRoster();$('enemy').classList.remove('enemy-arrival');$('enemy').hidden=false;history.length=0;$('log').replaceChildren();setText('status','파티를 편성하고 전투 시작을 눌러주세요.');$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
 function start(){if(s.running||!selected.length)return;reset();s.running=true;for(const i of s.party){const id=roster[i].id;stateFor(id);if(id==='koyomi')grantUS(id,750);}s.phase='LOADING';s.loadingTime=650;s.ap=0;primeBattleAudio();prepareBattleScene();prepareBattleEffects();warmPartyVisuals();showScreen('loading');$('loading-progress').style.width='0%';formation();render();last=performance.now();raf=requestAnimationFrame(tick);}
 for(const group of Object.keys(filters)){for(const value of [...new Set(roster.map(m=>m[group]))]){$('filter-'+group+'-'+value).onclick=()=>{const set=filters[group];if(set.has(value))set.delete(value);else set.add(value);$('filter-'+group+'-'+value).classList.toggle('active',set.has(value));$('filter-'+group+'-'+value).setAttribute('aria-pressed',String(set.has(value)));filterRoster();};}}$('clear-filters').onclick=()=>{for(const group of Object.keys(filters)){for(const value of filters[group]){$('filter-'+group+'-'+value).classList.remove('active');$('filter-'+group+'-'+value).setAttribute('aria-pressed','false');}filters[group].clear();}$('character-search').value='';filterRoster();};
 $('character-search').oninput=filterRoster;$('collapse-list').onclick=()=>{const body=$('character-list-body');body.hidden=!body.hidden;setText('collapse-list',body.hidden?'목록 펼치기':'목록 접기');$('collapse-list').setAttribute('aria-expanded',String(!body.hidden));};
@@ -878,7 +884,7 @@ addEventListener('blur',()=>{if(s.running)pauseBattle();});
 addEventListener('keyup',e=>{if(e.code==='KeyW')releaseCharge();});
 $('counter-button').onclick=counter;$('start').onclick=start;$('reset').onclick=reset;$('restart').onclick=start;$('end').onclick=()=>{if(!$('end').disabled)next();};
 $('reform-party').onclick=()=>{const party=[...s.party];reset();selected=party;s.party=[...party];formation();render();};$('pause-restart').onclick=()=>{const party=[...s.party];reset();selected=party;start();};$('pause-button').onclick=pauseBattle;$('resume').onclick=resumeBattle;
-addEventListener('keydown',e=>{if(s.paused){if(e.code==='Escape'){e.preventDefault();if(!$('party-skills-panel').hidden)closePartySkills(true);else resumeBattle();}return;}if(e.repeat||/INPUT|SELECT|TEXTAREA|SUMMARY/.test(document.activeElement.tagName))return;if(e.code==='KeyW'&&chargeAvailable()){e.preventDefault();beginCharge();return;}const map={KeyQ:'attack',KeyW:'skill',KeyE:'ultimate',Space:'counter-button',Enter:'end'};if(map[e.code]){e.preventDefault();$(map[e.code]).click();}if(/^Digit[1-4]$/.test(e.code))tag(Number(e.code.slice(-1))-1);});
+addEventListener('keydown',e=>{if(s.paused){if(e.code==='Escape'){e.preventDefault();if(!$('party-skills-panel').hidden)closePartySkills();else resumeBattle();}return;}if(e.repeat||/INPUT|SELECT|TEXTAREA|SUMMARY/.test(document.activeElement.tagName))return;if(e.code==='KeyW'&&chargeAvailable()){e.preventDefault();beginCharge();return;}const map={KeyQ:'attack',KeyW:'skill',KeyE:'ultimate',Space:'counter-button',Enter:'end'};if(map[e.code]){e.preventDefault();$(map[e.code]).click();}if(/^Digit[1-4]$/.test(e.code))tag(Number(e.code.slice(-1))-1);});
 for(const id of ['attack','skill','ultimate','counter-button'])$(id).addEventListener?.('animationend',e=>{if(e.target===$(id)&&e.animationName==='buttonUse')$(id).classList.remove('used');});
 for(const id of ['ally','enemy','hit'])$(id).addEventListener?.('animationend',e=>{if(e.target!==$(id))return;$(id).classList.remove('flash','hurt','strike');});
 // Battle touch guard: cancel Safari's tap default before it can become zoom.
