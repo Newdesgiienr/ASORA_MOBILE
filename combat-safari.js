@@ -777,7 +777,7 @@ function openPartySkills(){
  pauseBattle();if(!s.paused)return;
  readerOwnsPause=true;$('pause-overlay').hidden=true;
  const ids=s.party.map(n=>roster[n].id);
- const url='combat-reader.html?v=142&party='+ids.join(',')+'&active='+activeMember().id;
+ const url='combat-reader.html?v=146&party='+ids.join(',')+'&active='+activeMember().id;
  const frame=$('party-skills-frame');
  if(frame.getAttribute('src')!==url)frame.src=url;
  $('party-skills-shade').hidden=false;$('party-skills-panel').hidden=false;

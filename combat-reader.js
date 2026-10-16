@@ -3,6 +3,17 @@
  const ids=[...new Set((params.get('party')||'').split(','))].filter(id=>/^[a-z]+$/.test(id)&&document.getElementById('reader-'+id)).slice(0,4);
  const names={canon:'카논',moa:'하나모리 모아',erin:'타나카 에린',mayoi:'케이코 마요이',anna:'안나',haru:'하루',akina:'아키나',chikage:'치카게',doll:'인형',koyomi:'코요미',liria:'리리아',luna:'루나',mai:'마이',nono:'노노',ren:'렌',shion:'시온',sigrid:'울브헤른',souka:'소우카'};
  const nav=document.getElementById('reader-party');
+ // Keep section navigation inside this iframe; scrollIntoView also scrolls its ancestors.
+ document.addEventListener('click',e=>{
+  const button=e.target.closest?.('.section-nav button[data-target]');
+  if(!button)return;
+  const target=document.getElementById(button.dataset.target);
+  if(!target)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  const top=target.getBoundingClientRect().top+window.scrollY-nav.getBoundingClientRect().height-12;
+  window.scrollTo({top:Math.max(0,top),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ },true);
+
  function select(id){
   document.querySelectorAll('.reader-character').forEach(c=>c.hidden=c.id!=='reader-'+id);
   nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.id===id)));
