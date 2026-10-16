@@ -785,6 +785,8 @@ function openPartySkills(){
 }
 $('open-party-skills').onclick=openPartySkills;
 $('close-party-skills').onclick=()=>closePartySkills();
+// Close only from the backdrop; consume the tap before resuming battle.
+$('party-skills-shade').onclick=e=>{e.preventDefault();e.stopPropagation();closePartySkills();};
 addEventListener('message',e=>{if(e.origin===location.origin&&e.source===$('party-skills-frame').contentWindow&&e.data==='close-party-skills')closePartySkills();});
 
 let pausedAudio=[];
