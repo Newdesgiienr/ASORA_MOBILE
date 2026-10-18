@@ -671,6 +671,8 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 .ally-hp{overflow:hidden}.ally-hp .ally-shield{position:absolute;left:0;top:0;height:100%;z-index:3;background:repeating-linear-gradient(120deg,#8ff4ffff 0 5px,#349de6dd 5px 9px);box-shadow:inset 0 0 0 1px #e7ffff;transition:width .16s}
 .ally-bp{position:absolute;left:52px;bottom:-8px;width:90px;height:5px;background:#15151b;border:1px solid #101014;transform:skewX(-12deg);z-index:3}.ally-bp i{display:block;height:100%;background:#fff;transition:width .15s}
 .ally-break-label{position:absolute;left:6px;bottom:15px;z-index:5;border:1px solid #ffb4a1;background:#301b26eb;color:#ffe0ad;padding:3px 5px;font:bold 13px Arial;white-space:nowrap}.ally-broken{filter:grayscale(.7) brightness(.8)}
-#ally-break-banner{position:absolute;left:330px;top:430px;z-index:30;background:#16111fe6;border:2px solid #ffaf8c;color:#ffe0ae;font:bold italic 40px Arial;padding:6px 24px;transform:skewX(-8deg);pointer-events:none}
 .damage-float.critical{text-shadow:none;overflow:visible}.critical-number{display:block;color:#ffc73b;background:linear-gradient(to bottom,#ff7c20 10%,#fff04b 90%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;-webkit-text-stroke:2px #61321d;filter:drop-shadow(0 2px 1px #61321d)}
 .critical-label{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);color:#ff3434;-webkit-text-stroke:1px #090909;paint-order:stroke fill;font:bold 21px Arial,sans-serif;letter-spacing:1px;white-space:nowrap}
+
+/* V148: recovery stays above portraits; skill CT stays inside their lower edge. */
+.ally-break-label{left:50%;bottom:calc(100% + 14px);transform:translateX(-50%);width:140px;max-width:140px;text-align:center;line-height:18px;padding:3px 2px;pointer-events:none}
