@@ -60,7 +60,7 @@ let selected=[],s,raf=0,last=0;const history=[];
 const skillReference={"moa": {"skills": ["괴도의 지팡이술, 첫 번째", "괴도의 지팡이술, 두 번째"], "coefficients": [366.6, 400], "ct": [5, 5], "ultimate": "레핀 드 쥐스티스", "ultimateCoefficient": 734.3, "us": 1000, "tagCoefficient": 226.5, "tagSpecialCoefficient": 476.8, "tagSpecialCT": 5, "tagAttackCT": 0}, "koyomi": {"skills": ["염룡의 화염구", "염룡의 파도", "염룡의 소낙비"], "coefficients": [234.2, 225.1, 282.9], "ct": [9, 9, 9], "ultimate": "불사르는 염룡, 스바로지츠의 숨결이여!", "ultimateCoefficient": 589.9, "us": 3000, "tagCoefficient": 183, "tagAttackCT": 0}, "sigrid": {"skills": ["내리치는 번개", "몰아치는 폭풍우"], "coefficients": [[283.3, 360.9], 203.7], "ct": [5, 5], "chargeAP": [1, 1], "ultimate": "쇄도하는 라그나로크", "ultimateCoefficient": 415.5, "us": 2000, "tagCoefficient": 165, "chargeAPSource": "2026-10-07 사용자 정정 우선 (ZIP AP2 표기 대체)", "tagAttackCT": 0}, "akina": {"skills": ["아키나 특제 <그리스의 불>", "아키나 특제 드롭스", "즉석 충전"], "coefficients": [114.8, 125.2, 0], "ct": [1, 1, 5], "ultimate": "화학, 연금술, 그리고 폭발", "ultimateCoefficient": 639.1, "us": 2000, "tagCoefficient": 128.2, "tagAttackCT": 0}, "doll": {"skills": ["무명 찌르기 - 개", "연격"], "coefficients": [279.9, 279.9], "ct": [5, 5], "ultimate": "테룸 아르보리스", "ultimateCoefficient": 538, "us": 1000, "tagCoefficient": 208.5, "tagAttackCT": 0}, "anna": {"skills": ["번개 같은 찌르기", "번뜩이는 삼단베기", "정수리 낙하 베기"], "coefficients": [252.5, 255.2, 291.6], "ct": [5, 5, 5], "ultimate": "드라이파허 블리츠슈니트", "ultimateCoefficient": 391.2, "us": 2000, "tagCoefficient": 150, "tagAttackCT": 0}, "canon": {"skills": ["춤추는 무녀의 전투술"], "coefficients": [[177.4, 403]], "ct": [1], "chargeCT": [1, 5], "ultimate": "우구이스카구라의 춤사위", "ultimateCoefficient": 1024, "us": 2000, "tagCoefficient": 148.2, "tagAttackCT": 0}, "mayoi": {"skills": ["손에 잡히는 대로 빔", "한꺼번에 빔"], "coefficients": [142, 409.2], "ct": [1, 1], "ultimate": "카두케우스 루시스", "ultimateCoefficient": 444.6, "diamondUltimateCoefficient": 889.2, "us": 2000, "tagCoefficient": 171.7, "tagAttackCT": 0}, "erin": {"skills": ["빛의 울림", "연쇄 투척", "반짝반짝 볼"], "coefficients": [278.8, 278.8, 278.8], "ct": [5, 5, 5], "ultimate": "클리우 솔러시", "ultimateCoefficient": 657.6, "us": 1000, "tagCoefficient": 150.6, "tagSpecialCoefficient": 266.5, "tagSpecialCT": 6, "tagAttackCT": 0}, "chikage": {"skills": ["공간 제어 스크롤"], "coefficients": [[301.1, 0]], "ct": [5], "chargeAP": [1, 1], "ultimate": "아틀레트리아의 일격", "ultimateCoefficient": 0, "us": 2000, "tagCoefficient": 162.6, "tagDefenseCT": 10, "tagAttackCT": 0}, "luna": {"skills": ["겨울의 결정 : 빙결파동", "겨울의 결정 : 얼어붙은 발자국", "겨울의 결정 : 빙결폭발"], "coefficients": [372.8, 410, 475], "ct": [9, 9, 9], "ultimate": "레지아노이 피스탈레트", "ultimateCoefficient": 842.5, "us": 2000, "tagCoefficient": 163.5, "tagAttackCT": 0}, "mai": {"skills": ["아틀레트리아의 체술 : 전력 투창", "아틀레트리아의 체술 : 삼단 투창"], "coefficients": [[106.6, 224.4], [116.2, 224.4]], "ct": [5, 5], "chargeAP": [1, 1], "ultimate": "아틀레트리아의 일격", "ultimateCoefficient": 339.5, "us": 1000, "tagCoefficient": 134.7, "tagAttackCT": 0}, "souka": {"skills": ["열한번째 밤 : 임시보호 중인 이상한 고양이", "열한번째 밤 : 토끼굴 속으로", "열한번째 밤 : 빙결폭발"], "coefficients": [278.1, 0, 475], "ct": [5, 5, 9], "ultimate": "떠맡겨진 이상한 세계", "ultimateCoefficient": 303.9, "us": 3000, "tagCoefficient": 186.1, "tagAttackCT": 0}, "haru": {"skills": ["신이교주의적 연극 제의 : 스즈키 쨩, 돌격!", "신이교주의적 연극 제의 : 스즈키 쨩, 난타!"], "coefficients": [252.7, 252.7], "ct": [9, 9], "ultimate": "디오니시아의 광극, 개막!", "ultimateCoefficient": 537.7, "us": 2000, "tagCoefficient": 153, "tagAttackCT": 0}, "ren": {"skills": ["제압", "무력화"], "coefficients": [225.6, 252], "ct": [5, 5], "ultimate": "켄 아록의 검", "ultimateCoefficient": 872.5, "us": 2000, "tagCoefficient": 140.7, "tagAttackCT": 0}, "shion": {"skills": ["잠깐 빌리는 거야~", "한번에 팡!"], "coefficients": [0, 529.7], "ct": [5, 5], "ultimate": "가방 속의 폭풍", "ultimateCoefficient": 1014, "us": 3000, "tagCoefficient": 150, "tagAttackCT": 0}, "liria": {"skills": ["반짝임의 불꽃", "반짝임의 은총", "반짝임의 오선보"], "coefficients": [315, 0, 0], "ct": [9, 9, 9], "ultimate": "히미코의 무구 적", "ultimateCoefficient": 591.7, "us": 2000, "tagCoefficient": 153.4, "tagAttackCT": 0}, "nono": {"skills": ["조용하고 편안한 빛"], "coefficients": [[0, 0]], "ct": [5], "ultimate": "예구디엘의 응급조치", "ultimateCoefficient": 0, "us": 3000, "tagCoefficient": 195, "tagAttackCT": 0}};
 const ENGAGE_WAIT_MS=1500;
 const battleRules={ren:{stages:2,ct:5},shion:{stages:2,ct:5},liria:{stages:3,ct:9},nono:{stages:1,ct:5,chargeMs:900},luna:{stages:3,ct:9},mai:{stages:2,ct:5,chargeMs:900},souka:{stages:3,ct:5},haru:{stages:2,ct:9},anna:{stages:3,ct:5},canon:{stages:1,ct:1,chargeCT:{1:1,2:5},chargeMs:900},moa:{stages:2,ct:5},koyomi:{stages:3,ct:9},sigrid:{stages:2,ct:5,chargeMs:900,chargeStages:[1]},akina:{stages:3,ct:1},doll:{stages:2,ct:5},mayoi:{stages:2,ct:1},erin:{stages:3,ct:5},chikage:{stages:1,ct:5,chargeMs:900}};
-function stateFor(id){return s.battleStates[id]||(s.battleStates[id]={stage:1,ct:0,fire:id==='akina'?3:0,tagCT:0,tagAttackCT:0,ultCT:0,gemCycle:[],gemBuffs:{},diamondTurns:0,buffs:id==='sigrid'?{berserk:{turns:6,attack:.166}}:{},shield:0,shieldTurns:0,dollTriggered:false,domainCount:0,timeTrace:0,curseApplied:0,plush:id==='shion'?1:0,basicCount:0,light:0,chainConsumed:0});}
+function stateFor(id){return s.battleStates[id]||(s.battleStates[id]={stage:1,ct:0,fire:id==='akina'?3:0,tagCT:0,tagAttackCT:0,ultCT:0,gemCycle:[],gemBuffs:{},diamondTurns:0,buffs:id==='sigrid'?{berserk:{turns:6,attack:.166}}:{},shield:0,shieldTurns:0,bp:100,breakUntil:0,curseByEnemy:{},dollTriggered:false,domainCount:0,timeTrace:0,curseApplied:0,plush:id==='shion'?1:0,basicCount:0,light:0,chainConsumed:0});}
 function battleState(){return stateFor(activeMember().id);}
 function projectedSkill(){const id=activeMember().id,r=battleRules[id],b={...battleState()};
  for(const k of s.commands){if(k!=='skill'||!r)continue;
@@ -106,10 +106,21 @@ function drawMayoiGem(){const b=stateFor('mayoi');
  else{const choices=Object.keys(gemNames).filter(k=>!b.gemCycle.includes(k)),gem=choices[Math.floor(Math.random()*choices.length)];b.gemCycle.push(gem);b.gemBuffs[gem]=1;log('마요이 · '+gemNames[gem]+' 획득');}
 }
 function gemModifiers(){const b=stateFor('mayoi'),all=b.diamondTurns>0;return {attack:all||b.gemBuffs.ruby>0?.2:0,crit:all||b.gemBuffs.topaz>0?.1:0,strike:all||b.gemBuffs.emerald>0?.2:0};}
-function mayoiGemIcon(){const b=stateFor('mayoi'),diamond=b.diamondTurns>0,has=k=>diamond||b.gemCycle.includes(k),label=diamond?'다이아몬드':b.gemCycle.map(k=>gemNames[k]).join(', ')||'보석 없음';
- return `<span class="mayoi-gems ${diamond?'diamond':''}" role="img" aria-label="${label}" title="${label}"><svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="gem-r" x2=".6" y2="1"><stop stop-color="#fff2db"/><stop offset=".48" stop-color="#ff81a8"/><stop offset="1" stop-color="#a72969"/></linearGradient><linearGradient id="gem-t" x2=".7" y2="1"><stop stop-color="#ffffdd"/><stop offset=".5" stop-color="#f9e96f"/><stop offset="1" stop-color="#b9972a"/></linearGradient><linearGradient id="gem-e" x2=".5" y2="1"><stop stop-color="#ecfff1"/><stop offset=".5" stop-color="#71e7aa"/><stop offset="1" stop-color="#238b66"/></linearGradient><linearGradient id="gem-d" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#a5f1ff"/><stop offset=".65" stop-color="#eec5ff"/><stop offset="1" stop-color="#fffdd0"/></linearGradient></defs><circle cx="40" cy="40" r="38" fill="#111316" stroke="#272a2c" stroke-width="3"/><path d="M19 54A26 26 0 0 1 31 15M49 15A26 26 0 0 1 61 54M23 64L19 56M57 64L61 56" fill="none" stroke="#686966" stroke-width="3"/><path class="gem-leaf" d="M10 34L32 39L36 54L23 52Z" fill="${has('ruby')?'url(#'+(diamond?'gem-d':'gem-r')+')':'#3c4143'}"/><path class="gem-leaf" d="M40 10L48 36L40 49L32 36Z" fill="${has('topaz')?'url(#'+(diamond?'gem-d':'gem-t')+')':'#3c4143'}"/><path class="gem-leaf" d="M70 34L48 39L44 54L57 52Z" fill="${has('emerald')?'url(#'+(diamond?'gem-d':'gem-e')+')':'#3c4143'}"/><path d="M40 55L46 60L40 68L34 60Z" fill="${diamond?'#f5ffff':'#536062'}"/></svg></span>`;
+function mayoiGemIcon(){const b=stateFor('mayoi'),diamond=b.diamondTurns>0,has=k=>diamond||b.gemBuffs[k]>0,label=diamond?'다이아몬드':b.gemCycle.map(k=>gemNames[k]).join(', ')||'보석 없음';
+ return `<span class="mayoi-gems ${diamond?'diamond':''}" role="img" aria-label="${label}" title="수집: ${label} · 밝은 보석만 현재 버프 활성"><svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="gem-r" x2=".6" y2="1"><stop stop-color="#fff2db"/><stop offset=".48" stop-color="#ff81a8"/><stop offset="1" stop-color="#a72969"/></linearGradient><linearGradient id="gem-t" x2=".7" y2="1"><stop stop-color="#ffffdd"/><stop offset=".5" stop-color="#f9e96f"/><stop offset="1" stop-color="#b9972a"/></linearGradient><linearGradient id="gem-e" x2=".5" y2="1"><stop stop-color="#ecfff1"/><stop offset=".5" stop-color="#71e7aa"/><stop offset="1" stop-color="#238b66"/></linearGradient><linearGradient id="gem-d" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#a5f1ff"/><stop offset=".65" stop-color="#eec5ff"/><stop offset="1" stop-color="#fffdd0"/></linearGradient></defs><circle cx="40" cy="40" r="38" fill="#111316" stroke="#272a2c" stroke-width="3"/><path d="M19 54A26 26 0 0 1 31 15M49 15A26 26 0 0 1 61 54M23 64L19 56M57 64L61 56" fill="none" stroke="#686966" stroke-width="3"/><path class="gem-leaf" d="M10 34L32 39L36 54L23 52Z" fill="${has('ruby')?'url(#'+(diamond?'gem-d':'gem-r')+')':'#3c4143'}"/><path class="gem-leaf" d="M40 10L48 36L40 49L32 36Z" fill="${has('topaz')?'url(#'+(diamond?'gem-d':'gem-t')+')':'#3c4143'}"/><path class="gem-leaf" d="M70 34L48 39L44 54L57 52Z" fill="${has('emerald')?'url(#'+(diamond?'gem-d':'gem-e')+')':'#3c4143'}"/><path d="M40 55L46 60L40 68L34 60Z" fill="${diamond?'#f5ffff':'#536062'}"/></svg></span>`;
 }
 
+// V147 sandbox values: not an official CBT damage formula.
+const ALLY_BP_MAX=100,BASE_CRIT=.10,CRIT_MULTIPLIER=2,DAMAGE_GAP_MS=320;
+const ENEMY_DAMAGE={normal:{hp:650,bp:20},counter:{hp:850,bp:35},unavoidable:{hp:750,bp:25},assault:{hp:1000,bp:40}};
+function allyBroken(id=activeMember().id){return stateFor(id).breakUntil>=s.round;}
+function allyCanAct(index=s.active){const m=roster[s.party[index]];return !!m&&s.hp[index]>0&&!allyBroken(m.id);}
+function critChance(id){return Math.min(1,Math.max(0,BASE_CRIT+actorModifiers(id).crit));}
+function rollDamage(id,base,kind='proc'){const m=actorModifiers(id),critical=base>0&&Math.random()<critChance(id);let damage=base*(1+m.attack)*(kind==='skill'?1+m.skillDamage:kind==='ultimate'?1+m.ultimateDamage:1);if(critical)damage*=CRIT_MULTIPLIER;if(s.enemyEffects.guard)damage*=.5;return {damage,critical};}
+function attackAction(id,kind,level=1,stage=1){if(kind==='attack'||kind==='tag'||kind==='tagSpecial')return true;if(kind==='ultimate')return (skillReference[id]?.ultimateCoefficient||0)>0;const c=skillReference[id]?.coefficients[stage-1];return kind==='skill'&&(Array.isArray(c)?c[level-1]:c)>0;}
+function clearAllyCommands(){cancelCharge();s.commands=[];s.commandCosts=[];s.skillLevels=[];s.skillSounds=[];s.autoAttackAfterParry=false;}
+function hitAllyBP(amount){const id=activeMember().id,b=stateFor(id);if(s.hp[s.active]<=0||allyBroken(id))return;b.bp=Math.max(0,b.bp-amount);if(b.bp>0)return;b.bp=ALLY_BP_MAX;b.breakUntil=s.round+1;clearAllyCommands();s.allyBreakFx=900;playSfx('break');pulse('scene','break-impact');log(activeMember().name+' BREAK · BP 전체 회복 / '+(b.breakUntil+1)+'R ACTION부터 행동 가능','system');}
+function partyBars(index){const b=stateFor(roster[s.party[index]].id),broken=allyBroken(roster[s.party[index]].id);return `<span class="ally-hp" title="HP ${damageText(s.hp[index])}/5000 · 보호막 ${damageText(b.shield)}"><i style="width:${s.hp[index]/50}%"></i><em class="ally-shield" style="width:${Math.min(100,b.shield/50)}%" ${b.shield>0?'':'hidden'}></em></span><span class="ally-bp" title="BP ${damageText(b.bp)}/100"><i style="width:${b.bp}%"></i></span>${broken?`<span class="ally-break-label">BREAK · ${b.breakUntil+1}R 복귀</span>`:''}`;}
 const domainRules={ren:['skill',6,250],shion:['skill',4,250],liria:['skill',6,250],nono:['skill',3,250],luna:['skill',6,250],mai:['skill',12,250],souka:['skill',4,250],haru:['skill',4,250],moa:['skill',6,250],anna:['skill',9,250],canon:['skill',6,275],koyomi:['ultimate',2,250],sigrid:['skill',4,250],akina:['skill',10,250],doll:['ultimate',2,250],mayoi:['skill',8,250],erin:['skill',9,250],chikage:['skill',3,250]};
 function grantBuff(id,key,turns,mods){stateFor(id).buffs[key]={turns,...mods};}
 function actorModifiers(id){const b=stateFor(id),total={attack:0,strike:0,crit:0,skillDamage:0,ultimateDamage:0,defense:0};for(const buff of Object.values(b.buffs||{}))for(const k of Object.keys(total))total[k]+=buff[k]||0;if(id==='mayoi'){const g=gemModifiers();for(const k of Object.keys(g))total[k]+=g[k];}if(id==='nono')total.defense+=.198;if(id==='liria')total.attack+=.075*Math.min(3,Math.floor(b.chainConsumed/20));if(id==='haru')total.attack+=.05*Math.min(5,1+Math.floor((s.round-1)/10));return total;}
@@ -138,12 +149,12 @@ function clearDomainVisual(){$('domain-cut-in').classList.remove('domain-exit');
 function domainRemaining(id){const b=stateFor(id);return b.domainExpiresAt?Math.max(0,b.domainExpiresAt-s.round):0;}
 function recordDomain(kind){const id=activeMember().id,rule=domainRules[id],b=battleState();if(!rule||kind!==rule[0]||domainRemaining(id))return;if(++b.domainCount>=rule[1]){b.domainCount=0;b.domainExpiresAt=s.round+DOMAIN_WINDOW_ROUNDS;b.domainOffer=(b.domainOffer||0)+1;playSfx('domainReady');log(activeMember().name+' 영지 선언 가능 · 3R');}}
 function expireDomains(){for(const [id,b] of Object.entries(s.battleStates)){if(b.domainExpiresAt&&s.round>=b.domainExpiresAt){b.domainExpiresAt=0;b.domainCount=0;log(metadata[id].name+' 영지 선언 기한 만료');}}}
-function activateDomain(id){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.domainVisual||s.busy||s.poseTime||s.enemyTime||s.paused||s.ultimateMovie||s.ultimateImpact)return false;const index=s.party.findIndex(n=>roster[n].id===id);if(s.deathTransition||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||s.apClearing||s.charging||index<0||s.hp[index]<=0||!domainRemaining(id))return false;
- const b=stateFor(id),rule=domainRules[id];b.domainExpiresAt=0;b.domainCount=0;b.ct=0;b.ultCT=0;b.stage=id==='akina'&&b.fire===0?3:1;s.ap+=2;grantUS(id,rule[2]);if(id==='luna'||id==='souka')grantBuff(id,'domainEcho',3,{echo:true});s.advance=ENGAGE_WAIT_MS;s.lastDomain={character:id,round:s.round};startDomainVisual(id);$('battle').classList.add('domain-locked');playDomainAudio(id);log(metadata[id].name+' 영지 선언 · CT 초기화 / AP +2 / US +'+rule[2]);render();return true;
+function activateDomain(id){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.domainVisual||s.busy||s.poseTime||s.enemyTime||s.paused||s.ultimateMovie||s.ultimateImpact)return false;const index=s.party.findIndex(n=>roster[n].id===id);if(s.deathTransition||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||s.apClearing||s.charging||index<0||!allyCanAct(index)||!domainRemaining(id))return false;
+ const b=stateFor(id),rule=domainRules[id];b.domainExpiresAt=0;b.domainCount=0;b.ct=0;b.ultCT=0;b.stage=id==='akina'&&b.fire===0?3:1;s.ap+=2;grantUS(id,rule[2]);if(id==='luna')grantBuff(id,'domainEcho',3,{echo:true});s.advance=ENGAGE_WAIT_MS;s.lastDomain={character:id,round:s.round};startDomainVisual(id);$('battle').classList.add('domain-locked');playDomainAudio(id);log(metadata[id].name+' 영지 선언 · CT 초기화 / AP +2 / US +'+rule[2]);render();return true;
 }
 function renderDomains(){const host=$('domain-bars'),ready=s.party.map(n=>roster[n].id).filter(id=>domainRemaining(id)>0),signature=ready.map(id=>id+':'+stateFor(id).domainOffer).join('|');host.hidden=s.paused||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||!ready.length;
  if(host.dataset.signature!==signature){host.dataset.signature=signature;host.replaceChildren(...ready.map(id=>{const row=document.createElement('div');row.className='domain-bar';row.characterId=id;row.innerHTML='<span class="domain-ribbon">영지 선언</span><button class="domain-orb" type="button"><img src="assets/combat/domain-emblem.svg" alt=""><span class="domain-clock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 1h6v3H9zM17 4l2 2 2-2-2-2z"/><circle cx="12" cy="14" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M11 7h2v8l-5-3 1-2 2 1z"/></svg><b></b></span></button>';const button=row.querySelector('button');button.onclick=()=>activateDomain(id);button.title=metadata[id].name+' 영지 선언';return row;}));}
- for(const row of host.children){const id=row.characterId,button=row.querySelector('button');button.disabled=!!s.enemyTransition||!!s.apClearing||s.charging;button.setAttribute('aria-label',metadata[id].name+' 영지 선언 · 남은 '+domainRemaining(id)+'라운드');row.querySelector('b').textContent=domainRemaining(id);}
+ for(const row of host.children){const id=row.characterId,button=row.querySelector('button');button.disabled=!!s.enemyTransition||!!s.apClearing||s.charging||allyBroken(id);button.setAttribute('aria-label',metadata[id].name+' 영지 선언 · 남은 '+domainRemaining(id)+'라운드');row.querySelector('b').textContent=domainRemaining(id);}
 }
 
 
@@ -167,23 +178,16 @@ function isAreaAttack(id,kind,level){
  if(id==='canon')return !!s.enemyEffects.cherry&&(kind==='ultimate'||kind==='skill'&&level>=2);
  return false;
 }
-function directDamage(kind,level,stage){
- const coefficient=hitCoefficient(kind,level,stage),fallback=kind==='tag'||kind==='tagSpecial'?2:skills[kind]?.damage||0;
- let damage=coefficient===null?fallback:coefficient/100;
- const mods=actorModifiers(activeMember().id);
- damage*=(1+mods.attack)*(kind==='skill'?1+mods.skillDamage:kind==='ultimate'?1+mods.ultimateDamage:1);
- if(mods.crit>0&&Math.random()<Math.min(1,mods.crit))damage*=1.5;
- if(s.enemyEffects.guard)damage*=.5;
- return {coefficient,damage};
-}
+function directDamage(kind,level,stage){const coefficient=hitCoefficient(kind,level,stage),base=coefficient===null?(kind==='tag'||kind==='tagSpecial'?2:skills[kind]?.damage||0):coefficient/100;return {coefficient,...rollDamage(activeMember().id,base,kind)};}
+
 function applyAreaTargets(kind,level,stage){
  const id=activeMember().id;
  for(const enemy of s.enemies){if(enemy.index===s.enemyIndex||enemy.hp<=0)continue;
   withEnemy(enemy.index,()=>{
    const hit=directDamage(kind,level,stage);
    // Canon's area condition belongs to the primary target's mark, already checked before consumption.
-   if(id==='canon'&&kind==='skill'&&level>=2){hit.coefficient=403;const mods=actorModifiers(id);hit.damage=4.03*(1+mods.attack)*(1+mods.skillDamage);if(mods.crit>0&&Math.random()<Math.min(1,mods.crit))hit.damage*=1.5;if(s.enemyEffects.guard)hit.damage*=.5;}
-   dealEnemyDamage(hit.damage,(kind==='ultimate'?'궁극기':kind==='tag'?'태그 어택':'전투 스킬 '+stage+'단')+' · 전체 공격');
+   if(id==='canon'&&kind==='skill'&&level>=2){hit.coefficient=403;Object.assign(hit,rollDamage(id,4.03,kind));}
+   dealEnemyDamage(hit.damage,(kind==='ultimate'?'궁극기':kind==='tag'?'태그 어택':'전투 스킬 '+stage+'단')+' · 전체 공격',activeMember().name,200,hit.critical);
    if(id==='koyomi'&&kind==='skill'&&stage===1)addEffect('fracture',1,5,5);
    if(id==='sigrid'&&kind==='skill'&&stage===1&&level>=2)consumeEffect('fracture');
    if(id==='luna'&&kind==='ultimate'){for(let n=0;n<2;n++){addEffect('chain',1,4,3);if(s.enemyEffects.chain.stacks>=4){dealEnemyDamage(7.5,'연쇄 4중첩 추가 피해');delete s.enemyEffects.chain;}}}
@@ -233,8 +237,8 @@ $('enemy-mode-3').onclick=()=>chooseEnemyMode(3);
 
 function damageFromCoefficient(coefficient,fallback){return coefficient/100;}
 function damageText(n){return Number(n.toFixed(2)).toLocaleString('en-US',{maximumFractionDigits:2});}
-function floatDamage(side,amount,enemyIndex=s.enemyIndex){
- if(amount<=0)return;const el=document.createElement('span');el.className='damage-float damage-target-'+side;el.textContent=damageText(amount);
+function floatDamage(side,amount,enemyIndex=s.enemyIndex,critical=false){
+ if(amount<=0)return;const el=document.createElement('span');el.className='damage-float damage-target-'+side;if(critical){el.classList.add('critical');const label=document.createElement('b');label.className='critical-label';label.textContent='CRITICAL';const number=document.createElement('span');number.className='critical-number';number.textContent=damageText(amount);el.replaceChildren(label,number);}else el.textContent=damageText(amount);
  const reserve=side==='enemy'&&enemyIndex!==s.enemyIndex;
  if(reserve){const slot=s.enemies.filter(e=>e.index!==s.enemyIndex&&e.hp>0).findIndex(e=>e.index===enemyIndex);el.classList.add('reserve-damage');el.style.left='1760px';el.style.top=(90+Math.max(0,slot)*142)+'px';}
  $(reserve?'reserve-damage-layer':'damage-layer').appendChild(el);el.addEventListener?.('animationend',()=>el.remove(),{once:true});
@@ -246,12 +250,12 @@ function updateEngageDamage(){
 }
 function tickDamageNumbers(dt){
  const due=[];s.damageNumbers=(s.damageNumbers||[]).filter(q=>{q.delay-=dt;if(q.delay<=0){due.push(q);return false;}return true;});
- let changed=false;for(const q of due){floatDamage(q.side,q.amount,q.enemyIndex);if(q.side==='enemy'&&q.round===s.round&&s.phase==='ENGAGE'){s.engageDamage=(s.engageDamage||0)+q.amount;changed=true;}}
+ let changed=false;for(const q of due){floatDamage(q.side,q.amount,q.enemyIndex,q.critical);if(q.side==='enemy'&&q.round===s.round&&s.phase==='ENGAGE'){s.engageDamage=(s.engageDamage||0)+q.amount;changed=true;}}
  if(changed)updateEngageDamage();
 }
-function dealEnemyDamage(amount,reason="추가 피해",actor=activeMember().name,delay=200){
+function dealEnemyDamage(amount,reason="추가 피해",actor=activeMember().name,delay=200,critical=false){
  const before=s.enemyHP;s.enemyHP=Math.max(0,Math.round((s.enemyHP-amount)*1000)/1000);
- if(before>0&&s.enemyHP===0&&allEnemiesDefeated()&&!s.victoryOwner)s.victoryOwner=activeMember().id;const actual=before-s.enemyHP;if(amount>0)log(reason+' → '+enemyName()+' · 피해 '+damageText(actual)+(amount>actual+.001?' (계산 피해 '+damageText(amount)+')':''),'ally',actor);if(actual>0)(s.damageNumbers||=[]).push({side:'enemy',enemyIndex:s.targetIndex??s.enemyIndex,amount:actual,round:s.round,delay});
+ if(before>0&&s.enemyHP===0&&allEnemiesDefeated()&&!s.victoryOwner)s.victoryOwner=activeMember().id;const actual=before-s.enemyHP;if(amount>0)log(reason+(critical?' · CRITICAL':'')+' → '+enemyName()+' · 피해 '+damageText(actual)+(amount>actual+.001?' (계산 피해 '+damageText(amount)+')':''),'ally',actor);if(actual>0){const target=s.targetIndex??s.enemyIndex,queue=s.damageNumbers||=[];for(const q of queue)if(q.side==='enemy'&&q.enemyIndex===target)delay=Math.max(delay,q.delay+DAMAGE_GAP_MS);queue.push({side:'enemy',enemyIndex:target,amount:actual,round:s.round,delay,critical});}
 }
 function hitCoefficient(kind,level=1,stage=1){const id=activeMember().id,r=skillReference[id];if(!r)return null;
  if(id==='haru'&&(kind==='skill'||kind==='ultimate'))return (kind==='ultimate'?r.ultimateCoefficient:r.coefficients[stage-1])*((s.enemyEffects.curse?.stacks||0)>=10?2:1);
@@ -283,13 +287,13 @@ function tickHitVisual(dt){
 }
 
 function resolveHit(kind,level=1,stage=1){const damageQueueStart=(s.damageNumbers||[]).length;
- const area=isAreaAttack(activeMember().id,kind,level),{coefficient,damage}=directDamage(kind,level,stage);
- s.lastResolvedHit={character:activeMember().id,kind,stage,chargeLevel:level,coefficient,damage};
- if(damage>0){const label=kind==='skill'?'전투 스킬 '+stage+'단'+(battleRules[activeMember().id]?.chargeMs?' · 차지 '+level+'단계':''):(kind==='tag'||kind==='tagAttack')?'교체 자동 공격 · 태그 어택':kind==='tagSpecial'?'태그 스페셜':kind==='attack'&&s.parryFollowHit?'패링 후 일반 공격 자동 연계':skills[kind]?.name||kind;dealEnemyDamage(damage,label);hitBreak(kind==='tagSpecial'?'tag':kind);scheduleHitVisual(kind,level);consumeMagicChain();}
+ const area=isAreaAttack(activeMember().id,kind,level),{coefficient,damage,critical}=directDamage(kind,level,stage);
+ s.lastResolvedHit={character:activeMember().id,kind,stage,chargeLevel:level,coefficient,damage,critical};
+ if(damage>0){const label=kind==='skill'?'전투 스킬 '+stage+'단'+(battleRules[activeMember().id]?.chargeMs?' · 차지 '+level+'단계':''):(kind==='tag'||kind==='tagAttack')?'교체 자동 공격 · 태그 어택':kind==='tagSpecial'?'태그 스페셜':kind==='attack'&&s.parryFollowHit?'패링 후 일반 공격 자동 연계':skills[kind]?.name||kind;dealEnemyDamage(damage,label,activeMember().name,200,critical);hitBreak(kind==='tagSpecial'?'tag':kind);scheduleHitVisual(kind,level);consumeMagicChain();}
  if(area)applyAreaTargets(kind,level,stage);
  applyHitEffects(kind,level,stage);
- if(kind==='tagSpecial'){const hits=(s.damageNumbers||[]).splice(damageQueueStart);if(hits.length)s.damageNumbers.push({...hits[0],amount:hits.reduce((n,q)=>n+q.amount,0),delay:Math.round(1880*.05)});}
- if(kind==='skill'&&level>=2){const delay=attackSound(activeMember().id)==='meleeAttack'?930:1100;for(const q of (s.damageNumbers||[]).slice(damageQueueStart))q.delay=delay;}
+ if(kind==='tagSpecial'){const hits=(s.damageNumbers||[]).slice(damageQueueStart);if(hits.length){const shift=hits[0].delay-Math.round(1880*.05);for(const hit of hits)hit.delay-=shift;}}
+ if(kind==='skill'&&level>=2){const delay=attackSound(activeMember().id)==='meleeAttack'?930:1100;for(const q of (s.damageNumbers||[]).slice(damageQueueStart))q.delay+=delay-200;}
 }
 function tickCharacterEffects(){if(s.magicChain){s.magicChain.turns=s.magicChain.turns.map(t=>t-1).filter(t=>t>0);if(!s.magicChain.turns.length)s.magicChain=null;}for(const b of Object.values(s.battleStates)){
  b.diamondTurns=Math.max(0,(b.diamondTurns||0)-1);
@@ -311,12 +315,16 @@ function collectEffectRows(){const rows=[];for(const enemy of s.enemies){if(enem
  if(m.id==='akina')resource('fire','그리스의 불',b.fire,3,'1·2단 소모 / 3단 충전');
  if(m.id==='souka')resource('timeTrace','시간의 궤적',b.timeTrace||0,10,'궁극기 사용 시 소모');
  if(m.id==='shion')resource('plush','봉제인형',b.plush,4);
- if(m.id==='ren')resource('curseApplied','저주 부여 누적',b.curseApplied,7);
+ if(m.id==='ren')resource('curseApplied','저주 부여 누적',b.curseByEnemy[s.enemyIndex]||0,7,'현재 대상별 집계');
+ if(m.id==='liria'){resource('chainConsumed','마력 연쇄 누적 소모',b.chainConsumed,0,'공격력 +'+(7.5*Math.min(3,Math.floor(b.chainConsumed/20)))+'%');}
+ if(m.id==='doll')resource('earthTrigger','대지의 힘 발동',Number(b.dollTriggered),1);
+ if(m.id==='nono')rows.push({key:m.id+':innateDefense',side:'ally',target:m.name,name:'백의의 직장인',type:'버프',count:1,detail:'방어력 +19.8%',duration:'상시'});
+ if(allyBroken(m.id))rows.push({key:m.id+':break',side:'ally',target:m.name,name:'BREAK',type:'디버프',count:1,detail:(b.breakUntil+1)+'R ACTION부터 행동 가능 · BP 회복 완료',duration:(b.breakUntil-s.round+1)+'R 제한'});
  if(m.id==='mayoi')resource('gemCycle','보석 수집',b.gemCycle.length,3,b.gemCycle.map(g=>gemNames[g]).join(' / '));
  if(m.id==='nono')rows.push({key:'nono:light',side:'ally',target:m.name,name:'테우르기스트의 빛',type:'고유 자원',count:b.light,detail:'궁극기 사용 시 전부 소모',duration:'라운드 제한 없음'});
  if(b.shield>0)rows.push({key:m.id+':shield',side:'ally',target:m.name,name:'보호막',type:'버프',count:1,detail:'잔량 '+Number(b.shield.toFixed(1)),duration:effectDuration(b.shieldTurns)});
- for(const [gem,turns] of Object.entries(b.gemBuffs||{}))if(turns>0)rows.push({key:m.id+':gem:'+gem,side:'ally',target:m.name,name:gemNames[gem]||gem,type:'버프',count:1,detail:'보석 효과',duration:effectDuration(turns)});
- if(b.diamondTurns>0)rows.push({key:m.id+':diamond',side:'ally',target:m.name,name:'다이아몬드',type:'버프',count:1,detail:'',duration:effectDuration(b.diamondTurns)});
+ for(const [gem,turns] of Object.entries(b.gemBuffs||{}))if(turns>0)rows.push({key:m.id+':gem:'+gem,side:'ally',target:m.name,name:gemNames[gem]||gem,type:'버프',count:1,detail:{ruby:'공격력 +20%',topaz:'치명타 확률 +10%p',emerald:'타격력 +20%'}[gem],duration:effectDuration(turns)});
+ if(b.diamondTurns>0)rows.push({key:m.id+':diamond',side:'ally',target:m.name,name:'다이아몬드',type:'버프',count:1,detail:'공격력 +20% · 치명타 확률 +10%p · 타격력 +20% · 궁극기 889.2%',duration:effectDuration(b.diamondTurns)});
  }
  if(s.magicChain?.turns.length)rows.push({key:'party:magicChain',side:'ally',target:'아군 공통',name:'마력 연쇄',type:'버프',count:s.magicChain.turns.length,detail:'',duration:effectDuration(s.magicChain.turns)});
  return rows;}
@@ -364,7 +372,7 @@ function formation(){
  $('start').disabled=s.running||selected.length===0;setText('start',selected.length?'게임 시작':'파티원을 선택해주세요');filterRoster();
 }
 function reserved(){return s.commands.reduce((sum,k,i)=>sum+(s.commandCosts[i]??skills[k].cost),0);}
-function canRequest(kind,level=1){if(s.enemyTransition||s.enemyHP<=0)return false;if(mobileBlocked)return false;if(s.paused||s.ultimateMovie||s.ultimateImpact)return false;if(s.deathTransition)return false;const b=projectedSkill(),autoReserve=s.autoAttackAfterParry?skills.attack.cost:0;
+function canRequest(kind,level=1){if(!allyCanAct())return false;if(s.enemyTransition||s.enemyHP<=0)return false;if(mobileBlocked)return false;if(s.paused||s.ultimateMovie||s.ultimateImpact)return false;if(s.deathTransition)return false;const b=projectedSkill(),autoReserve=s.autoAttackAfterParry?skills.attack.cost:0;
  return !s.domainVisual&&(!s.charging||kind==='skill')&&(kind!=='skill'||!battleRules[activeMember().id]||(b.ct===0&&(activeMember().id!=='akina'||(b.stage===3?b.fire===0:b.fire>0))))&&s.running&&!s.apClearing&&!['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)&&(s.phase==='ACTION'?s.pattern==='normal':s.canAct)&&s.ap-reserved()-autoReserve>=actionCost(kind,level,b.stage)&&(kind!=='ultimate'||(battleState().ultCT===0&&!s.commands.includes('ultimate')));}
 
 
@@ -375,17 +383,19 @@ function consumeEffect(id,count=1){const e=s.enemyEffects[id];if(!e)return 0;con
 
 function grantShield(id,ratio,turns){const b=stateFor(id);b.shield=Math.max(b.shield,5000*ratio);b.shieldTurns=Math.max(b.shieldTurns,turns);}
 function partyAlive(id){return s.party.some((n,i)=>roster[n].id===id&&s.hp[i]>0);}
-function lunaDamage(coefficient,reason){const mods=actorModifiers('luna');let damage=damageFromCoefficient(coefficient,coefficient/100);if(true){damage*=(1+mods.attack);if(mods.crit>0&&Math.random()<mods.crit)damage*=1.5;if(s.enemyEffects.guard)damage*=.5;}dealEnemyDamage(damage,reason,metadata.luna.name);s.lastBonusHit={character:'luna',coefficient,damage,reason};}
-function domainEcho(){for(const id of ['luna','souka'])if(partyAlive(id)&&stateFor(id).buffs.domainEcho)lunaDamage(200,id+' 영지');}
+function lunaDamage(coefficient,reason){const hit=rollDamage('luna',coefficient/100);dealEnemyDamage(hit.damage,reason,metadata.luna.name,200,hit.critical);s.lastBonusHit={character:'luna',coefficient,...hit,reason};}
+function domainEcho(kind){if(!['skill','ultimate','tag','tagSpecial','tagDefense'].includes(kind))return;if(partyAlive('luna')&&!allyBroken('luna')&&stateFor('luna').buffs.domainEcho)lunaDamage(200,'루나 영지');}
+
 function addChain(count=1){for(let i=0;i<count;i++){addEffect('chain',1,4,3);if(s.enemyEffects.chain.stacks>=4){dealEnemyDamage(damageFromCoefficient(750,7.5),'연쇄 4중첩 추가 피해');delete s.enemyEffects.chain;log('연쇄 4중첩 소모 · 750% 추가 피해');}}if(partyAlive('luna'))lunaDamage(50,'얼음의 축복');}
 
 
-function procDamage(id,coefficient,reason){let damage=damageFromCoefficient(coefficient,coefficient/100);if(true){const m=actorModifiers(id);damage*=(1+m.attack);if(m.crit>0&&Math.random()<m.crit)damage*=1.5;if(s.enemyEffects.guard)damage*=.5;}dealEnemyDamage(damage,reason,metadata[id]?.name||id);s.lastBonusHit={character:id,coefficient,damage,reason};}
+function procDamage(id,coefficient,reason){const hit=rollDamage(id,coefficient/100);dealEnemyDamage(hit.damage,reason,metadata[id]?.name||id,200,hit.critical);s.lastBonusHit={character:id,coefficient,...hit,reason};}
+
 function addMagicChain(count){if(!s.magicChain)s.magicChain={turns:[]};for(let i=0;i<count;i++){if(s.magicChain.turns.length>=50)s.magicChain.turns.shift();s.magicChain.turns.push(4);}}
 function consumeMagicChain(){if(!s.magicChain?.turns.length)return;procDamage('liria',100,'마력 연쇄');s.magicChain.turns.shift();stateFor('liria').chainConsumed++;if(!s.magicChain.turns.length)s.magicChain=null;}
 function applyHitEffects(kind,level,stage){
  const id=activeMember().id,e=s.enemyEffects;
- if(id==='ren'&&kind==='skill'){addEffect('curse',1,99);const b=battleState();b.curseApplied++;if(b.curseApplied>=7){b.curseApplied-=7;procDamage(id,595.2,'마검의 계약');}}
+ if(id==='ren'&&kind==='skill'){addEffect('curse',1,99);const b=battleState(),target=s.targetIndex??s.enemyIndex;b.curseByEnemy[target]=(b.curseByEnemy[target]||0)+1;if(b.curseByEnemy[target]>=7){b.curseByEnemy[target]-=7;procDamage(id,595.2,'마검의 계약');}b.curseApplied=b.curseByEnemy[target];}
  if(id==='shion'){const b=battleState();if(kind==='ultimate')b.plush=Math.min(4,b.plush+1);if(kind==='skill'&&stage===1){for(const n of s.party)grantUS(roster[n].id,b.plush*100);b.plush=0;}if(kind==='skill'&&stage===2)addEffect('curse',1,99);}
  if(id==='liria'){if(kind==='ultimate')addMagicChain(10);if(kind==='skill'&&stage===2)addMagicChain(5);if(kind==='skill'&&stage===3)for(const n of s.party)grantBuff(roster[n].id,'liriaSkill',6,{skillDamage:.35});}
  if(id==='nono'){const b=battleState();if(kind==='skill'&&level===1)b.light=Math.min(10,b.light+2);if(kind==='skill'&&level===2)for(const n of s.party)grantBuff(roster[n].id,'nonoCrit',7,{crit:.15});if(kind==='ultimate'){for(const n of s.party)grantBuff(roster[n].id,'nonoUltimate',5,{ultimateDamage:.30+b.light*.01});b.light=0;}}
@@ -450,11 +460,11 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
  if(s.enemies.length>1)setText('enemy-name',enemyName());else setText('enemy-name','마네킹');
  renderEffectLedger();
  renderDomains();
- s.allyStatModifiers=s.party.map(i=>{const id=roster[i].id,b=stateFor(id);return {id,...actorModifiers(id),defense:Object.values(b.buffs||{}).reduce((n,v)=>n+(v.defense||0),0),damageReduction:Object.values(b.buffs||{}).reduce((n,v)=>n+(v.damageReduction||0),0),shield:b.shield};});
+ s.allyStatModifiers=s.party.map(i=>{const id=roster[i].id,b=stateFor(id);return {id,...actorModifiers(id),defense:actorModifiers(id).defense,critChance:critChance(id),critDamage:CRIT_MULTIPLIER,damageReduction:Object.values(b.buffs||{}).reduce((n,v)=>n+(v.damageReduction||0),0),shield:b.shield};});
  s.enemyStatModifiers={defense:-.01*(s.enemyEffects.fracture?.stacks||0),attack:-.001*(s.enemyEffects.curse?.stacks||0),strike:-.001*(s.enemyEffects.curse?.stacks||0),crit:s.enemyEffects.plunder?-.15:0};
  renderEnemyEffects();
  syncActiveVisual();renderBattleSkill();
- $('break-banner').hidden=!(s.breakFxTime>0);
+ $('break-banner').hidden=!(s.breakFxTime>0);$('ally-break-banner').hidden=!(s.allyBreakFx>0);$('ally').classList.toggle('ally-broken',allyBroken());
  if(s.breakRest){$('runner').hidden=true;}
  setText('round',s.round+'R');setText('phase',s.phase);
  $('phase-wrap').hidden=['READY','INTRO','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase);$('timeline').hidden=s.breakRest||['READY','INTRO','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase);
@@ -466,12 +476,13 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
  if(s.apClearing>0)x.classList.add('clearing');else if(s.apFill>0){x.classList.add('charging');x.style.animationDelay=Math.max(0,(4-i)*110-s.apFillElapsed)+'ms';}return x;}));}
 
  for(const kind of Object.keys(skills)){$(kind).disabled=!canRequest(kind);$(kind).classList.toggle('queued',s.commands.includes(kind));}
- $('counter-button').disabled=!(s.running&&!s.enemyTransition&&!s.deathTransition&&!s.busy&&!s.apClearing&&s.phase==='ACTION'&&s.pattern==='counter');$('counter-button').classList.toggle('ready',!$('counter-button').disabled);
+ $('counter-button').disabled=!(allyCanAct()&&s.running&&!s.enemyTransition&&!s.deathTransition&&!s.busy&&!s.apClearing&&s.phase==='ACTION'&&s.pattern==='counter');$('counter-button').classList.toggle('ready',!$('counter-button').disabled);
  $('end').disabled=!(s.running&&!s.enemyTransition&&!s.deathTransition&&s.phase==='ENGAGE'&&s.canAct&&!s.busy&&!s.poseTime&&!s.enemyTime&&!s.commands.length);$('start').disabled=s.running||!selected.length;
  $('counter').hidden=!(s.running&&((s.phase==='ACTION'&&s.pattern==='counter')||s.gradeTime>0));
  $('aura').classList.toggle('soft',s.pattern!=='normal');$('aura').classList.toggle('active',s.running&&!s.enemyTransition&&s.phase==='ACTION'&&!s.breakRest);$('aura').style.setProperty('--intent',patterns[s.pattern].color);
  setText('reservation',s.commands.length?'예약: '+s.commands.map(k=>skills[k].name).join(' → '):'');
  const member=activeMember(),bs=battleState(),reference=skillReference[member.id];$('skill').title=reference?(reference.skills[bs.stage-1]+' · CT '+bs.ct):'전투 스킬 [W]';$('ultimate').title=reference?reference.ultimate+' · CT '+bs.ultCT+' · AP 1':'궁극기 [E]';setText('character-resource',(reference?reference.skills[bs.stage-1]+' · ':'')+(member.id==='mayoi'?'보석 '+bs.gemCycle.map(k=>gemNames[k]).join('/')+(bs.diamondTurns?' · 다이아몬드':'')+' · ':'')+(member.id==='ren'?'저주 누적 '+bs.curseApplied+' / 7 · ':'')+(member.id==='shion'?'봉제인형 '+bs.plush+' / 4 · ':'')+(member.id==='nono'?'테우르기스트의 빛 '+bs.light+' / 10 · ':'')+(s.magicChain?'마력 연쇄 '+s.magicChain.turns.length+' / 50 · ':'')+(member.id==='souka'?'시간의 궤적 '+(bs.timeTrace||0)+' / 10 · ':'')+(member.id==='mai'?'적중된 창 '+(s.enemyEffects.spear?.stacks||0)+' / 20 · ':'')+(member.id==='haru'?'공격력 +'+(5*Math.min(5,1+Math.floor((s.round-1)/10)))+'% · ':'')+(member.id==='akina'?'그리스의 불 '+bs.fire+' / 3 · ':'')+(reference?.tagSpecialCT?'태그 스페셜 CT '+bs.tagCT+' · ':reference?.tagDefenseCT?'태그 디펜스 CT '+bs.tagCT+' · ':'')+(battleRules[member.id]?'전투 스킬 '+bs.stage+'단 · CT '+bs.ct:'')+' · 궁극기 CT '+bs.ultCT+(bs.shield?' · 보호막 '+bs.shield:'')+(domainRules[member.id]?' · 영지 '+bs.domainCount+' / '+domainRules[member.id][1]:''));
+ $('character-resource').textContent+=' · BP '+damageText(bs.bp)+'/100 · 치명타 '+Math.round(critChance(member.id)*100)+'% / 200% · 방어력 +'+Number((actorModifiers(member.id).defense*100).toFixed(1))+'%';
  const partySignature=JSON.stringify([s.party,s.active,s.hp,s.energy,s.running,s.phase,s.pattern,s.ap,s.apClearing>0,!!s.busy,!!s.poseTime,!!s.enemyTime,s.commands.length,s.canAct,s.tagDefenseActive,s.autoAttackAfterParry,s.specialVisual,s.battleStates,!!s.domainVisual,s.charging,!!s.deathTransition,!!s.enemyTransition]);
  if(s.partySignature!==partySignature){
   s.partySignature=partySignature;
@@ -484,8 +495,9 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
    btn.className='party-slot'+(s.active===index?' active':'')+(assaultReady?' assault-ready':'')+(defenseReady?' defense-ready':'');
    btn.setAttribute('aria-label',m.name+(ctLabel?' · '+ctLabel:'')+(assaultReady?' · 강습 차단 가능':defenseReady?' · 태그 디펜스 가능':''));
    btn.title=m.name+(ctLabel?' · '+ctLabel:'')+(assaultReady?' · 강습 차단 가능':defenseReady?' · 태그 디펜스 가능':'');
-   btn.innerHTML=`<span class="portrait"><img src="assets/combat/${m.portrait}" alt=""></span><span class="ult-dot ${stateFor(m.id).ultCT===0?'':'off'}"><img src="${visualFor(m).ultimate}" alt="${m.name} 궁극기"></span>${m.id==='mayoi'?mayoiGemIcon():''}${ctLabel?`<span class="tag-ct-label">${ctLabel}</span>`:''}<span class="ally-hp"><i style="width:${s.hp[index]/5000*100}%"></i></span>`;
+   btn.innerHTML=`<span class="portrait"><img src="assets/combat/${m.portrait}" alt=""></span><span class="ult-dot ${stateFor(m.id).ultCT===0?'':'off'}"><img src="${visualFor(m).ultimate}" alt="${m.name} 궁극기"></span>${m.id==='mayoi'?mayoiGemIcon():''}${ctLabel?`<span class="tag-ct-label">${ctLabel}</span>`:''}${partyBars(index)}`;
    btn.disabled=!!s.enemyTransition||!!s.deathTransition||remaining>0||!!s.domainVisual||s.charging||(s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense&&stateFor(m.id).tagCT>0)||(s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault&&stateFor(m.id).tagCT>0)||!s.running||['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)||s.apClearing||s.busy||s.poseTime||s.enemyTime||s.commands.length||s.ap<1||s.hp[index]<=0||(s.active===index&&!contextualReady)||(s.phase==='ACTION'&&s.pattern==='counter')||(s.phase==='ENGAGE'&&!s.canAct);
+   if(allyBroken(m.id))btn.disabled=true;else if(allyBroken()&&index!==s.active&&s.hp[index]>0&&s.running&&!s.paused&&!s.enemyTransition&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime)btn.disabled=false;
    btn.onpointerdown=e=>{if(contextualReady&&!btn.disabled){e.preventDefault();btn.dataset.contextFired='1';tag(index);}};
    btn.onclick=()=>{if(btn.dataset?.contextFired==='1'){btn.dataset.contextFired='';return;}tag(index);};
    return btn;
@@ -495,7 +507,7 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
 // BP values are prototype constants, separate from final character skill coefficients.
 const breakDamage={attack:10,skill:20,ultimate:30,tag:10};
 function hitBreak(kind){if(s.enemyBroken)return;s.enemyBP=Math.max(0,s.enemyBP-(breakDamage[kind]||0)*(metadata[activeMember().id].role==='breaker'?2:1)*(1+actorModifiers(activeMember().id).strike));if(s.enemyBP===0){playSfx('break');s.enemyBroken=true;s.breakRewardPending=true;s.breakUntilRound=s.round+1;s.breakFxTime=1000;pulse('scene','break-impact');pulse('break-banner','break-pop');log('BREAK · 다음 ACTION AP +2','system');}}
-function enterAction(){s.engageDamage=0;$('engage-damage').hidden=true;
+function enterAction(){s.allyBreakWait=0;s.engageDamage=0;$('engage-damage').hidden=true;
  expireDomains();
  const oldAP=s.ap;
  s.specialVisual=null;$('ally').classList.remove('pose-defense');
@@ -616,7 +628,7 @@ $('victory-screen').addEventListener?.('pointerup',e=>{
 $('victory-screen').addEventListener?.('dblclick',skipVictoryVideo);
 
 function finishBattleResult(won,deathAlreadyPlayed=false){clearLiveHitEffects();if(!s.running)return;tickDamageNumbers(10000);clearUltimateImpact();clearUltimateMovie();if(won)clearDeathVisual();s.hitFxQueue=[];$('projectile-fx').classList.remove('flying');stopBattleAudio();if(!deathAlreadyPlayed)playSfx('death');s.deathTransition=null;clearDomainVisual();cancelCharge();s.running=false;s.busy=0;s.commands=[];cancelAnimationFrame(raf);clearPose();clearEnemy();$('scene').classList.remove('clash');$('result').hidden=false;setText('result-text',won?'전투 승리':'게임 오버');render();formation();log(won?'적 처치':'아군 전투 불능','system');}
-function engage(canAct,msg,side='ally'){s.phase='ENGAGE';s.canAct=canAct;s.advance=canAct?ENGAGE_WAIT_MS:1400;s.busy=s.enemyTime||0;$('runner').hidden=true;log(msg,side);if(s.hp[s.active]<=0&&!replaceFallenAlly())return;if(s.enemyHP<=0){if(s.hitFxQueue.length)s.victoryPending=true;else{finish(true);return;}}render();}
+function engage(canAct,msg,side='ally'){s.phase='ENGAGE';s.canAct=canAct||allyBroken();s.advance=canAct?ENGAGE_WAIT_MS:1400;s.busy=s.enemyTime||0;$('runner').hidden=true;log(msg,side);if(s.hp[s.active]<=0&&!replaceFallenAlly())return;if(s.enemyHP<=0){if(s.hitFxQueue.length||s.damageNumbers.length)s.victoryPending=true;else{finish(true);return;}}render();}
 function clearDeathVisual(){$('ally').classList.remove('death-dissolve');$('scene').classList.remove('ally-fallen');$('death-fx').classList.remove('burst');}
 function replaceFallenAlly(){clearLiveHitEffects();if(s.deathTransition)return false;const old=s.active;let next=-1;for(let offset=1;offset<s.party.length;offset++){const i=(old+offset)%s.party.length;if(s.hp[i]>0){next=i;break;}}
  closeChain(activeMember().id);cancelCharge();s.commands=[];s.commandCosts=[];s.skillLevels=[];s.skillSounds=[];s.autoAttackAfterParry=false;s.poseTime=0;s.specialVisual=null;s.tagDefenseActive=false;s.hitFxQueue=[];pendingSfx=[];clearPose();clearEnemy();s.enemyTime=0;s.busy=0;$('scene').classList.remove('clash');$('projectile-fx').classList.remove('flying');
@@ -629,15 +641,22 @@ function tickDeathTransition(dt){const t=s.deathTransition;if(!t)return;
  if(t.stage==='gap'){t.remaining-=dt;if(t.remaining>0)return;if(t.next<0){finish(false,true);return;}s.active=t.next;clearPose();clearDeathVisual();playSfx('swapOnly');pulse('ally','survivor-arrival');t.stage='arrival';t.remaining=900;log(activeMember().name+' 자동 출전','system');return;}
  t.remaining-=dt;if(t.remaining<=0){$('ally').classList.remove('survivor-arrival');s.deathTransition=null;s.advance=s.canAct?ENGAGE_WAIT_MS:1400;s.partySignature=null;log('교체 완료 · 전투 재개','system');}
 }
-function takeHit(){if(s.breakRest)return;if(s.pattern!=='counter')playSfx('enemyHit');enemyMotion();const id=activeMember().id,b=battleState(),reduction=Math.min(.95,Object.values(b.buffs||{}).reduce((n,v)=>n+(v.damageReduction||0),0)),defended=reduction>0;let damage=Math.round(650*(1-reduction)*(1-.001*(s.enemyEffects.curse?.stacks||0)));
- const enemy=s.enemies[s.enemyIndex],critChance=Math.max(0,(enemy.baseCrit||0)-(s.enemyEffects.plunder?.critReduction||0));if(critChance>0&&Math.random()<critChance)damage=Math.round(damage*1.5);
- const absorbed=Math.min(b.shield||0,damage);b.shield-=absorbed;damage-=absorbed;const beforeHP=s.hp[s.active];s.hp[s.active]=Math.max(0,s.hp[s.active]-damage);floatDamage('ally',beforeHP-s.hp[s.active]);log(patterns[s.pattern].name+' → '+activeMember().name+' · 피해 '+damageText(beforeHP-s.hp[s.active])+(absorbed>0?' · 보호막 흡수 '+damageText(absorbed):'')+(damage>beforeHP?' (계산 피해 '+damageText(damage)+')':''),'enemy','마네킹');
+function takeHit(grade=null){if(s.breakRest)return;const success=grade==='PERFECT'||grade==='GOOD';if(!success){if(s.pattern!=='counter')playSfx('enemyHit');enemyMotion();}
+ const id=activeMember().id,b=battleState(),mods=actorModifiers(id),raw=ENEMY_DAMAGE[s.pattern]||ENEMY_DAMAGE.normal;
+ const reduction=Math.min(.95,Math.max(0,Object.values(b.buffs||{}).reduce((n,v)=>n+(v.damageReduction||0),0))),curse=Math.max(0,1-.001*(s.enemyEffects.curse?.stacks||0));
+ const rate=grade==='PERFECT'?.1:grade==='GOOD'?.3:1;
+ let damage=Math.round(raw.hp*rate/Math.max(.05,1+mods.defense)*(1-reduction)*curse);
+ const enemy=s.enemies[s.enemyIndex],chance=Math.max(0,(enemy.baseCrit||0)-(s.enemyEffects.plunder?.critReduction||0)),critical=chance>0&&Math.random()<chance;if(critical)damage=Math.round(damage*1.5);
+ const absorbed=Math.min(b.shield||0,damage);b.shield-=absorbed;damage-=absorbed;const beforeHP=s.hp[s.active];s.hp[s.active]=Math.max(0,beforeHP-damage);floatDamage('ally',beforeHP-s.hp[s.active],s.enemyIndex,critical);
+ const bp=(grade==='PERFECT'?0:grade==='GOOD'?10:raw.bp)*curse;hitAllyBP(bp);
+ s.lastIncomingHit={pattern:s.pattern,grade,damage:beforeHP-s.hp[s.active],absorbed,bp,critical};
+ log(patterns[s.pattern].name+(grade?' · '+grade:'')+(critical?' · CRITICAL':'')+' → '+activeMember().name+' · 피해 '+damageText(beforeHP-s.hp[s.active])+' · BP 피해 '+damageText(bp)+(absorbed?' · 보호막 흡수 '+damageText(absorbed):''),'enemy','마네킹');
  if(id==='doll'&&!b.dollTriggered&&s.hp[s.active]>0&&s.hp[s.active]<=3500){b.dollTriggered=true;b.shield=1395;b.shieldTurns=5;grantBuff('doll','earthPower',null,{attack:.2});log('대지의 힘 · 보호막 1395 / 공격력 +20%');}
- if(defended)log('치카게 태그 디펜스 · 받는 피해 15% 감소');s.tagDefenseActive=false;pulse('ally','hurt');}
-
+ s.tagDefenseActive=false;if(!success)pulse('ally','hurt');}
 const CLASH_MS={PERFECT:1120,GOOD:1480,assaultBlock:1880};
+
 function prepareClash(key){const ms=CLASH_MS[key];$('scene').style.setProperty('--clash-duration',ms+'ms');queueSfx(key==='PERFECT'?'perfect':key==='GOOD'?'good':key,Math.round(ms*.05));return ms;}
-function gradeResult(grade){const clashMs=grade==='FAIL'?0:prepareClash(grade);if(grade==='FAIL')playSfx('bad');s.grade=grade;s.gradeTime=grade==='FAIL'?1100:clashMs;setText('grade',grade==='GOOD'?'GOOD!':grade);$('grade').hidden=false;$('counter').classList.remove('perfect','good','fail');$('counter').classList.add(grade.toLowerCase());if(grade!=='FAIL'){pose('parry',clashMs);pulse('scene','clash');s.busy=clashMs+260;s.autoAttackAfterParry=true;log(grade+' 패링 성공 · 일반 공격 자동 연계');}else{s.autoAttackAfterParry=false;$('scene').classList.remove('clash');}render();}
+function gradeResult(grade){const clashMs=grade==='FAIL'?0:prepareClash(grade);if(grade==='FAIL')playSfx('bad');s.grade=grade;s.gradeTime=grade==='FAIL'?1100:clashMs;setText('grade',grade==='GOOD'?'GOOD!':grade);$('grade').hidden=false;$('counter').classList.remove('perfect','good','fail');$('counter').classList.add(grade.toLowerCase());if(grade!=='FAIL'&&allyCanAct()){pose('parry',clashMs);pulse('scene','clash');s.busy=clashMs+260;s.autoAttackAfterParry=true;log(grade+' 패링 성공 · 일반 공격 자동 연계');}else{s.autoAttackAfterParry=false;$('scene').classList.remove('clash');}render();}
 function resolveFailure(){cancelCharge();const wasCounter=s.pattern==='counter';takeHit();engage(s.pattern==='normal',patterns[s.pattern].name+' 피격','enemy');if(wasCounter&&s.running)gradeResult('FAIL');}
 
 
@@ -699,7 +718,7 @@ function playUltimateMovie(id,done){
  try{if(v.play)tryVideo(v,complete,()=>!!s.ultimateMovie);else complete();}catch{complete();}
 }
 
-function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false){if(s.enemyTransition)return;
+function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false){if(s.enemyTransition||!allyCanAct())return;
  const id=activeMember().id,b=battleState(),r=battleRules[id],stage=b.stage;
  if(kind==='skill'&&r&&(b.ct>0||(id==='akina'&&(stage===3?b.fire!==0:b.fire<=0))))return;
  const cost=actionCost(kind,chargeLevel,stage),d=skills[kind];if(s.ap<cost||(kind==='ultimate'&&(b.ultCT>0)))return;
@@ -724,35 +743,37 @@ function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false)
  s.energy[s.active]=kind==='ultimate'?0:Math.min(100,s.energy[s.active]+d.energy);
  if(id==='shion'&&kind==='attack'){grantUS(id,50);b.basicCount++;if(b.basicCount>=3){b.basicCount-=3;b.plush=Math.min(4,b.plush+1);}}
  if(id==='souka'&&kind==='skill')grantUS(id,50);
- domainEcho();recordDomain(kind);
+ domainEcho(kind);recordDomain(kind);
  if(id==='nono'&&(kind==='skill'||kind==='ultimate')){s.nonoBuffLevel=kind==='ultimate'?2:chargeLevel;s.nonoBuffTime=1200;s.poseTime=1200;syncActiveVisual();playSfx(s.nonoBuffLevel===2?'nonoBuff2':'nonoBuff1');}
  if(id!=='nono'&&!chargeSoundPlayed&&(shielding||resourceOnly)&&kind==='skill'&&chargeLevel===2)playSfx(attackSound(id).replace('Attack','Charge'));
  if(shielding){s.specialVisual='chikage-defense';syncActiveVisual();pulse('ally','shield-cast');}else if(!recharge&&!resourceOnly&&!(kind==='ultimate'&&id!=='chikage')){if(!chargeSoundPlayed)playSfx(kind==='skill'&&chargeLevel===2?attackSound(id).replace('Attack','Charge'):attackSound(id));pose('attack',attackMotionMs);pulse('ally','strike');}
- if(s.phase==='ACTION'&&!recharge&&!shielding&&s.lastResolvedHit?.damage>0)engage(true,s.breakRest?'BREAK · 아군 행동 시작':'일반 공격 저지');
+ if(s.phase==='ACTION'&&!recharge&&!shielding&&attackAction(id,kind,chargeLevel,stage))engage(true,s.breakRest?'BREAK · 아군 행동 시작':'일반 공격 저지');
  else if(s.phase==='ACTION'&&s.breakRest)engage(true,'BREAK · 아군 충전 행동');else log(recharge?'즉석 충전':shielding?'보호막 부여':d.name);
  if(!s.enemyHP)s.victoryPending=true;s.busy=Math.max(600,attackMotionMs);s.advance=ENGAGE_WAIT_MS;render();
 }
-function attack(kind,chargeLevel=1,chargeSoundPlayed=false){if(!canRequest(kind,chargeLevel))return;const cost=actionCost(kind,chargeLevel);
+function attack(kind,chargeLevel=1,chargeSoundPlayed=false){if(!canRequest(kind,chargeLevel))return;const cost=actionCost(kind,chargeLevel);if(s.phase==='ACTION'&&s.pattern==='normal'&&attackAction(activeMember().id,kind,chargeLevel,projectedSkill().stage)){const busy=s.busy;engage(true,'일반 공격 저지');s.busy=Math.max(busy,s.busy);}
  if(s.busy||s.poseTime||s.enemyTime){s.commands.push(kind);s.commandCosts.push(cost);if(kind==='skill'){s.skillLevels.push(chargeLevel);s.skillSounds.push(chargeSoundPlayed);}s.advance=ENGAGE_WAIT_MS;log(skills[kind].name+' 예약');render();}else execute(kind,chargeLevel,chargeSoundPlayed);}
 
-function counter(){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;if(s.deathTransition||s.domainVisual)return;if($('counter-button').disabled)return;pulse('counter-button','used');const p=s.elapsed/s.counterDuration;const grade=p>=s.safeStart&&p<=s.safeEnd?'PERFECT':p>=s.purpleStart&&p<=s.purpleEnd?'GOOD':'FAIL';if(grade!=='FAIL'){engage(true,grade+' · 패링 성공');gradeResult(grade);}else{takeHit();engage(false,'FAIL · 패링 실패','enemy');if(s.running)gradeResult('FAIL');}}
+function counter(){if(s.enemyTransition||!allyCanAct())return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;if(s.deathTransition||s.domainVisual)return;if($('counter-button').disabled)return;pulse('counter-button','used');const p=s.elapsed/s.counterDuration;const grade=p>=s.safeStart&&p<=s.safeEnd?'PERFECT':p>=s.purpleStart&&p<=s.purpleEnd?'GOOD':'FAIL';if(grade!=='FAIL'){takeHit(grade);engage(true,grade+' · 패링 성공');if(!s.deathTransition&&allyCanAct())gradeResult(grade);else {s.autoAttackAfterParry=false;render();}}else{takeHit();engage(false,'FAIL · 패링 실패','enemy');if(s.running)gradeResult('FAIL');}}
 function tagKind(m){return s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault?'tagSpecial':s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense?'tagDefense':'tag';}
 function tagCooldown(id,kind){return stateFor(id)[kind==='tag'?'tagAttackCT':'tagCT']||0;}
 function setTagCooldown(id,kind){const ref=skillReference[id],key=kind==='tag'?'tagAttackCT':'tagCT';stateFor(id)[key]=ref?.[kind==='tag'?'tagAttackCT':kind==='tagSpecial'?'tagSpecialCT':'tagDefenseCT']||0;}
-function tag(index){if(s.enemyTransition)return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;
+function tag(index){if(s.enemyTransition)return;
+ if(allyBroken()&&index!==s.active&&index>=0&&index<s.party.length&&allyCanAct(index)&&s.running&&!s.paused&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime){clearAllyCommands();closeChain(activeMember().id);s.active=index;s.canAct=s.phase==='ENGAGE';clearPose();playSfx('swapOnly');pulse('ally','survivor-arrival');s.tagFxTime=900;s.busy=900;s.allyBreakWait=0;log(activeMember().name+' BREAK 교대 · 자동 공격 없음','system');render();return;}
+ if(index>=0&&index<s.party.length&&!allyCanAct(index))return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;
  if(s.deathTransition||s.domainVisual||s.charging||!s.running||['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)||s.apClearing||s.busy||s.poseTime||s.enemyTime||s.commands.length||index<0||index>=s.party.length||s.hp[index]<=0||(s.phase==='ACTION'&&s.pattern==='counter')||(s.phase==='ENGAGE'&&!s.canAct)||s.ap<1)return;
  const m=roster[s.party[index]],special=s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault,defense=s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense,same=index===s.active;
  if(same&&!special&&!defense)return;
  if(tagCooldown(m.id,tagKind(m))>0)return;
  closeChain(activeMember().id);s.ap--;s.active=index;s.specialVisual=null;
- if(defense){playSfx('chikageDefense');setTagCooldown(m.id,'tagDefense');for(const i of s.party)grantBuff(roster[i].id,'tagGuard',1,{damageReduction:.15});const v=visualFor(m);s.tagDefenseActive=true;s.specialVisual='chikage-defense';if(v.defense){setVisualSource($('ally'),v.defense);$('ally').classList.add('pose-defense');}pulse('ally','tag-enter');pulse('scene','tag-camera');s.tagFxTime=560;s.busy=560;domainEcho();if(!s.enemyHP){finish(true);return;}log(m.name+' 태그 디펜스');render();return;}
+ if(defense){playSfx('chikageDefense');setTagCooldown(m.id,'tagDefense');for(const i of s.party)grantBuff(roster[i].id,'tagGuard',1,{damageReduction:.15});const v=visualFor(m);s.tagDefenseActive=true;s.specialVisual='chikage-defense';if(v.defense){setVisualSource($('ally'),v.defense);$('ally').classList.add('pose-defense');}pulse('ally','tag-enter');pulse('scene','tag-camera');s.tagFxTime=560;s.busy=560;domainEcho('tagDefense');if(!s.enemyHP)s.victoryPending=true;log(m.name+' 태그 디펜스');render();return;}
  // Red/purple neutral substitution is not a tag skill activation.
  if(!special&&s.phase==='ACTION'&&['assault','unavoidable'].includes(s.pattern)){
   clearPose();playSfx('swapOnly');pulse('ally','survivor-arrival');s.tagFxTime=900;s.busy=900;s.lastTag={character:m.id,kind:'switch'};log(m.name+' 교체');render();return;
  }
  const kind=special?'tagSpecial':'tag';
- const tagDamageStart=(s.damageNumbers||[]).length;setTagCooldown(m.id,kind);resolveHit(kind);domainEcho();
- if(special){const all=s.damageNumbers.splice(tagDamageStart);if(all.length)s.damageNumbers.push({...all[0],amount:all.reduce((sum,q)=>sum+q.amount,0),delay:Math.round(CLASH_MS.assaultBlock*.05)});s.autoAttackAfterParry=false;}
+ const tagDamageStart=(s.damageNumbers||[]).length;setTagCooldown(m.id,kind);resolveHit(kind);domainEcho(kind);
+ if(special)s.autoAttackAfterParry=false; // Base hit at clash; real proc hits remain separate and staggered.
  s.lastTag={character:m.id,kind};
  const clashMs=special?prepareClash('assaultBlock'):0;if(!special)playSfx(attackSound(m.id,true));pose('attack',special?clashMs:560);if(!special){pulse('ally','tag-enter');pulse('scene','tag-camera');s.tagFxTime=560;}
  if(special){$('scene').classList.add('assault-clash');pulse('scene','clash');engage(true,m.name+' 태그 스페셜 · 강습 차단');}
@@ -777,7 +798,7 @@ function openPartySkills(){
  pauseBattle();if(!s.paused)return;
  readerOwnsPause=true;$('pause-overlay').hidden=true;
  const ids=s.party.map(n=>roster[n].id);
- const url='combat-reader.html?v=146&party='+ids.join(',')+'&active='+activeMember().id;
+ const url='combat-reader.html?v=147&party='+ids.join(',')+'&active='+activeMember().id;
  const frame=$('party-skills-frame');
  if(frame.getAttribute('src')!==url)frame.src=url;
  $('party-skills-shade').hidden=false;$('party-skills-panel').hidden=false;
@@ -831,12 +852,14 @@ function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.v
  if(s.breakFxTime>0){s.breakFxTime=Math.max(0,s.breakFxTime-dt);if(!s.breakFxTime)$('scene').classList.remove('break-impact');}
  if(s.nonoBuffTime>0)s.nonoBuffTime=Math.max(0,s.nonoBuffTime-dt);
  if(s.apFill>0){s.apFill-=dt;s.apFillElapsed+=dt;}if(s.enemyTime>0){s.enemyTime=Math.max(0,s.enemyTime-dt);if(!s.enemyTime)clearEnemy();}if(s.poseTime>0){s.poseTime=Math.max(0,s.poseTime-dt);if(!s.poseTime){clearPose();$('scene').classList.remove('clash');}}if(s.gradeTime>0){s.gradeTime-=dt;if(s.gradeTime<=0)$('grade').hidden=true;}if(s.busy>0)s.busy=Math.max(0,s.busy-dt);
+ if(s.allyBreakFx>0){s.allyBreakFx=Math.max(0,s.allyBreakFx-dt);if(!s.allyBreakFx)$('scene').classList.remove('break-impact');}
  if(s.charging){s.chargeElapsed=Math.min(1800,s.chargeElapsed+dt);tickChargeSound();}
  const locked=s.busy||s.poseTime||s.enemyTime;
- if(s.victoryPending&&!locked){finish(true);if(s.enemyTransition)raf=requestAnimationFrame(tick);return;}
+ if(allyBroken()&&!locked){s.allyBreakWait=(s.allyBreakWait||0)+dt;if(s.allyBreakWait>=1500){s.allyBreakWait=0;next();}render();if(s.running)raf=requestAnimationFrame(tick);return;}
+ if(s.victoryPending&&!locked){if(!s.damageNumbers.length)finish(true);if(s.running)raf=requestAnimationFrame(tick);return;}
  if(!locked&&!s.charging&&s.autoAttackAfterParry){s.autoAttackAfterParry=false;if(s.ap>=skills.attack.cost){log('패링 후 일반 공격 자동 발동');s.parryFollowHit=true;execute('attack');s.parryFollowHit=false;if(s.running)pulse('ally','parry-follow','survivor-arrival');}else log('패링 후 일반 공격 · AP 부족');}
  else if(!locked&&!s.charging&&s.commands.length){const kind=s.commands.shift();s.commandCosts.shift();execute(kind,kind==='skill'?s.skillLevels.shift():1,kind==='skill'?s.skillSounds.shift():false);}
- else if(s.phase==='ACTION'&&!s.charging&&!s.breakRest){
+ else if(s.phase==='ACTION'&&!s.charging&&!s.breakRest&&!s.commands.length){
   // Charge freezes both the action icon and its attack deadline.
   s.elapsed=Math.min(s.duration,s.elapsed+dt);
   $('runner').style.left=(94+186*(s.elapsed/s.duration))+'px';
@@ -850,7 +873,7 @@ function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.v
  else if(s.phase==='ENGAGE'&&!locked&&!s.charging){if(s.ap===0&&!s.commands.length)s.advance=Math.min(s.advance,350);s.advance-=dt;if(s.advance<=0)next();}
  render();if(s.running)raf=requestAnimationFrame(tick);
 }
-function reset(){closePartySkills(false);sceneLoadToken++;sceneReady=false;clearLiveHitEffects();stopChargeHum();skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('reserve-damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:ENEMY_BP_MAX,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};initEnemyRoster();$('enemy').classList.remove('enemy-arrival');$('enemy').hidden=false;history.length=0;$('log').replaceChildren();setText('status','파티를 편성하고 전투 시작을 눌러주세요.');$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
+function reset(){closePartySkills(false);sceneLoadToken++;sceneReady=false;clearLiveHitEffects();stopChargeHum();skillPointer=null;pointerSkill=false;suppressSkillClickUntil=0;hideAudioGate();mobileVideo=null;audioPrepared=false;audioPreparing=false;clearVictory();if(s)s.nonoBuffTime=0;$('damage-layer').replaceChildren();$('reserve-damage-layer').replaceChildren();$('engage-damage').hidden=true;clearUltimateImpact();clearUltimateMovie();pausedAudio=[];$('pause-overlay').hidden=true;$('battle').classList.remove('is-paused');clearDeathVisual();$('projectile-fx').classList.remove('flying');$('hit').classList.remove('flash');stopBattleAudio();cancelAnimationFrame(raf);clearDomainVisual();$('scene').classList.remove('break-impact','tag-camera');showScreen('selection');clearPose();clearEnemy();$('scene').classList.remove('clash');$('grade').hidden=true;$('trial-intro').hidden=true;s={allyBreakFx:0,allyBreakWait:0,victoryOwner:null,victorySequence:null,nonoBuffTime:0,nonoBuffLevel:1,damageNumbers:[],engageDamage:0,paused:false,releaseAfterPause:false,deathTransition:null,victoryPending:false,hitFxQueue:[],parryFollowHit:false,domainVisual:null,domainVisualQueue:[],domainImpactCount:0,tagFxTime:0,breakRest:false,breakUntilRound:0,breakFxTime:0,enemyBP:ENEMY_BP_MAX,enemyBroken:false,breakRewardPending:false,lastBreakBonus:0,magicChain:null,enemyEffects:{},effectSignature:null,battleStates:{},skillLevels:[],skillSounds:[],commandCosts:[],charging:false,chargeElapsed:0,loadingTime:0,introTime:0,commands:[],counterIndex:0,generatedTail:[],apClearing:0,clearCount:0,apTarget:4,enemyTime:0,apFill:0,apFillElapsed:0,poseTime:0,gradeTime:0,autoAttackAfterParry:false,tagDefenseActive:false,specialVisual:null,running:false,phase:'READY',round:1,ap:0,enemyHP:100,hp:[5000,5000,5000,5000],energy:[100,100,100,100],active:0,party:[...selected],pattern:'normal',canAct:false,busy:0,advance:0,elapsed:0,duration:2800};initEnemyRoster();$('enemy').classList.remove('enemy-arrival');$('enemy').hidden=false;history.length=0;$('log').replaceChildren();setText('status','파티를 편성하고 전투 시작을 눌러주세요.');$('result').hidden=true;$('queue').replaceChildren();$('runner').hidden=true;formation();render();}
 function start(){if(s.running||!selected.length)return;reset();s.running=true;for(const i of s.party){const id=roster[i].id;stateFor(id);if(id==='koyomi')grantUS(id,750);}s.phase='LOADING';s.loadingTime=650;s.ap=0;primeBattleAudio();prepareBattleScene();prepareBattleEffects();warmPartyVisuals();showScreen('loading');$('loading-progress').style.width='0%';formation();render();last=performance.now();raf=requestAnimationFrame(tick);}
 for(const group of Object.keys(filters)){for(const value of [...new Set(roster.map(m=>m[group]))]){$('filter-'+group+'-'+value).onclick=()=>{const set=filters[group];if(set.has(value))set.delete(value);else set.add(value);$('filter-'+group+'-'+value).classList.toggle('active',set.has(value));$('filter-'+group+'-'+value).setAttribute('aria-pressed',String(set.has(value)));filterRoster();};}}$('clear-filters').onclick=()=>{for(const group of Object.keys(filters)){for(const value of filters[group]){$('filter-'+group+'-'+value).classList.remove('active');$('filter-'+group+'-'+value).setAttribute('aria-pressed','false');}filters[group].clear();}$('character-search').value='';filterRoster();};
 $('character-search').oninput=filterRoster;$('collapse-list').onclick=()=>{const body=$('character-list-body');body.hidden=!body.hidden;setText('collapse-list',body.hidden?'목록 펼치기':'목록 접기');$('collapse-list').setAttribute('aria-expanded',String(!body.hidden));};
@@ -922,6 +945,7 @@ battleTouchRoot.addEventListener('click',e=>{
 for(const type of ['gesturestart','gesturechange','gestureend','dblclick'])battleTouchRoot.addEventListener(type,e=>{if(e.cancelable)e.preventDefault();},{passive:false});
 window.mobileAudioStatus=()=>({...BattleAudio.status(),prepared:audioPrepared,preparing:audioPreparing,blocked:mobileBlocked});window.combatSnapshot=()=>JSON.parse(JSON.stringify(s));reset();
 })();
+
 
 
 
