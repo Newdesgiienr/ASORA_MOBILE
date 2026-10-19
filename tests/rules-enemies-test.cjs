@@ -121,3 +121,16 @@ s=setup('anna',1);party('anna','moa','luna','liria');s.hp=[5000,0,5000,0];api.en
 s=setup('luna',1);api.stateFor('luna').breakUntil=2;api.applyHitEffects('skill',1,3);assert.equal(s.enemyHP,100);api.grantBuff('luna','domainEcho',3,{echo:true});api.domainEcho('skill');assert.equal(s.enemyHP,100);api.stateFor('luna').breakUntil=0;api.applyHitEffects('skill',1,3);assert.equal(s.enemyHP,99.5);api.domainEcho('skill');assert.equal(s.enemyHP,97.5);
 s=setup('anna',1);api.grantShield('anna',.2,1);api.grantShield('anna',.1,4);assert.equal(api.stateFor('anna').shield,1000);assert.equal(api.stateFor('anna').shieldTurns,4);
 Math.random=originalRandom;console.log('PASS V155 survivor AP, break reward, broken survivors counted, Luna BP lock on both procs, independent shield maxima');
+
+// V157: one critical outcome per area action, including Canon's reserve override.
+for(const [id,kind,level,stage] of [['koyomi','skill',1,1],['koyomi','tag',1,1],['sigrid','skill',2,1],['luna','ultimate',1,1],['souka','ultimate',1,1],['canon','skill',2,1],['canon','ultimate',1,1]]){
+ for(const critical of [true,false]){
+  s=setup(id,3);if(id==='canon')s.enemyEffects.cherry={stacks:1};
+  let rolls=0;Math.random=()=>++rolls===1?(critical?.01:.99):(critical?.99:.01);
+  api.resolveHit(kind,level,stage);
+  for(let i=0;i<3;i++){const hit=s.damageNumbers.find(h=>h.enemyIndex===i);assert(hit,`${id} enemy ${i}`);assert.equal(hit.critical,critical,`${id} enemy ${i}`);}
+  near(s.damageNumbers.find(h=>h.enemyIndex===0).amount,s.damageNumbers.find(h=>h.enemyIndex===1).amount);near(s.damageNumbers.find(h=>h.enemyIndex===1).amount,s.damageNumbers.find(h=>h.enemyIndex===2).amount);
+ }
+}
+s=setup('koyomi',3);s.enemies[1].effects.guard={stacks:1};Math.random=()=>.01;api.resolveHit('skill',1,1);near(100-s.enemies[1].hp,(100-s.enemies[0].hp)/2);assert(s.damageNumbers.every(h=>h.critical));assert.equal(s.enemies[1].bp,200);
+Math.random=originalRandom;console.log('PASS V157 all area targets share crit/noncrit; Canon override; per-target guard and reserve BP preserved');

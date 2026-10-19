@@ -116,7 +116,7 @@ const ENEMY_DAMAGE={normal:{hp:650,bp:20},counter:{hp:850,bp:35},unavoidable:{hp
 function allyBroken(id=activeMember().id){return stateFor(id).breakUntil>=s.round;}
 function allyCanAct(index=s.active){const m=roster[s.party[index]];return !!m&&s.hp[index]>0&&!allyBroken(m.id);}
 function critChance(id){return Math.min(1,Math.max(0,BASE_CRIT+actorModifiers(id).crit));}
-function rollDamage(id,base,kind='proc'){const m=actorModifiers(id),critical=base>0&&Math.random()<critChance(id);let damage=base*(1+m.attack)*(kind==='skill'?1+m.skillDamage:kind==='ultimate'?1+m.ultimateDamage:1);if(critical)damage*=CRIT_MULTIPLIER;if(s.enemyEffects.guard)damage*=.5;return {damage,critical};}
+function rollDamage(id,base,kind='proc',sharedCritical){const m=actorModifiers(id),critical=base>0&&(typeof sharedCritical==='boolean'?sharedCritical:Math.random()<critChance(id));let damage=base*(1+m.attack)*(kind==='skill'?1+m.skillDamage:kind==='ultimate'?1+m.ultimateDamage:1);if(critical)damage*=CRIT_MULTIPLIER;if(s.enemyEffects.guard)damage*=.5;return {damage,critical};}
 function attackAction(id,kind,level=1,stage=1){if(kind==='attack'||kind==='tag'||kind==='tagSpecial')return true;if(kind==='ultimate')return (skillReference[id]?.ultimateCoefficient||0)>0;const c=skillReference[id]?.coefficients[stage-1];return kind==='skill'&&(Array.isArray(c)?c[level-1]:c)>0;}
 function clearAllyCommands(){cancelCharge();s.commands=[];s.commandCosts=[];s.skillLevels=[];s.skillSounds=[];s.autoAttackAfterParry=false;}
 function hitAllyBP(amount){const id=activeMember().id,b=stateFor(id);if(s.hp[s.active]<=0||allyBroken(id))return;b.bp=Math.max(0,b.bp-amount);if(b.bp>0)return;b.bp=ALLY_BP_MAX;b.breakUntil=s.round+1;clearAllyCommands();s.allyBreakFx=1000;playSfx('break');pulse('scene','break-impact');pulse('ally-break-banner','break-pop');log(activeMember().name+' BREAK · BP 전체 회복 / '+(b.breakUntil+1)+'R ACTION부터 행동 가능','system');}
@@ -179,15 +179,15 @@ function isAreaAttack(id,kind,level){
  if(id==='canon')return !!s.enemyEffects.cherry&&(kind==='ultimate'||kind==='skill'&&level>=2);
  return false;
 }
-function directDamage(kind,level,stage){const coefficient=hitCoefficient(kind,level,stage),base=coefficient===null?(kind==='tag'||kind==='tagSpecial'?2:skills[kind]?.damage||0):coefficient/100;return {coefficient,...rollDamage(activeMember().id,base,kind)};}
+function directDamage(kind,level,stage,sharedCritical){const coefficient=hitCoefficient(kind,level,stage),base=coefficient===null?(kind==='tag'||kind==='tagSpecial'?2:skills[kind]?.damage||0):coefficient/100;return {coefficient,...rollDamage(activeMember().id,base,kind,sharedCritical)};}
 
-function applyAreaTargets(kind,level,stage){
+function applyAreaTargets(kind,level,stage,sharedCritical){
  const id=activeMember().id;
  for(const enemy of s.enemies){if(enemy.index===s.enemyIndex||enemy.hp<=0)continue;
   withEnemy(enemy.index,()=>{
-   const hit=directDamage(kind,level,stage);
+   const hit=directDamage(kind,level,stage,sharedCritical);
    // Canon's area condition belongs to the primary target's mark, already checked before consumption.
-   if(id==='canon'&&kind==='skill'&&level>=2){hit.coefficient=403;Object.assign(hit,rollDamage(id,4.03,kind));}
+   if(id==='canon'&&kind==='skill'&&level>=2){hit.coefficient=403;Object.assign(hit,rollDamage(id,4.03,kind,sharedCritical));}
    dealEnemyDamage(hit.damage,(kind==='ultimate'?'궁극기':kind==='tag'?'태그 어택':'전투 스킬 '+stage+'단')+' · 전체 공격',activeMember().name,200,hit.critical);
    if(id==='koyomi'&&kind==='skill'&&stage===1)addEffect('fracture',1,5,5);
    if(id==='sigrid'&&kind==='skill'&&stage===1&&level>=2)consumeEffect('fracture');
@@ -291,7 +291,7 @@ function resolveHit(kind,level=1,stage=1){if(activeMember().id==='doll'&&kind===
  const area=isAreaAttack(activeMember().id,kind,level),{coefficient,damage,critical}=directDamage(kind,level,stage);
  s.lastResolvedHit={character:activeMember().id,kind,stage,chargeLevel:level,coefficient,damage,critical};
  if(damage>0){const label=kind==='skill'?'전투 스킬 '+stage+'단'+(battleRules[activeMember().id]?.chargeMs?' · 차지 '+level+'단계':''):(kind==='tag'||kind==='tagAttack')?'교체 자동 공격 · 태그 어택':kind==='tagSpecial'?'태그 스페셜':kind==='attack'&&s.parryFollowHit?'패링 후 일반 공격 자동 연계':skills[kind]?.name||kind;dealEnemyDamage(damage,label,activeMember().name,200,critical);hitBreak(kind==='tagSpecial'?'tag':kind);scheduleHitVisual(kind,level);consumeMagicChain();}
- if(area)applyAreaTargets(kind,level,stage);
+ if(area)applyAreaTargets(kind,level,stage,critical);
  applyHitEffects(kind,level,stage);
  if(kind==='tagSpecial'){const hits=(s.damageNumbers||[]).slice(damageQueueStart);if(hits.length){const shift=hits[0].delay-Math.round(1880*.05);for(const hit of hits)hit.delay-=shift;}}
  if(kind==='skill'&&level>=2){const delay=attackSound(activeMember().id)==='meleeAttack'?930:1100;for(const q of (s.damageNumbers||[]).slice(damageQueueStart))q.delay+=delay-200;}
