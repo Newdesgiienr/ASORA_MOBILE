@@ -111,7 +111,7 @@ function mayoiGemIcon(){const b=stateFor('mayoi'),diamond=b.diamondTurns>0,has=k
 }
 
 // V147 sandbox values: not an official CBT damage formula.
-const ALLY_BP_MAX=100,BASE_CRIT=.10,CRIT_MULTIPLIER=2,DAMAGE_GAP_MS=320;
+const ALLY_BP_MAX=100,BASE_CRIT=.25,CRIT_MULTIPLIER=2,DAMAGE_GAP_MS=320;
 const ENEMY_DAMAGE={normal:{hp:650,bp:20},counter:{hp:850,bp:35},unavoidable:{hp:750,bp:25},assault:{hp:1000,bp:40}};
 function allyBroken(id=activeMember().id){return stateFor(id).breakUntil>=s.round;}
 function allyCanAct(index=s.active){const m=roster[s.party[index]];return !!m&&s.hp[index]>0&&!allyBroken(m.id);}
@@ -164,7 +164,7 @@ let selectedEnemyCount=1;
 const ENEMY_BP_MAX=200;
 function initEnemyRoster(){
  s.enemyIndex=0;s.targetIndex=null;s.enemyTransition=null;
- s.enemies=Array.from({length:selectedEnemyCount},(_,index)=>({index,hp:100,bp:ENEMY_BP_MAX,effects:{},broken:false,breakUntil:0,baseCrit:0}));
+ s.enemies=Array.from({length:selectedEnemyCount},(_,index)=>({index,hp:100,bp:ENEMY_BP_MAX,effects:{},broken:false,breakUntil:0,baseCrit:BASE_CRIT}));
  const fields={enemyHP:'hp',enemyBP:'bp',enemyEffects:'effects',enemyBroken:'broken',breakUntilRound:'breakUntil'};
  for(const [key,field] of Object.entries(fields))Object.defineProperty(s,key,{enumerable:true,configurable:true,get(){return this.enemies[this.targetIndex??this.enemyIndex][field];},set(v){this.enemies[this.targetIndex??this.enemyIndex][field]=v;}});
 }
@@ -375,8 +375,8 @@ function formation(){
  $('start').disabled=s.running||selected.length===0;setText('start',selected.length?'게임 시작':'파티원을 선택해주세요');filterRoster();
 }
 function reserved(){return s.commands.reduce((sum,k,i)=>sum+(s.commandCosts[i]??skills[k].cost),0);}
-function canRequest(kind,level=1){if(!allyCanAct())return false;if(s.enemyTransition||s.enemyHP<=0)return false;if(mobileBlocked)return false;if(s.paused||s.ultimateMovie||s.ultimateImpact)return false;if(s.deathTransition)return false;const b=projectedSkill(),autoReserve=s.autoAttackAfterParry?skills.attack.cost:0;
- return !s.domainVisual&&(!s.charging||kind==='skill')&&(kind!=='skill'||!battleRules[activeMember().id]||(b.ct===0&&(activeMember().id!=='akina'||(b.stage===3?b.fire===0:b.fire>0))))&&s.running&&!s.apClearing&&!['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)&&(s.phase==='ACTION'?s.pattern==='normal':s.canAct)&&s.ap-reserved()-autoReserve>=actionCost(kind,level,b.stage)&&(kind!=='ultimate'||(battleState().ultCT===0&&!s.commands.includes('ultimate')));}
+function canRequest(kind,level=1){if(!allyCanAct())return false;if(s.enemyTransition||s.enemyHP<=0)return false;if(mobileBlocked)return false;if(s.paused||s.ultimateMovie||s.ultimateImpact)return false;if(s.deathTransition)return false;const b=projectedSkill();
+ return !s.domainVisual&&(!s.charging||kind==='skill')&&(kind!=='skill'||!battleRules[activeMember().id]||(b.ct===0&&(activeMember().id!=='akina'||(b.stage===3?b.fire===0:b.fire>0))))&&s.running&&!s.apClearing&&!['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)&&(s.phase==='ACTION'?s.pattern==='normal':s.canAct)&&s.ap-reserved()>=actionCost(kind,level,b.stage)&&(kind!=='ultimate'||(battleState().ultCT===0&&!s.commands.includes('ultimate')));}
 
 
 const enemyEffectNames={fracture:'파쇄',cherry:'벚꽃 표식',notice:'괴도의 예고장',burn:'화상',curse:'저주',guard:'가드',plunder:'강탈',chain:'연쇄',spear:'적중된 창'};
@@ -479,7 +479,7 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
  if(s.apClearing>0)x.classList.add('clearing');else if(s.apFill>0){x.classList.add('charging');x.style.animationDelay=Math.max(0,(4-i)*110-s.apFillElapsed)+'ms';}return x;}));}
 
  for(const kind of Object.keys(skills)){$(kind).disabled=!canRequest(kind);$(kind).classList.toggle('queued',s.commands.includes(kind));}
- $('counter-button').disabled=!(allyCanAct()&&s.running&&!s.enemyTransition&&!s.deathTransition&&!s.busy&&!s.apClearing&&s.phase==='ACTION'&&s.pattern==='counter');$('counter-button').classList.toggle('ready',!$('counter-button').disabled);
+ $('counter-button').disabled=!(s.ap>=1&&allyCanAct()&&s.running&&!s.enemyTransition&&!s.deathTransition&&!s.busy&&!s.apClearing&&s.phase==='ACTION'&&s.pattern==='counter');$('counter-button').classList.toggle('ready',!$('counter-button').disabled);
  $('end').disabled=!(s.running&&!s.enemyTransition&&!s.deathTransition&&s.phase==='ENGAGE'&&s.canAct&&!s.busy&&!s.poseTime&&!s.enemyTime&&!s.commands.length);$('start').disabled=s.running||!selected.length;
  $('counter').hidden=!(s.running&&((s.phase==='ACTION'&&s.pattern==='counter')||s.gradeTime>0));
  $('aura').classList.toggle('soft',s.pattern!=='normal');$('aura').classList.toggle('active',s.running&&!s.enemyTransition&&s.phase==='ACTION'&&!s.breakRest);$('aura').style.setProperty('--intent',patterns[s.pattern].color);
@@ -649,7 +649,7 @@ function takeHit(grade=null){if(s.breakRest)return;const success=grade==='PERFEC
  const reduction=Math.min(.95,Math.max(0,Object.values(b.buffs||{}).reduce((n,v)=>n+(v.damageReduction||0),0))),curse=Math.max(0,1-.001*(s.enemyEffects.curse?.stacks||0));
  const rate=grade==='PERFECT'?.1:grade==='GOOD'?.3:1;
  let damage=Math.round(raw.hp*rate/Math.max(.05,1+mods.defense)*(1-reduction)*curse);
- const enemy=s.enemies[s.enemyIndex],chance=Math.max(0,(enemy.baseCrit||0)-(s.enemyEffects.plunder?.critReduction||0)),critical=chance>0&&Math.random()<chance;if(critical)damage=Math.round(damage*1.5);
+ const enemy=s.enemies[s.enemyIndex],chance=Math.max(0,(enemy.baseCrit||0)-(s.enemyEffects.plunder?.critReduction||0)),critical=chance>0&&Math.random()<chance;if(critical)damage=Math.round(damage*CRIT_MULTIPLIER);
  const absorbed=Math.min(b.shield||0,damage);b.shield-=absorbed;damage-=absorbed;const beforeHP=s.hp[s.active];s.hp[s.active]=Math.max(0,beforeHP-damage);floatDamage('ally',beforeHP-s.hp[s.active],s.enemyIndex,critical);
  const bp=(grade==='PERFECT'?0:grade==='GOOD'?10:raw.bp)*curse;hitAllyBP(bp);
  s.lastIncomingHit={pattern:s.pattern,grade,damage:beforeHP-s.hp[s.active],absorbed,bp,critical};
@@ -724,7 +724,7 @@ function playUltimateMovie(id,done){
 function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false){if(s.enemyTransition||!allyCanAct())return;
  const id=activeMember().id,b=battleState(),r=battleRules[id],stage=b.stage;
  if(kind==='skill'&&r&&(b.ct>0||(id==='akina'&&(stage===3?b.fire!==0:b.fire<=0))))return;
- const cost=actionCost(kind,chargeLevel,stage),d=skills[kind];if(s.ap<cost||(kind==='ultimate'&&(b.ultCT>0)))return;
+ const cost=kind==='attack'&&s.parryFollowHit?0:actionCost(kind,chargeLevel,stage),d=skills[kind];if(s.ap<cost||(kind==='ultimate'&&(b.ultCT>0)))return;
  if(kind==='ultimate'&&!movieFinished&&ultimateMovies.has(id)){playUltimateMovie(id,()=>execute(kind,chargeLevel,chargeSoundPlayed,true));return;}
  const meleeCharged=kind==='skill'&&chargeLevel>=2&&attackSound(id)==='meleeAttack',rangedCharged=kind==='skill'&&chargeLevel>=2&&!meleeCharged;
  const attackMotionMs=meleeCharged?1260:rangedCharged?1440:560;
@@ -757,7 +757,7 @@ function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false)
 function attack(kind,chargeLevel=1,chargeSoundPlayed=false){if(!canRequest(kind,chargeLevel))return;const cost=actionCost(kind,chargeLevel);if(s.phase==='ACTION'&&s.pattern==='normal'&&attackAction(activeMember().id,kind,chargeLevel,projectedSkill().stage)){const busy=s.busy;engage(true,'일반 공격 저지');s.busy=Math.max(busy,s.busy);}
  if(s.busy||s.poseTime||s.enemyTime){s.commands.push(kind);s.commandCosts.push(cost);if(kind==='skill'){s.skillLevels.push(chargeLevel);s.skillSounds.push(chargeSoundPlayed);}s.advance=ENGAGE_WAIT_MS;log(skills[kind].name+' 예약');render();}else execute(kind,chargeLevel,chargeSoundPlayed);}
 
-function counter(){if(s.enemyTransition||!allyCanAct())return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;if(s.deathTransition||s.domainVisual)return;if($('counter-button').disabled)return;pulse('counter-button','used');const p=s.elapsed/s.counterDuration;const grade=p>=s.safeStart&&p<=s.safeEnd?'PERFECT':p>=s.purpleStart&&p<=s.purpleEnd?'GOOD':'FAIL';if(grade!=='FAIL'){s.counterSuccessRound=s.round;takeHit(grade);engage(true,grade+' · 패링 성공');if(!s.deathTransition&&allyCanAct())gradeResult(grade);else {s.autoAttackAfterParry=false;render();}}else{s.counterSuccessRound=0;takeHit();engage(false,'FAIL · 패링 실패','enemy');if(s.running)gradeResult('FAIL');}}
+function counter(){if(s.enemyTransition||!allyCanAct())return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;if(s.deathTransition||s.domainVisual)return;if($('counter-button').disabled||!s.running||s.phase!=='ACTION'||s.pattern!=='counter'||s.ap<1||s.busy||s.apClearing)return;s.ap-=1;log('카운터 사용 · AP 1 소모');pulse('counter-button','used');const p=s.elapsed/s.counterDuration;const grade=p>=s.safeStart&&p<=s.safeEnd?'PERFECT':p>=s.purpleStart&&p<=s.purpleEnd?'GOOD':'FAIL';if(grade!=='FAIL'){s.counterSuccessRound=s.round;takeHit(grade);engage(true,grade+' · 패링 성공');if(!s.deathTransition&&allyCanAct())gradeResult(grade);else {s.autoAttackAfterParry=false;render();}}else{s.counterSuccessRound=0;takeHit();engage(false,'FAIL · 패링 실패','enemy');if(s.running)gradeResult('FAIL');}}
 function tagKind(m){return s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault?'tagSpecial':s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense?'tagDefense':'tag';}
 function tagCooldown(id,kind){return stateFor(id)[kind==='tag'?'tagAttackCT':'tagCT']||0;}
 function setTagCooldown(id,kind){const ref=skillReference[id],key=kind==='tag'?'tagAttackCT':'tagCT';stateFor(id)[key]=ref?.[kind==='tag'?'tagAttackCT':kind==='tagSpecial'?'tagSpecialCT':'tagDefenseCT']||0;}
@@ -860,7 +860,7 @@ function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.v
  const locked=s.busy||s.poseTime||s.enemyTime;
  if(allyBroken()&&!locked){s.allyBreakWait=(s.allyBreakWait||0)+dt;if(s.allyBreakWait>=1500){s.allyBreakWait=0;next();}render();if(s.running)raf=requestAnimationFrame(tick);return;}
  if(s.victoryPending&&!locked){if(!s.damageNumbers.length)finish(true);if(s.running)raf=requestAnimationFrame(tick);return;}
- if(!locked&&!s.charging&&s.autoAttackAfterParry){s.autoAttackAfterParry=false;if(s.ap>=skills.attack.cost){log('패링 후 일반 공격 자동 발동');s.parryFollowHit=true;execute('attack');s.parryFollowHit=false;if(s.running)pulse('ally','parry-follow','survivor-arrival');}else log('패링 후 일반 공격 · AP 부족');}
+ if(!locked&&!s.charging&&s.autoAttackAfterParry){s.autoAttackAfterParry=false;log('패링 후 일반 공격 자동 발동 · AP 소모 없음');s.parryFollowHit=true;try{execute('attack');}finally{s.parryFollowHit=false;}if(s.running)pulse('ally','parry-follow','survivor-arrival');}
  else if(!locked&&!s.charging&&s.commands.length){const kind=s.commands.shift();s.commandCosts.shift();execute(kind,kind==='skill'?s.skillLevels.shift():1,kind==='skill'?s.skillSounds.shift():false);}
  else if(s.phase==='ACTION'&&!s.charging&&!s.breakRest&&!s.commands.length){
   // Charge freezes both the action icon and its attack deadline.

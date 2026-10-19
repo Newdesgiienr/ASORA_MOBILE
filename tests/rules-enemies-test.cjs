@@ -34,7 +34,7 @@ s=setup('moa');api.execute('ultimate',1,false,true);assert.equal(s.ap,19);assert
 s=setup();s.enemyHP=0;api.finish(true);const transition=s.enemyTransition;api.tickEnemyReplacement(5000);assert.equal(s.enemyTransition.stage,'death');api.reset();transition.audioDone=true;api.tickEnemyReplacement(2000);assert.equal(api.get().enemyIndex,0);
 // Round-end DoT: advance once, no double cooldown reduction.
 s=setup('anna');s.enemyHP=.1;s.enemyEffects.burn={stacks:1,turns:[3]};api.stateFor('anna').ct=4;api.next();assert(s.enemyTransition.nextAction);assert.equal(api.stateFor('anna').ct,3);s.enemyTransition.audioDone=true;api.tickEnemyReplacement(1100);api.tickEnemyReplacement(650);api.tickEnemyReplacement(900);assert.equal(s.round,2);assert.equal(s.phase,'ACTION');assert.equal(api.stateFor('anna').ct,3);
-s=setup('anna');s.enemies[0].baseCrit=.15;s.enemyEffects.plunder={stacks:1,critReduction:.15,turns:[7]};const rand=Math.random;Math.random=()=>.1;api.takeHit();assert.equal(s.hp[0],4350);delete s.enemyEffects.plunder;api.takeHit();assert.equal(s.hp[0],3375);Math.random=rand;
+s=setup('anna');s.enemies[0].baseCrit=.15;s.enemyEffects.plunder={stacks:1,critReduction:.15,turns:[7]};const rand=Math.random;Math.random=()=>.1;api.takeHit();assert.equal(s.hp[0],4350);delete s.enemyEffects.plunder;api.takeHit();assert.equal(s.hp[0],3050);Math.random=rand;
 console.log('PASS single/multi, scopes, independent HP/BP/effects, role BP + strike, coefficient HP, fracture timing, CT-only ult, resources, plunder, enemy death/arrival locks and final victory');
 
 const a=context.window.testAPI;a.reset();const st=a.get();st.running=true;st.phase='ACTION';st.party=[0,1];st.active=1;st.elapsed=321;st.ap=2;a.render();assert.equal(get('open-party-skills').hidden,false);a.openPartySkills();assert.equal(st.paused,true);assert.equal(get('pause-overlay').hidden,true);assert.equal(get('party-skills-panel').hidden,false);assert.match(get('party-skills-frame').src,/party=canon,moa&active=moa/);a.tick(now+5000);assert.equal(st.elapsed,321);assert.equal(st.ap,2);a.closePartySkills();assert.equal(st.paused,false);assert.equal(get('party-skills-panel').hidden,true);assert.equal(get('party-skills-shade').hidden,true);a.pauseBattle();assert.equal(get('open-party-skills').hidden,true);a.openPartySkills();assert.equal(get('party-skills-panel').hidden,true);assert.equal(st.paused,true);a.resumeBattle();a.openPartySkills();a.reset();assert.equal(get('party-skills-panel').hidden,true);assert.equal(state().running,false);console.log('PASS direct reader pauses without pause menu, freezes AP/timeline, closes/resumes, normal pause hides entry, reset clears');
@@ -56,14 +56,14 @@ s=setup('anna',1);party('anna','moa');s.round=3;api.stateFor('anna').bp=10;api.t
 s=setup('anna',1);s.round=2;api.hitAllyBP(100);ready();s.advance=1500;api.tick(now+80);assert(s.allyBreakWait>0);for(let i=0;i<100;i++){now+=80;api.tick(now);}assert(s.round>=4);assert(!api.allyBroken());
 // Low-HP GOOD must not schedule a dead character's automatic attack.
 s=setup('anna',1);s.hp[0]=100;s.phase='ACTION';s.pattern='counter';s.counterDuration=1000;s.purpleStart=.3;s.purpleEnd=.7;s.safeStart=.45;s.safeEnd=.55;s.elapsed=350;get('counter-button').disabled=false;api.counter();assert(s.deathTransition);assert(!s.autoAttackAfterParry);
-s=setup('anna',1);near(api.critChance('anna'),.1);Math.random=()=>.05;api.resolveHit('attack');assert.equal(s.enemyHP,96);assert(s.damageNumbers[0].critical);api.tickDamageNumbers(200);assert(get('damage-layer').children.some(n=>n.classList.contains('critical')));Math.random=()=>.99;
-s=setup('mayoi',1);api.grantBuff('mayoi','nonoCrit',7,{crit:.15});api.stateFor('mayoi').gemBuffs.topaz=1;near(api.critChance('mayoi'),.35);for(let i=0;i<4;i++)api.drawMayoiGem();assert.equal(api.stateFor('mayoi').diamondTurns,1);near(api.directDamage('ultimate',1,1).damage,10.6704);api.tickCharacterEffects();assert.equal(api.stateFor('mayoi').diamondTurns,0);
+s=setup('anna',1);near(api.critChance('anna'),.25);Math.random=()=>.05;api.resolveHit('attack');assert.equal(s.enemyHP,96);assert(s.damageNumbers[0].critical);api.tickDamageNumbers(200);assert(get('damage-layer').children.some(n=>n.classList.contains('critical')));Math.random=()=>.99;
+s=setup('mayoi',1);api.grantBuff('mayoi','nonoCrit',7,{crit:.15});api.stateFor('mayoi').gemBuffs.topaz=1;near(api.critChance('mayoi'),.50);for(let i=0;i<4;i++)api.drawMayoiGem();assert.equal(api.stateFor('mayoi').diamondTurns,1);near(api.directDamage('ultimate',1,1).damage,10.6704);api.tickCharacterEffects();assert.equal(api.stateFor('mayoi').diamondTurns,0);
 s=setup('ren',3);for(let i=0;i<6;i++)api.applyHitEffects('skill',1,1);s.enemyIndex=1;api.applyHitEffects('skill',1,1);assert.equal(s.enemyHP,100);s.enemyIndex=0;api.resolveHit('skill',1,1);near(s.enemyHP,91.792);assert.equal(s.damageNumbers.length,2);assert(s.damageNumbers[1].delay-s.damageNumbers[0].delay>=320);
 s=setup('canon',1);party('canon','liria','luna');api.addMagicChain(5);s.enemyEffects.cherry={stacks:1};api.grantBuff('luna','domainEcho',3,{echo:true});api.resolveHit('skill',2,1);api.domainEcho('skill');assert.deepEqual(Array.from(s.damageNumbers,q=>q.delay),[930,1250,1570]);
 s=setup('souka',1);api.grantBuff('souka','domainEcho',3,{echo:true});api.domainEcho('skill');assert.equal(s.enemyHP,100);
 s=setup('luna',1);api.grantBuff('luna','domainEcho',3,{echo:true});api.domainEcho('attack');assert.equal(s.enemyHP,100);api.domainEcho('skill');assert.equal(s.enemyHP,98);
 s=setup('liria',1);api.stateFor('liria').chainConsumed=60;near(api.actorModifiers('liria').attack,.225);assert(api.collectEffectRows().some(r=>r.name==='마력 연쇄 누적 소모'&&r.detail.includes('22.5%')));
-s=setup('nono',1);api.applyHitEffects('skill',1,1);assert.equal(api.stateFor('nono').light,2);api.applyHitEffects('skill',2,1);near(api.critChance('nono'),.25);api.applyHitEffects('ultimate',1,1);near(api.stateFor('nono').buffs.nonoUltimate.ultimateDamage,.32);
+s=setup('nono',1);api.applyHitEffects('skill',1,1);assert.equal(api.stateFor('nono').light,2);api.applyHitEffects('skill',2,1);near(api.critChance('nono'),.40);api.applyHitEffects('ultimate',1,1);near(api.stateFor('nono').buffs.nonoUltimate.ultimateDamage,.32);
 // Offensive charge intercepts blue even when conditional coefficient is zero; buff charge does not.
 s=setup('canon',1);s.phase='ACTION';s.pattern='normal';s.elapsed=999;s.duration=1000;s.busy=500;api.beginCharge();s.chargeElapsed=1000;api.releaseCharge();assert.equal(s.phase,'ENGAGE');assert.equal(s.commands.length,1);const elapsed=s.elapsed;now+=80;api.tick(now);assert.equal(s.elapsed,elapsed);assert.equal(s.hp[0],5000);ready();api.execute('skill',2);assert.equal(s.hp[0],5000);
 s=setup('nono',1);s.phase='ACTION';s.pattern='normal';api.execute('skill',1);assert.equal(s.phase,'ACTION');
@@ -103,3 +103,15 @@ for(const grade of ['PERFECT','GOOD','FAIL']){
 }
 Math.random=originalRandom;
 console.log('PASS V149: Moa skill-only bonus, guard before damage, BREAK black bar, fracture display, magic-chain balance, domain counter continuity');
+
+// V152: counter input costs once; successful follow-up is free even at zero AP.
+Math.random=()=>.99;
+for(const [grade,elapsed] of [['PERFECT',500],['GOOD',350],['FAIL',100]]){
+ s=setup('anna',1);s.ap=1;s.phase='ACTION';s.pattern='counter';s.counterDuration=1000;s.safeStart=.45;s.safeEnd=.55;s.purpleStart=.3;s.purpleEnd=.7;s.elapsed=elapsed;api.render();api.counter();assert.equal(s.ap,0);api.counter();assert.equal(s.ap,0);
+ if(grade!=='FAIL'){assert(s.autoAttackAfterParry);ready();now+=20;api.tick(now);assert.equal(s.enemyHP,98);assert.equal(s.ap,0);assert(!s.autoAttackAfterParry);now+=20;api.tick(now);assert.equal(s.enemyHP,98);}else assert(!s.autoAttackAfterParry);
+}
+s=setup('anna',1);s.ap=0;s.phase='ACTION';s.pattern='counter';api.render();assert(get('counter-button').disabled);api.counter();assert.equal(s.phase,'ACTION');assert.equal(s.hp[0],5000);
+s=setup('anna',1);assert.equal(s.enemies[0].baseCrit,.25);Math.random=()=>.249;api.takeHit();assert.equal(s.hp[0],3700);assert.equal(api.stateFor('anna').bp,80);
+s=setup('anna',1);Math.random=()=>.25;api.takeHit();assert.equal(s.hp[0],4350);
+s=setup('anna',1);s.enemyEffects.plunder={critReduction:.15};Math.random=()=>.11;api.takeHit();assert.equal(s.hp[0],4350);Math.random=()=>.09;api.takeHit();assert.equal(s.hp[0],3050);
+Math.random=originalRandom;console.log('PASS V152 crit25%, enemy crit200%, plunder10%, counter AP1 once, free counterattack at AP0, AP0 rejection');

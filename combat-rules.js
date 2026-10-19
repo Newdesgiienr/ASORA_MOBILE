@@ -9,7 +9,11 @@
   const previous = document.getElementById('temp-prev');
   const next = document.getElementById('temp-next');
   if (!root || !toolbar || !count || !find || !previous || !next) return;
+  const controls = document.getElementById('temp-controls');
+  const close = document.getElementById('temp-close');
   let active = -1;
+  let enabled = false;
+  controls.hidden = true;
   const reduced = () => window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   function measure() {
     const headHeight = Math.ceil(header?.getBoundingClientRect().height || 0);
@@ -17,7 +21,7 @@
     root.style.setProperty('--rules-scroll-offset', `${headHeight + toolbar.getBoundingClientRect().height + 30}px`);
   }
   function move(direction) {
-    if (!marks.length) return;
+    if (!enabled || !marks.length) return;
     if (active >= 0) {
       marks[active].classList.remove('is-current');
       marks[active].closest('.combat-memo-row')?.classList.remove('temp-current-row');
@@ -33,7 +37,15 @@
     mark.scrollIntoView({behavior: reduced() ? 'auto' : 'smooth', block: 'start'});
     // Keep focus on the toolbar button for repeated keyboard navigation.
   }
-  find.addEventListener('click', () => move(1));
+  find.addEventListener('click', () => {
+    if (!marks.length) return;
+    enabled = true; controls.hidden = false; find.setAttribute('aria-expanded', 'true'); move(1);
+  });
+  close.addEventListener('click', () => {
+    enabled = false; controls.hidden = true; find.setAttribute('aria-expanded', 'false');
+    if (active >= 0) { marks[active].classList.remove('is-current'); marks[active].closest('.combat-memo-row')?.classList.remove('temp-current-row'); marks[active].removeAttribute('aria-current'); }
+    active = -1; count.textContent = `0 / ${marks.length}`; measure(); find.focus();
+  });
   previous.addEventListener('click', () => move(-1));
   next.addEventListener('click', () => move(1));
   count.textContent = `0 / ${marks.length}`;
