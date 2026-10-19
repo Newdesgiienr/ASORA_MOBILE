@@ -34,3 +34,5 @@
 .rules-intro .intro-highlight{background:linear-gradient(transparent 48%,#ffe5a0 48%);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:800}
 .rules-section .combat-memo-description>.temporary{margin:0 0 7px;vertical-align:top}
 .rules-section .rule-detail{margin:0}
+
+.rules-section .temporary-statement{font-weight:850;color:var(--ink)}
