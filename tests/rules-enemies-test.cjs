@@ -86,12 +86,20 @@ s=setup('mayoi',1);api.drawMayoiGem();api.tickCharacterEffects();assert.equal(ap
 assert(api.mayoiGemIcon().includes('보석 수집')||api.mayoiGemIcon().includes('수집 진행 표시'));
 s=setup('liria',1);api.addMagicChain(5);api.resolveHit('attack');
 assert(api.collectEffectRows().some(r=>r.name==='마력 연쇄'&&r.count===4&&r.detail.includes('누적 소모 1회')));
-s=setup('canon',1);s.phase='ACTION';s.pattern='counter';s.elapsed=333;s.duration=1500;s.counterDuration=1500;
-s.safeStart=.6;s.safeEnd=.7;s.purpleStart=.5;s.purpleEnd=.8;api.stateFor('canon').domainExpiresAt=4;
-assert(api.activateDomain('canon'));assert(!api.canRequest('attack'));const frozen=s.elapsed;
-api.tickDomainVisual(100);assert.equal(s.elapsed,frozen);s.domainVisual.startDone=true;s.domainVisual.voiceDone=true;
-api.tickDomainVisual(1);api.tickDomainVisual(280);
-assert.equal(s.domainVisual,null);assert.equal(s.phase,'ACTION');assert.equal(s.pattern,'counter');assert.equal(s.elapsed,333);assert.equal(s.safeStart,.6);assert.equal(s.canAct,false);
-api.execute('skill',1);assert.equal(s.phase,'ACTION'); // A direct queued execution cannot resolve a yellow pattern.
+// V150: yellow ACTION and failed ENGAGE reject domain without spending its offer.
+for(const grade of ['PERFECT','GOOD','FAIL']){
+ s=setup('canon',1);s.phase='ACTION';s.pattern='counter';s.counterDuration=1000;
+ s.safeStart=.6;s.safeEnd=.7;s.purpleStart=.5;s.purpleEnd=.8;
+ s.elapsed=grade==='PERFECT'?650:grade==='GOOD'?550:100;
+ api.stateFor('canon').domainExpiresAt=4;api.render();
+ const apBefore=s.ap;
+ assert.equal(api.activateDomain('canon'),false);assert.equal(s.ap,apBefore);
+ assert.equal(api.stateFor('canon').domainExpiresAt,4);assert(!s.domainVisual);
+ api.counter();assert.equal(s.phase,'ENGAGE');ready();
+ if(grade==='FAIL'){assert.equal(api.activateDomain('canon'),false);assert(!s.domainVisual);}
+ else{assert.equal(api.activateDomain('canon'),true);assert(s.domainVisual);api.clearDomainVisual();
+  api.stateFor('canon').domainExpiresAt=5;s.round++;api.enterAction();s.pattern='counter';s.apClearing=0;
+  assert.equal(api.activateDomain('canon'),false);}
+}
 Math.random=originalRandom;
 console.log('PASS V149: Moa skill-only bonus, guard before damage, BREAK black bar, fracture display, magic-chain balance, domain counter continuity');
