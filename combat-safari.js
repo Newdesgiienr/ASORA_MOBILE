@@ -389,7 +389,7 @@ function partyAlive(id){return s.party.some((n,i)=>roster[n].id===id&&s.hp[i]>0)
 function lunaDamage(coefficient,reason){const hit=rollDamage('luna',coefficient/100);dealEnemyDamage(hit.damage,reason,metadata.luna.name,200,hit.critical);s.lastBonusHit={character:'luna',coefficient,...hit,reason};}
 function domainEcho(kind){if(!['skill','ultimate','tag','tagSpecial','tagDefense'].includes(kind))return;if(partyAlive('luna')&&!allyBroken('luna')&&stateFor('luna').buffs.domainEcho)lunaDamage(200,'루나 영지');}
 
-function addChain(count=1){for(let i=0;i<count;i++){addEffect('chain',1,4,3);if(s.enemyEffects.chain.stacks>=4){dealEnemyDamage(damageFromCoefficient(750,7.5),'연쇄 4중첩 추가 피해');delete s.enemyEffects.chain;log('연쇄 4중첩 소모 · 750% 추가 피해');}}if(partyAlive('luna'))lunaDamage(50,'얼음의 축복');}
+function addChain(count=1){for(let i=0;i<count;i++){addEffect('chain',1,4,3);if(s.enemyEffects.chain.stacks>=4){dealEnemyDamage(damageFromCoefficient(750,7.5),'연쇄 4중첩 추가 피해');delete s.enemyEffects.chain;log('연쇄 4중첩 소모 · 750% 추가 피해');}}if(partyAlive('luna')&&!allyBroken('luna'))lunaDamage(50,'얼음의 축복');}
 
 
 function procDamage(id,coefficient,reason){const hit=rollDamage(id,coefficient/100);dealEnemyDamage(hit.damage,reason,metadata[id]?.name||id,200,hit.critical);s.lastBonusHit={character:id,coefficient,...hit,reason};}
@@ -500,7 +500,7 @@ function render(){$('open-party-skills').hidden=s.paused||!s.running||!['ACTION'
    btn.title=m.name+(ctLabel?' · '+ctLabel:'')+(assaultReady?' · 강습 차단 가능':defenseReady?' · 태그 디펜스 가능':'');
    btn.innerHTML=`<span class="portrait"><img src="assets/combat/${m.portrait}" alt=""></span><span class="ult-dot ${stateFor(m.id).ultCT===0?'':'off'}"><img src="${visualFor(m).ultimate}" alt="${m.name} 궁극기"></span>${m.id==='mayoi'?mayoiGemIcon():''}${ctLabel?`<span class="tag-ct-label">${ctLabel}</span>`:''}${partyBars(index)}`;
    btn.disabled=!!s.enemyTransition||!!s.deathTransition||remaining>0||!!s.domainVisual||s.charging||(s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense&&stateFor(m.id).tagCT>0)||(s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault&&stateFor(m.id).tagCT>0)||!s.running||['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)||s.apClearing||s.busy||s.poseTime||s.enemyTime||s.commands.length||s.ap<1||s.hp[index]<=0||(s.active===index&&!contextualReady)||(s.phase==='ACTION'&&s.pattern==='counter')||(s.phase==='ENGAGE'&&!s.canAct);
-   if(allyBroken(m.id))btn.disabled=true;else if(allyBroken()&&index!==s.active&&s.hp[index]>0&&s.running&&!s.paused&&!s.enemyTransition&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime)btn.disabled=false;
+   if(allyBroken(m.id))btn.disabled=true;else if(allyBroken()&&s.ap>=1&&index!==s.active&&s.hp[index]>0&&s.running&&!s.paused&&!s.enemyTransition&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime)btn.disabled=false;
    btn.onpointerdown=e=>{if(contextualReady&&!btn.disabled){e.preventDefault();btn.dataset.contextFired='1';tag(index);}};
    btn.onclick=()=>{if(btn.dataset?.contextFired==='1'){btn.dataset.contextFired='';return;}tag(index);};
    return btn;
@@ -517,7 +517,7 @@ function enterAction(){s.counterSuccessRound=0;s.allyBreakWait=0;s.engageDamage=
  s.phase='ACTION';s.canAct=false;s.busy=0;s.commands=[];s.commandCosts=[];s.skillLevels=[];s.skillSounds=[];s.autoAttackAfterParry=false;s.tagDefenseActive=false;
  syncActiveVisual();
  const bonus=s.breakRewardPending?2:0;
- s.ap=s.party.length+bonus+Math.floor(Number($('nodes').value)/2);
+ s.ap=s.party.filter((_,i)=>s.hp[i]>0).length+bonus+Math.floor(Number($('nodes').value)/2);
  s.lastBreakBonus=bonus;s.breakRewardPending=false;
  s.breakRest=s.enemyBroken&&s.round<=s.breakUntilRound;
  if(s.enemyBroken&&!s.breakRest){s.enemyBP=ENEMY_BP_MAX;s.enemyBroken=false;}
@@ -651,7 +651,7 @@ function takeHit(grade=null){if(s.breakRest)return;const success=grade==='PERFEC
  let damage=Math.round(raw.hp*rate/Math.max(.05,1+mods.defense)*(1-reduction)*curse);
  const enemy=s.enemies[s.enemyIndex],chance=Math.max(0,(enemy.baseCrit||0)-(s.enemyEffects.plunder?.critReduction||0)),critical=chance>0&&Math.random()<chance;if(critical)damage=Math.round(damage*CRIT_MULTIPLIER);
  const absorbed=Math.min(b.shield||0,damage);b.shield-=absorbed;damage-=absorbed;const beforeHP=s.hp[s.active];s.hp[s.active]=Math.max(0,beforeHP-damage);floatDamage('ally',beforeHP-s.hp[s.active],s.enemyIndex,critical);
- const bp=(grade==='PERFECT'?0:grade==='GOOD'?10:raw.bp)*curse;hitAllyBP(bp);
+ const bp=(grade==='PERFECT'?5:grade==='GOOD'?10:raw.bp)*curse;hitAllyBP(bp);
  s.lastIncomingHit={pattern:s.pattern,grade,damage:beforeHP-s.hp[s.active],absorbed,bp,critical};
  log(patterns[s.pattern].name+(grade?' · '+grade:'')+(critical?' · CRITICAL':'')+' → '+activeMember().name+' · 피해 '+damageText(beforeHP-s.hp[s.active])+' · BP 피해 '+damageText(bp)+(absorbed?' · 보호막 흡수 '+damageText(absorbed):''),'enemy','마네킹');
  if(id==='doll'&&!b.dollTriggered&&s.hp[s.active]>0&&s.hp[s.active]<=3500){b.dollTriggered=true;b.shield=1395;b.shieldTurns=5;grantBuff('doll','earthPower',null,{attack:.2});log('대지의 힘 · 보호막 1395 / 공격력 +20%');}
@@ -762,7 +762,7 @@ function tagKind(m){return s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAs
 function tagCooldown(id,kind){return stateFor(id)[kind==='tag'?'tagAttackCT':'tagCT']||0;}
 function setTagCooldown(id,kind){const ref=skillReference[id],key=kind==='tag'?'tagAttackCT':'tagCT';stateFor(id)[key]=ref?.[kind==='tag'?'tagAttackCT':kind==='tagSpecial'?'tagSpecialCT':'tagDefenseCT']||0;}
 function tag(index){if(s.enemyTransition)return;
- if(allyBroken()&&index!==s.active&&index>=0&&index<s.party.length&&allyCanAct(index)&&s.running&&!s.paused&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime){clearAllyCommands();closeChain(activeMember().id);s.active=index;s.canAct=s.phase==='ENGAGE';clearPose();playSfx('swapOnly');pulse('ally','survivor-arrival');s.tagFxTime=900;s.busy=900;s.allyBreakWait=0;log(activeMember().name+' BREAK 교대 · 자동 공격 없음','system');render();return;}
+ if(allyBroken()&&s.ap>=1&&index!==s.active&&index>=0&&index<s.party.length&&allyCanAct(index)&&s.running&&!s.paused&&!s.deathTransition&&!s.domainVisual&&!s.ultimateMovie&&!s.ultimateImpact&&!s.apClearing&&!s.busy&&!s.poseTime&&!s.enemyTime){clearAllyCommands();closeChain(activeMember().id);s.ap-=1;s.active=index;s.canAct=s.phase==='ENGAGE';clearPose();playSfx('swapOnly');pulse('ally','survivor-arrival');s.tagFxTime=900;s.busy=900;s.allyBreakWait=0;log(activeMember().name+' BREAK 교대 · AP 1 소모 · 자동 공격 없음','system');render();return;}
  if(index>=0&&index<s.party.length&&!allyCanAct(index))return;if(mobileBlocked)return;if(s.paused||s.ultimateMovie||s.ultimateImpact)return;
  if(s.deathTransition||s.domainVisual||s.charging||!s.running||['INTRO','READY','LOADING','BGM_WAIT','BGM_PAINT'].includes(s.phase)||s.apClearing||s.busy||s.poseTime||s.enemyTime||s.commands.length||index<0||index>=s.party.length||s.hp[index]<=0||(s.phase==='ACTION'&&s.pattern==='counter')||(s.phase==='ENGAGE'&&!s.canAct)||s.ap<1)return;
  const m=roster[s.party[index]],special=s.phase==='ACTION'&&s.pattern==='assault'&&m.blocksAssault,defense=s.phase==='ACTION'&&s.pattern==='unavoidable'&&m.tagDefense,same=index===s.active;
