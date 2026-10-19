@@ -676,3 +676,10 @@ html,body{background:#eef1f5;color:#18202a;font-family:'Pretendard','Apple SD Go
 
 /* V148: recovery stays above portraits; skill CT stays inside their lower edge. */
 .ally-break-label{left:50%;bottom:calc(100% + 14px);transform:translateX(-50%);width:140px;max-width:140px;text-align:center;line-height:18px;padding:3px 2px;pointer-events:none}
+
+/* V149: stable composition during domain cut-ins and sprite swaps. */
+.result-actions{display:flex;align-items:center;justify-content:center;gap:18px}
+.domain-cut-in{will-change:opacity,transform}
+.domain-cut-in img{filter:none}
+.domain-locked .domain-cut-in.domain-exit{animation-play-state:running!important}
+.ally{transition-property:opacity}

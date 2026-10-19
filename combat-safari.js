@@ -106,8 +106,8 @@ function drawMayoiGem(){const b=stateFor('mayoi');
  else{const choices=Object.keys(gemNames).filter(k=>!b.gemCycle.includes(k)),gem=choices[Math.floor(Math.random()*choices.length)];b.gemCycle.push(gem);b.gemBuffs[gem]=1;log('마요이 · '+gemNames[gem]+' 획득');}
 }
 function gemModifiers(){const b=stateFor('mayoi'),all=b.diamondTurns>0;return {attack:all||b.gemBuffs.ruby>0?.2:0,crit:all||b.gemBuffs.topaz>0?.1:0,strike:all||b.gemBuffs.emerald>0?.2:0};}
-function mayoiGemIcon(){const b=stateFor('mayoi'),diamond=b.diamondTurns>0,has=k=>diamond||b.gemBuffs[k]>0,label=diamond?'다이아몬드':b.gemCycle.map(k=>gemNames[k]).join(', ')||'보석 없음';
- return `<span class="mayoi-gems ${diamond?'diamond':''}" role="img" aria-label="${label}" title="수집: ${label} · 밝은 보석만 현재 버프 활성"><svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="gem-r" x2=".6" y2="1"><stop stop-color="#fff2db"/><stop offset=".48" stop-color="#ff81a8"/><stop offset="1" stop-color="#a72969"/></linearGradient><linearGradient id="gem-t" x2=".7" y2="1"><stop stop-color="#ffffdd"/><stop offset=".5" stop-color="#f9e96f"/><stop offset="1" stop-color="#b9972a"/></linearGradient><linearGradient id="gem-e" x2=".5" y2="1"><stop stop-color="#ecfff1"/><stop offset=".5" stop-color="#71e7aa"/><stop offset="1" stop-color="#238b66"/></linearGradient><linearGradient id="gem-d" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#a5f1ff"/><stop offset=".65" stop-color="#eec5ff"/><stop offset="1" stop-color="#fffdd0"/></linearGradient></defs><circle cx="40" cy="40" r="38" fill="#111316" stroke="#272a2c" stroke-width="3"/><path d="M19 54A26 26 0 0 1 31 15M49 15A26 26 0 0 1 61 54M23 64L19 56M57 64L61 56" fill="none" stroke="#686966" stroke-width="3"/><path class="gem-leaf" d="M10 34L32 39L36 54L23 52Z" fill="${has('ruby')?'url(#'+(diamond?'gem-d':'gem-r')+')':'#3c4143'}"/><path class="gem-leaf" d="M40 10L48 36L40 49L32 36Z" fill="${has('topaz')?'url(#'+(diamond?'gem-d':'gem-t')+')':'#3c4143'}"/><path class="gem-leaf" d="M70 34L48 39L44 54L57 52Z" fill="${has('emerald')?'url(#'+(diamond?'gem-d':'gem-e')+')':'#3c4143'}"/><path d="M40 55L46 60L40 68L34 60Z" fill="${diamond?'#f5ffff':'#536062'}"/></svg></span>`;
+function mayoiGemIcon(){const b=stateFor('mayoi'),diamond=b.diamondTurns>0,has=k=>diamond||b.gemCycle.includes(k),label=diamond?'다이아몬드':b.gemCycle.map(k=>gemNames[k]).join(', ')||'보석 없음';
+ return `<span class="mayoi-gems ${diamond?'diamond':''}" role="img" aria-label="${label}" title="수집: ${label} · 수집 진행 표시 · 버프 지속 시간은 아군 효과에서 확인"><svg viewBox="0 0 80 80" aria-hidden="true"><defs><linearGradient id="gem-r" x2=".6" y2="1"><stop stop-color="#fff2db"/><stop offset=".48" stop-color="#ff81a8"/><stop offset="1" stop-color="#a72969"/></linearGradient><linearGradient id="gem-t" x2=".7" y2="1"><stop stop-color="#ffffdd"/><stop offset=".5" stop-color="#f9e96f"/><stop offset="1" stop-color="#b9972a"/></linearGradient><linearGradient id="gem-e" x2=".5" y2="1"><stop stop-color="#ecfff1"/><stop offset=".5" stop-color="#71e7aa"/><stop offset="1" stop-color="#238b66"/></linearGradient><linearGradient id="gem-d" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".3" stop-color="#a5f1ff"/><stop offset=".65" stop-color="#eec5ff"/><stop offset="1" stop-color="#fffdd0"/></linearGradient></defs><circle cx="40" cy="40" r="38" fill="#111316" stroke="#272a2c" stroke-width="3"/><path d="M19 54A26 26 0 0 1 31 15M49 15A26 26 0 0 1 61 54M23 64L19 56M57 64L61 56" fill="none" stroke="#686966" stroke-width="3"/><path class="gem-leaf" d="M10 34L32 39L36 54L23 52Z" fill="${has('ruby')?'url(#'+(diamond?'gem-d':'gem-r')+')':'#3c4143'}"/><path class="gem-leaf" d="M40 10L48 36L40 49L32 36Z" fill="${has('topaz')?'url(#'+(diamond?'gem-d':'gem-t')+')':'#3c4143'}"/><path class="gem-leaf" d="M70 34L48 39L44 54L57 52Z" fill="${has('emerald')?'url(#'+(diamond?'gem-d':'gem-e')+')':'#3c4143'}"/><path d="M40 55L46 60L40 68L34 60Z" fill="${diamond?'#f5ffff':'#536062'}"/></svg></span>`;
 }
 
 // V147 sandbox values: not an official CBT damage formula.
@@ -120,7 +120,7 @@ function rollDamage(id,base,kind='proc'){const m=actorModifiers(id),critical=bas
 function attackAction(id,kind,level=1,stage=1){if(kind==='attack'||kind==='tag'||kind==='tagSpecial')return true;if(kind==='ultimate')return (skillReference[id]?.ultimateCoefficient||0)>0;const c=skillReference[id]?.coefficients[stage-1];return kind==='skill'&&(Array.isArray(c)?c[level-1]:c)>0;}
 function clearAllyCommands(){cancelCharge();s.commands=[];s.commandCosts=[];s.skillLevels=[];s.skillSounds=[];s.autoAttackAfterParry=false;}
 function hitAllyBP(amount){const id=activeMember().id,b=stateFor(id);if(s.hp[s.active]<=0||allyBroken(id))return;b.bp=Math.max(0,b.bp-amount);if(b.bp>0)return;b.bp=ALLY_BP_MAX;b.breakUntil=s.round+1;clearAllyCommands();s.allyBreakFx=1000;playSfx('break');pulse('scene','break-impact');pulse('ally-break-banner','break-pop');log(activeMember().name+' BREAK · BP 전체 회복 / '+(b.breakUntil+1)+'R ACTION부터 행동 가능','system');}
-function partyBars(index){const b=stateFor(roster[s.party[index]].id),broken=allyBroken(roster[s.party[index]].id);return `<span class="ally-hp" title="HP ${damageText(s.hp[index])}/5000 · 보호막 ${damageText(b.shield)}"><i style="width:${s.hp[index]/50}%"></i><em class="ally-shield" style="width:${Math.min(100,b.shield/50)}%" ${b.shield>0?'':'hidden'}></em></span><span class="ally-bp" title="BP ${damageText(b.bp)}/100"><i style="width:${b.bp}%"></i></span>${broken?`<span class="ally-break-label">BREAK · ${b.breakUntil+1}R 복귀</span>`:''}`;}
+function partyBars(index){const b=stateFor(roster[s.party[index]].id),broken=allyBroken(roster[s.party[index]].id);return `<span class="ally-hp" title="HP ${damageText(s.hp[index])}/5000 · 보호막 ${damageText(b.shield)}"><i style="width:${s.hp[index]/50}%"></i><em class="ally-shield" style="width:${Math.min(100,b.shield/50)}%" ${b.shield>0?'':'hidden'}></em></span><span class="ally-bp" title="BP ${broken?'BREAK · 복귀 시 100':damageText(b.bp)+'/100'}"><i style="width:${broken?0:b.bp}%"></i></span>${broken?`<span class="ally-break-label">BREAK · ${b.breakUntil+1}R 복귀</span>`:''}`;}
 const domainRules={ren:['skill',6,250],shion:['skill',4,250],liria:['skill',6,250],nono:['skill',3,250],luna:['skill',6,250],mai:['skill',12,250],souka:['skill',4,250],haru:['skill',4,250],moa:['skill',6,250],anna:['skill',9,250],canon:['skill',6,275],koyomi:['ultimate',2,250],sigrid:['skill',4,250],akina:['skill',10,250],doll:['ultimate',2,250],mayoi:['skill',8,250],erin:['skill',9,250],chikage:['skill',3,250]};
 function grantBuff(id,key,turns,mods){stateFor(id).buffs[key]={turns,...mods};}
 function actorModifiers(id){const b=stateFor(id),total={attack:0,strike:0,crit:0,skillDamage:0,ultimateDamage:0,defense:0};for(const buff of Object.values(b.buffs||{}))for(const k of Object.keys(total))total[k]+=buff[k]||0;if(id==='mayoi'){const g=gemModifiers();for(const k of Object.keys(g))total[k]+=g[k];}if(id==='nono')total.defense+=.198;if(id==='liria')total.attack+=.075*Math.min(3,Math.floor(b.chainConsumed/20));if(id==='haru')total.attack+=.05*Math.min(5,1+Math.floor((s.round-1)/10));return total;}
@@ -129,7 +129,7 @@ const DOMAIN_WINDOW_ROUNDS=3;
 const domainImages={"nono": "assets/combat/domains/18_nono_domain.png", "liria": "assets/combat/domains/17_liria_domain.png", "canon": "assets/combat/domains/12_canon_domain.png", "anna": "assets/combat/domains/02_anna_domain.png", "koyomi": "assets/combat/domains/03_koyomi_domain.png", "ren": "assets/combat/domains/15_ren_domain.png", "doll": "assets/combat/domains/06_doll_domain.png", "moa": "assets/combat/domains/01_moa_domain.png", "chikage": "assets/combat/domains/11_chikage_domain.png", "akina": "assets/combat/domains/05_akina_domain.png", "haru": "assets/combat/domains/14_haru_domain.png", "souka": "assets/combat/domains/13_souka_domain.png", "luna": "assets/combat/domains/08_luna_domain.png", "shion": "assets/combat/domains/16_shion_domain.png", "mai": "assets/combat/domains/10_mai_domain.png", "erin": "assets/combat/domains/09_erin_domain.png", "mayoi": "assets/combat/domains/07_mayoi_domain.png", "sigrid": "assets/combat/domains/04_sigrid_domain.png"};
 const domainImageOffsets={"moa": -4.880295, "anna": -5.128205, "koyomi": -5.165692, "sigrid": -4.586331, "akina": -5.060034, "doll": -3.256303, "mayoi": -4.666667, "luna": -4.856115, "erin": -5.089286, "mai": -3.752535, "chikage": -4.503676, "canon": -5.225225, "souka": -4.771372, "haru": -3.340292, "ren": -3.726708, "shion": -4.33925, "liria": -5.188679, "nono": -7.428571};
 const DOMAIN_FADE_IN=300,DOMAIN_HOLD=450,DOMAIN_FADE_OUT=300;
-function startDomainVisual(id){if(s.domainVisual){s.domainVisualQueue.push(id);return;}s.domainVisual={id,elapsed:0,impacted:false};const image=$('domain-cut-in-image');image.src=domainImages[id];image.style.transform='translateY('+(domainImageOffsets[id]||0)+'%)';image.alt=metadata[id].name+' 영지 선언';$('domain-cut-in').classList.remove('domain-exit');$('domain-cut-in').hidden=false;$('domain-cut-in').style.opacity='0';$('scene').classList.remove('domain-impact');}
+function startDomainVisual(id){if(s.domainVisual){s.domainVisualQueue.push(id);return;}s.domainVisual={id,elapsed:0,impacted:false,counterState:s.phase==='ACTION'&&s.pattern==='counter'?{elapsed:s.elapsed,duration:s.duration,counterDuration:s.counterDuration,safeStart:s.safeStart,safeEnd:s.safeEnd,purpleStart:s.purpleStart,purpleEnd:s.purpleEnd}:null};const image=$('domain-cut-in-image');image.src=domainImages[id];image.style.transform='translateY('+(domainImageOffsets[id]||0)+'%)';image.alt=metadata[id].name+' 영지 선언';$('domain-cut-in').classList.remove('domain-exit');$('domain-cut-in').hidden=false;$('domain-cut-in').style.opacity='0';$('scene').classList.remove('domain-impact');}
 function playDomainAudio(id){
  const v=s.domainVisual,token=audioSession;
  const valid=()=>token===audioSession&&s.domainVisual===v;
@@ -142,7 +142,7 @@ function tickDomainVisual(dt){const v=s.domainVisual;if(!v)return;v.elapsed+=dt;
  else if(v.impacted)v.exitElapsed+=dt;
  if(v.impacted&&v.exitElapsed>=280)$('domain-cut-in').hidden=true;
  if(!v.startDone)$('domain-cut-in').style.opacity=String(Math.min(1,v.elapsed/DOMAIN_FADE_IN));
- if(v.startDone&&v.voiceDone&&v.exitElapsed>=280){s.domainVisual=null;$('domain-cut-in').hidden=true;$('battle').classList.remove('domain-locked');}
+ if(v.startDone&&v.voiceDone&&v.exitElapsed>=280){if(v.counterState){Object.assign(s,v.counterState);s.phase='ACTION';s.pattern='counter';s.canAct=false;s.advance=0;}s.domainVisual=null;$('domain-cut-in').hidden=true;$('battle').classList.remove('domain-locked');}
 }
 function clearDomainVisual(){$('domain-cut-in').classList.remove('domain-exit');if(s){s.domainVisual=null;s.domainVisualQueue=[];}$('domain-cut-in').hidden=true;$('battle').classList.remove('domain-locked');$('scene').classList.remove('domain-impact');}
 
@@ -286,7 +286,7 @@ function tickHitVisual(dt){
  if(f.ranged)$('projectile-fx').classList.remove('flying');showHitEffect(f);pulseBatch([...(f.comboIndex>0?[['ally','strike']]:[]),['enemy','hurt']]);}
 }
 
-function resolveHit(kind,level=1,stage=1){const damageQueueStart=(s.damageNumbers||[]).length;
+function resolveHit(kind,level=1,stage=1){if(activeMember().id==='doll'&&kind==='ultimate'){const used=consumeEffect('guard');if(used)log('인형 궁극기 · 가드 1단계 감소 후 피해 적용');}const damageQueueStart=(s.damageNumbers||[]).length;
  const area=isAreaAttack(activeMember().id,kind,level),{coefficient,damage,critical}=directDamage(kind,level,stage);
  s.lastResolvedHit={character:activeMember().id,kind,stage,chargeLevel:level,coefficient,damage,critical};
  if(damage>0){const label=kind==='skill'?'전투 스킬 '+stage+'단'+(battleRules[activeMember().id]?.chargeMs?' · 차지 '+level+'단계':''):(kind==='tag'||kind==='tagAttack')?'교체 자동 공격 · 태그 어택':kind==='tagSpecial'?'태그 스페셜':kind==='attack'&&s.parryFollowHit?'패링 후 일반 공격 자동 연계':skills[kind]?.name||kind;dealEnemyDamage(damage,label,activeMember().name,200,critical);hitBreak(kind==='tagSpecial'?'tag':kind);scheduleHitVisual(kind,level);consumeMagicChain();}
@@ -308,7 +308,7 @@ addEventListener('resize',resize);window.visualViewport?.addEventListener('resiz
 function log(msg,side='ally',actor){const labels={ally:'아군 행동',enemy:'적 행동',effect:'효과 변화',system:'진행'};const who=actor||(side==='ally'?activeMember().name:side==='enemy'?'마네킹':'');const t=`${s.round}R ${s.phase} · ${msg}`;history.unshift({round:s.round,phase:s.phase,msg,side,who});history.length=Math.min(history.length,120);if(side!=='effect')setText('status',t);$('log').replaceChildren(...history.flatMap((item,index)=>{const group=[];if(index===0||history[index-1].round!==item.round){const divider=document.createElement('li');divider.className='round-divider';divider.setAttribute('aria-label',item.round+'라운드');const badge=document.createElement('span');badge.textContent=item.round+'R';divider.replaceChildren(badge);group.push(divider);}const el=document.createElement('li');el.className='log-entry side-'+item.side;const meta=document.createElement('div');meta.className='log-meta';const badge=document.createElement('span');badge.className='log-badge side-'+item.side;badge.textContent=labels[item.side];const stamp=document.createElement('span');stamp.textContent=item.round+'R '+item.phase+(item.who?' · '+item.who:'');meta.replaceChildren(badge,stamp);const body=document.createElement('div');body.className='log-message';body.textContent=item.msg;el.replaceChildren(meta,body);return [...group,el];}));}
 const allyEffectNames={berserk:'광전사의 혈통',domainEcho:'영지 추가 공격',liriaSkill:'전투 스킬 피해 증가',nonoCrit:'치명타 확률 증가',nonoUltimate:'궁극기 피해 증가',champion:'챔피언',timeStrike:'타격 강화',noticePower:'예고장 타격 강화',plunderCrit:'강탈 · 치명타 확률 +15%p',insight:'통찰',coolReason:'냉철한 이성',knighthood:'기사도',cherryCrit:'벚꽃 치명타 강화',tagGuard:'태그 디펜스',earthPower:'대지의 힘'};
 function effectDuration(turns){if(Array.isArray(turns)){const n=[...turns].sort((a,b)=>a-b);return n.length?'중첩별 '+n.map(t=>t+'R').join(' · '):'종료';}return turns==null?'라운드 제한 없음':turns+'R 남음';}
-function collectEffectRows(){const rows=[];for(const enemy of s.enemies){if(enemy.hp<=0)continue;for(const [id,e] of Object.entries(enemy.effects)){if(!e.stacks)continue;rows.push({key:'enemy:'+enemy.index+':'+id,side:'enemy',target:enemyName(enemy.index),name:enemyEffectNames[id]||id,type:id==='guard'?'버프':['cherry','notice','chain','spear'].includes(id)?'표식':'디버프',count:e.stacks,detail:id==='plunder'?'치명타 확률 -15%p':id==='fracture'?'방어력 감소 수치 보관 · 방어 공식 미적용':'',duration:effectDuration(e.turns)});}}
+function collectEffectRows(){const rows=[];for(const enemy of s.enemies){if(enemy.hp<=0)continue;for(const [id,e] of Object.entries(enemy.effects)){if(!e.stacks)continue;rows.push({key:'enemy:'+enemy.index+':'+id,side:'enemy',target:enemyName(enemy.index),name:enemyEffectNames[id]||id,type:id==='guard'?'버프':['cherry','notice','chain','spear'].includes(id)?'표식':'디버프',count:e.stacks,detail:id==='plunder'?'치명타 확률 -15%p':id==='fracture'?'방어력 감소 '+e.stacks+'% · 피해 계산 미반영':'',duration:effectDuration(e.turns)});}}
  const modNames={attack:'공격력',strike:'타격',crit:'치명타 확률',skillDamage:'전투 스킬 피해',ultimateDamage:'궁극기 피해',defense:'방어력',damageReduction:'받는 피해 감소'};
  for(const n of s.party){const m=roster[n],b=stateFor(m.id);for(const [key,v] of Object.entries(b.buffs||{})){const mods=Object.entries(modNames).filter(([k])=>v[k]).map(([k,label])=>label+' '+(v[k]>0?'+':'')+Number((v[k]*100).toFixed(1))+'%');if(v.echo)mods.push('조건 충족 시 추가 공격');rows.push({key:m.id+':'+key,side:'ally',target:m.name,name:allyEffectNames[key]||key,type:Object.keys(modNames).some(k=>v[k]<0)?'디버프':'버프',count:1,detail:mods.join(' · '),duration:effectDuration(v.turns)});}
  const resource=(key,name,count,max,detail='')=>rows.push({key:m.id+':resource:'+key,side:'ally',target:m.name,name,type:'고유 자원',count,detail:(max?'보유 '+count+' / '+max:'')+(detail?' · '+detail:''),duration:'라운드 제한 없음'});
@@ -326,7 +326,7 @@ function collectEffectRows(){const rows=[];for(const enemy of s.enemies){if(enem
  for(const [gem,turns] of Object.entries(b.gemBuffs||{}))if(turns>0)rows.push({key:m.id+':gem:'+gem,side:'ally',target:m.name,name:gemNames[gem]||gem,type:'버프',count:1,detail:{ruby:'공격력 +20%',topaz:'치명타 확률 +10%p',emerald:'타격력 +20%'}[gem],duration:effectDuration(turns)});
  if(b.diamondTurns>0)rows.push({key:m.id+':diamond',side:'ally',target:m.name,name:'다이아몬드',type:'버프',count:1,detail:'공격력 +20% · 치명타 확률 +10%p · 타격력 +20% · 궁극기 889.2%',duration:effectDuration(b.diamondTurns)});
  }
- if(s.magicChain?.turns.length)rows.push({key:'party:magicChain',side:'ally',target:'아군 공통',name:'마력 연쇄',type:'버프',count:s.magicChain.turns.length,detail:'',duration:effectDuration(s.magicChain.turns)});
+ if(s.magicChain?.turns.length)rows.push({key:'party:magicChain',side:'ally',target:'아군 공통',name:'마력 연쇄',type:'버프',count:s.magicChain.turns.length,detail:'현재 잔량 '+s.magicChain.turns.length+'/50 · 공격 적중 시 1 소모 · 누적 소모 '+stateFor('liria').chainConsumed+'회 · '+(stateFor('liria').chainConsumed>=60?'공격력 증가 최대':('다음 공격력 증가까지 '+(20-stateFor('liria').chainConsumed%20)+'회')),duration:effectDuration(s.magicChain.turns)});
  return rows;}
 function renderEffectLedger(){const rows=collectEffectRows(),signature=JSON.stringify(rows);if(s.effectLedgerSignature===signature)return;s.effectLedgerSignature=signature;
  const next={};for(const row of rows){const value=JSON.stringify([row.count,row.detail]);next[row.key]={value,row};const prev=s.effectLedgerPrevious?.[row.key];if(s.running&&(!prev||prev.value!==value))log(row.name+' · '+(prev?'변경':'부여')+' · '+row.count+'중첩 · '+row.duration+(row.detail?' · '+row.detail:''),'effect',(row.side==='enemy'?'적 · ':'아군 · ')+row.target);}
@@ -339,7 +339,9 @@ function pulse(id,cls){$(id).classList.remove(cls);void $(id).offsetWidth;$(id).
 function activeMember(){const rosterIndex=s?.party?.length?s.party[s.active]:(selected[0]??0);return roster[rosterIndex]||roster[0];}
 function visualFor(m){return characterAssets[m?.id]||characterAssets.canon;}
 function setAllyCharacter(){const m=activeMember();$('ally').dataset.character=m?.id||'canon';}
-function setVisualSource(el,src){if(el.dataset.visualSrc!==src){el.dataset.visualSrc=src;el.src=src;}}
+function setVisualSource(el,src){if(el.dataset.visualSrc===src)return;el.dataset.visualSrc=src;
+ if(el===$('ally')&&typeof el.decode==='function'){el.style.visibility='hidden';el.src=src;const show=()=>{if(el.dataset.visualSrc===src)el.style.visibility='';};el.decode().then(show,()=>{if(el.dataset.visualSrc===src){if(el.complete)show();else el.onload=show;}});}
+ else el.src=src;}
 const warmVisuals=new Map();
 let sceneReady=true,sceneLoadToken=0;
 const sceneImages=new Map();
@@ -352,7 +354,7 @@ function decodeSceneImage(src){
  });sceneImages.set(src,{image,ready});return ready;
 }
 function prepareBattleScene(){const token=++sceneLoadToken;sceneReady=false;$('scene-load-retry').hidden=true;setText('scene-load-status','배경과 캐릭터를 준비하고 있습니다.');
- const urls=['assets/combat/battle-bg.png','assets/combat/enemy-dummy.png',...s.party.map(i=>visualFor(roster[i]).standing)];
+ const urls=['assets/combat/battle-bg.png','assets/combat/enemy-dummy.png',...s.party.flatMap(i=>{const v=visualFor(roster[i]);return [v.standing,v.attack,v.defense,domainImages[roster[i].id]].filter(Boolean);})];
  Promise.all(urls.map(decodeSceneImage)).then(()=>{if(token!==sceneLoadToken)return;sceneReady=true;setText('scene-load-status','전투 화면 준비 완료');}).catch(()=>{if(token!==sceneLoadToken)return;setText('scene-load-status','배경 또는 캐릭터를 불러오지 못했습니다. 다시 시도해주세요.');$('scene-load-retry').hidden=false;});
 }
 $('scene-load-retry').onclick=prepareBattleScene;
@@ -391,8 +393,8 @@ function addChain(count=1){for(let i=0;i<count;i++){addEffect('chain',1,4,3);if(
 
 function procDamage(id,coefficient,reason){const hit=rollDamage(id,coefficient/100);dealEnemyDamage(hit.damage,reason,metadata[id]?.name||id,200,hit.critical);s.lastBonusHit={character:id,coefficient,...hit,reason};}
 
-function addMagicChain(count){if(!s.magicChain)s.magicChain={turns:[]};for(let i=0;i<count;i++){if(s.magicChain.turns.length>=50)s.magicChain.turns.shift();s.magicChain.turns.push(4);}}
-function consumeMagicChain(){if(!s.magicChain?.turns.length)return;procDamage('liria',100,'마력 연쇄');s.magicChain.turns.shift();stateFor('liria').chainConsumed++;if(!s.magicChain.turns.length)s.magicChain=null;}
+function addMagicChain(count){log('마력 연쇄 +'+count+' 부여');if(!s.magicChain)s.magicChain={turns:[]};for(let i=0;i<count;i++){if(s.magicChain.turns.length>=50)s.magicChain.turns.shift();s.magicChain.turns.push(4);}}
+function consumeMagicChain(){if(!s.magicChain?.turns.length)return;procDamage('liria',100,'마력 연쇄');s.magicChain.turns.shift();stateFor('liria').chainConsumed++;log('마력 연쇄 −1 소모 · 남은 '+s.magicChain.turns.length+'/50 · 누적 '+stateFor('liria').chainConsumed+'회');if(!s.magicChain.turns.length)s.magicChain=null;}
 function applyHitEffects(kind,level,stage){
  const id=activeMember().id,e=s.enemyEffects;
  if(id==='ren'&&kind==='skill'){addEffect('curse',1,99);const b=battleState(),target=s.targetIndex??s.enemyIndex;b.curseByEnemy[target]=(b.curseByEnemy[target]||0)+1;if(b.curseByEnemy[target]>=7){b.curseByEnemy[target]-=7;procDamage(id,595.2,'마검의 계약');}b.curseApplied=b.curseByEnemy[target];}
@@ -417,7 +419,7 @@ function applyHitEffects(kind,level,stage){
  if(id==='mayoi'&&kind==='skill'){if(stage===1)drawMayoiGem();else if(stage===2&&stateFor('mayoi').diamondTurns>0){addChain();}}
  if(id==='moa'){
   if(kind==='tag'){addEffect('notice',1,1,6);grantBuff('moa','noticePower',1,{strike:.201});}
-  if((kind==='skill'&&stage===2)||kind==='tagSpecial'){const used=consumeEffect('fracture');if(used){dealEnemyDamage(5,'파쇄 1중첩 소모 · 추가 피해 500%',activeMember().name,480);}}
+  if((kind==='skill'&&stage===2)||kind==='tagSpecial'){const used=consumeEffect('fracture');if(used&&kind==='skill'){dealEnemyDamage(5,'파쇄 1중첩 소모 · 추가 피해 500%',activeMember().name,480);}}
   if(kind==='ultimate'){if(e.notice){addEffect('plunder',1,1,7);e.plunder.critReduction=.15;grantBuff('moa','plunderCrit',7,{crit:.15});}delete e.notice;}
  }
  if(id==='koyomi'&&kind==='skill'&&stage===1)addEffect('fracture',1,5,5);
@@ -436,7 +438,7 @@ function applyHitEffects(kind,level,stage){
   if(kind==='ultimate')for(const i of s.party){const target=roster[i].id;grantShield(target,.534,4);grantBuff(target,'coolReason',4,{defense:.12});}
  }
 
- if(id==='doll'&&kind==='ultimate'){addEffect('curse',2,99);consumeEffect('guard');}
+ if(id==='doll'&&kind==='ultimate'){addEffect('curse',2,99);}
 
  if(id==='anna'&&kind==='ultimate')grantBuff('anna','knighthood',2,{skillDamage:.356});
  if(id==='anna'&&(kind==='ultimate'||(kind==='skill'&&stage===3))){
@@ -747,7 +749,7 @@ function execute(kind,chargeLevel=1,chargeSoundPlayed=false,movieFinished=false)
  if(id==='nono'&&(kind==='skill'||kind==='ultimate')){s.nonoBuffLevel=kind==='ultimate'?2:chargeLevel;s.nonoBuffTime=1200;s.poseTime=1200;syncActiveVisual();playSfx(s.nonoBuffLevel===2?'nonoBuff2':'nonoBuff1');}
  if(id!=='nono'&&!chargeSoundPlayed&&(shielding||resourceOnly)&&kind==='skill'&&chargeLevel===2)playSfx(attackSound(id).replace('Attack','Charge'));
  if(shielding){s.specialVisual='chikage-defense';syncActiveVisual();pulse('ally','shield-cast');}else if(!recharge&&!resourceOnly&&!(kind==='ultimate'&&id!=='chikage')){if(!chargeSoundPlayed)playSfx(kind==='skill'&&chargeLevel===2?attackSound(id).replace('Attack','Charge'):attackSound(id));pose('attack',attackMotionMs);pulse('ally','strike');}
- if(s.phase==='ACTION'&&!recharge&&!shielding&&attackAction(id,kind,chargeLevel,stage))engage(true,s.breakRest?'BREAK · 아군 행동 시작':'일반 공격 저지');
+ if(s.phase==='ACTION'&&(s.pattern==='normal'||s.breakRest)&&!recharge&&!shielding&&attackAction(id,kind,chargeLevel,stage))engage(true,s.breakRest?'BREAK · 아군 행동 시작':'일반 공격 저지');
  else if(s.phase==='ACTION'&&s.breakRest)engage(true,'BREAK · 아군 충전 행동');else log(recharge?'즉석 충전':shielding?'보호막 부여':d.name);
  if(!s.enemyHP)s.victoryPending=true;s.busy=Math.max(600,attackMotionMs);s.advance=ENGAGE_WAIT_MS;render();
 }
@@ -831,12 +833,12 @@ function resumeBattle(){BattleAudio.unlock().catch(()=>showAudioGate('소리를 
 function tick(now){if(mobileBlocked||document.hidden){last=now;if(s.running||s.victorySequence)raf=requestAnimationFrame(tick);return;}if(s.phase==='LOADING'&&(!audioPrepared||!effectsReady||!sceneReady)){last=now;raf=requestAnimationFrame(tick);return;}if(s?.victorySequence){const dt=Math.min(Math.max(0,now-last),80);last=now;tickVictory(document.hidden?0:dt);if(s.victorySequence.stage!=='complete')raf=requestAnimationFrame(tick);return;}if(!s.running||s.paused)return;const dt=document.hidden?0:Math.min(now-last,80);last=now;
  if(s.ultimateImpact){tickUltimateImpact(dt);if(s.running)raf=requestAnimationFrame(tick);return;}
  if(s.ultimateMovie){raf=requestAnimationFrame(tick);return;}
- if(s.domainVisual){tickDomainVisual(dt);render();if(s.running)raf=requestAnimationFrame(tick);return;}
+ if(s.domainVisual){tickDomainVisual(dt);if(!s.domainVisual)render();if(s.running)raf=requestAnimationFrame(tick);return;}
  if(s.enemyTransition){tickEnemyReplacement(dt);render();if(s.running)raf=requestAnimationFrame(tick);return;}
  tickDamageNumbers(dt);
  if(s.deathTransition){tickDeathTransition(dt);render();if(s.running)raf=requestAnimationFrame(tick);return;}
  tickSfx(dt);
- if(s.domainVisual){tickDomainVisual(dt);render();if(s.running)raf=requestAnimationFrame(tick);return;}
+ if(s.domainVisual){tickDomainVisual(dt);if(!s.domainVisual)render();if(s.running)raf=requestAnimationFrame(tick);return;}
  tickHitVisual(dt);
  if(s.phase==='LOADING'){s.loadingTime=Math.max(0,s.loadingTime-dt);$('loading-progress').style.width=(650-s.loadingTime)/650*100+'%';if(s.loadingTime===0){s.phase='BGM_PAINT';showScreen('battle');render();}raf=requestAnimationFrame(tick);return;}
  if(s.phase==='BGM_PAINT'){s.phase='BGM_WAIT';s.loadingTime=TRIAL_DELAY_MS;startBattleAudio();render();raf=requestAnimationFrame(tick);return;}
@@ -907,7 +909,7 @@ if(!window.PointerEvent){
 }
 addEventListener('blur',()=>{if(s.running)pauseBattle();});
 addEventListener('keyup',e=>{if(e.code==='KeyW')releaseCharge();});
-$('counter-button').onclick=counter;$('start').onclick=start;$('reset').onclick=reset;$('restart').onclick=start;$('end').onclick=()=>{if(!$('end').disabled)next();};
+$('counter-button').onclick=counter;$('start').onclick=start;$('reset').onclick=reset;$('restart').onclick=start;$('result-reform').onclick=()=>{$('reform-party').onclick();};$('end').onclick=()=>{if(!$('end').disabled)next();};
 $('reform-party').onclick=()=>{const party=[...s.party];reset();selected=party;s.party=[...party];formation();render();};$('pause-restart').onclick=()=>{const party=[...s.party];reset();selected=party;start();};$('pause-button').onclick=pauseBattle;$('resume').onclick=resumeBattle;
 addEventListener('keydown',e=>{if(s.paused){if(e.code==='Escape'){e.preventDefault();if(!$('party-skills-panel').hidden)closePartySkills();else resumeBattle();}return;}if(e.repeat||/INPUT|SELECT|TEXTAREA|SUMMARY/.test(document.activeElement.tagName))return;if(e.code==='KeyW'&&chargeAvailable()){e.preventDefault();beginCharge();return;}const map={KeyQ:'attack',KeyW:'skill',KeyE:'ultimate',Space:'counter-button',Enter:'end'};if(map[e.code]){e.preventDefault();$(map[e.code]).click();}if(/^Digit[1-4]$/.test(e.code))tag(Number(e.code.slice(-1))-1);});
 for(const id of ['attack','skill','ultimate','counter-button'])$(id).addEventListener?.('animationend',e=>{if(e.target===$(id)&&e.animationName==='buttonUse')$(id).classList.remove('used');});
