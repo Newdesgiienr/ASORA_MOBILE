@@ -30,3 +30,7 @@
 #temp-controls{display:flex;align-items:center;gap:8px;margin-left:auto}#temp-controls[hidden]{display:none}
 .temp-toolbar{padding:9px 12px}.rules-toc{padding-bottom:8px}.rules-toc a{padding:8px 10px}
 @media(max-width:700px){.rules-intro{padding:19px 16px}.rules-intro>strong{font-size:16px}.rules-intro p{font-size:14px}.rules-section .combat-memo-description{font-size:14px;line-height:1.9}.rules-toc a{padding:7px 9px}#temp-controls{gap:5px}.temp-toolbar output{min-width:50px}.temp-toolbar button{padding:7px 9px}}
+
+.rules-intro .intro-highlight{background:linear-gradient(transparent 48%,#ffe5a0 48%);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:800}
+.rules-section .combat-memo-description>.temporary{margin:0 0 7px;vertical-align:top}
+.rules-section .rule-detail{margin:0}
