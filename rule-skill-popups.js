@@ -32,11 +32,11 @@
         add('p',section.text,content,'popup-definition');
       }
     }
-    if(entry.context){
+    if(entry.kind!=='term'&&entry.context){
       add('p','현재 시뮬레이터 적용 기준',content,'popup-label');
       add('p',entry.context,content,'popup-context');
     }
-    if(entry.temporary)add('p','[임시] 본문의 굵은 문장은 정식 출시 전 임의로 적용한 기준입니다.',content,'popup-temporary');
+    if(entry.kind!=='term'&&entry.temporary)add('p','[임시] 본문의 굵은 문장은 정식 출시 전 임의로 적용한 기준입니다.',content,'popup-temporary');
     function cards(items,boss){
       if(!items?.length)return;
       add('p',boss?'스코어 트라이얼 · 보스 기믹':'캐릭터 스킬 · 보존된 설명',content,'popup-label');
