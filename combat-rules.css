@@ -41,3 +41,6 @@
 @media(max-width:700px){.temp-toolbar>span{display:block;flex:1;min-width:180px;font-size:12px;line-height:1.6;word-break:keep-all}.rule-skill-popup{max-height:70vh;padding:13px}}
 
 .skill-ref-inline{font:inherit;font-weight:900;color:#1597bd;background:none;border:0;border-radius:3px;padding:0 1px;display:inline;vertical-align:baseline;white-space:nowrap}.skill-ref-inline:hover,.skill-ref-inline[aria-expanded=true]{background:#e8f6fb;color:#1597bd;border:0}
+
+
+.popup-boss-card{border-left:3px solid #987054;padding-left:12px;background:#faf7f2}.rule-skill-popup .popup-definition{white-space:pre-line}.popup-definition-heading{font-size:14px;margin:12px 0 4px}.popup-source-note{color:#6b7685;font-size:12px}

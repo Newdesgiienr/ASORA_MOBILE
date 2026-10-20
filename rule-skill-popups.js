@@ -25,16 +25,30 @@
     const entry=data[button.dataset.skillRef];if(!entry)return;
     if(active&&active!==button){active.setAttribute('aria-expanded','false');pinned=false;}
     active=button;button.setAttribute('aria-expanded','true');title.textContent=entry.title;content.replaceChildren();
-    add('p','현재 시뮬레이터 적용 기준',content,'popup-label');
-    add('p',entry.context,content,'popup-context');
-    if(entry.temporary)add('p','[임시] 본문에서 굵게 표시한 문장은 정식 출시 전 임의로 적용한 기준입니다.',content,'popup-temporary');
-    add('p','캐릭터 페이지의 연결 스킬 원문 · 실제 적용은 위 기준과 구분합니다.',content,'popup-label');
-    for(const card of entry.cards){
-      const article=add('article','',content,'popup-skill-card');
-      add('small',card.character+' · '+card.type,article);
-      add('h3',card.name,article);add('p',card.text,article);
-      const a=add('a','캐릭터 페이지에서 확인 ↗',article);a.href=card.href;a.target='_blank';a.rel='noopener';
+    if(entry.kind==='term'){
+      add('p','용어사전 · 정의 및 효과',content,'popup-label');
+      for(const section of entry.definitions||[]){
+        add('h3',section.label,content,'popup-definition-heading');
+        add('p',section.text,content,'popup-definition');
+      }
     }
+    if(entry.context){
+      add('p','현재 시뮬레이터 적용 기준',content,'popup-label');
+      add('p',entry.context,content,'popup-context');
+    }
+    if(entry.temporary)add('p','[임시] 본문의 굵은 문장은 정식 출시 전 임의로 적용한 기준입니다.',content,'popup-temporary');
+    function cards(items,boss){
+      if(!items?.length)return;
+      add('p',boss?'스코어 트라이얼 · 보스 기믹':'캐릭터 스킬 · 보존된 설명',content,'popup-label');
+      if(!boss)add('p','원문과 현재 시뮬레이터의 적용 기준을 구분합니다.',content,'popup-source-note');
+      for(const card of items){
+        const article=add('article','',content,boss?'popup-skill-card popup-boss-card':'popup-skill-card');
+        add('small',card.character+' · '+card.type,article);
+        add('h3',card.name,article);add('p',card.text,article);
+        const a=add('a',boss?'스코어 트라이얼에서 확인 ↗':'캐릭터 페이지에서 확인 ↗',article);a.href=card.href;a.target='_blank';a.rel='noopener';
+      }
+    }
+    cards(entry.cards,false);cards(entry.bosses,true);
     popup.hidden=false;place();
   }
   function delayedClose(){clearTimeout(timer);if(!pinned)timer=setTimeout(()=>close(),220);}
@@ -54,3 +68,4 @@
   window.addEventListener('resize',place);
   window.addEventListener('scroll',place,{passive:true});
 })();
+
