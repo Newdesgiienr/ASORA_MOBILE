@@ -130,6 +130,7 @@ if(c.id!=='souka')edge('souka',c.id,'AP 지원','buff','궁극기','AP를 사용
 
 const categoryNames={supply:'효과를 주고받는 캐릭터',buff:'버프로 돕는 캐릭터',compete:'함께 쓸 때 주의할 캐릭터',all:'전체 관계'};
 let mode='character',keyword='파쇄',focus='moa',category='all',selected='',sourceId='',sourceTab='skills';
+for(const c of DATA){if(c.id!=='shion')edge('shion',c.id,'US 포인트 지원','buff','궁극기 · 배틀 스킬 [1단] · 고유 능력','궁극기','궁극기·고유 능력으로 봉제인형을 충전한 뒤, 배틀 스킬 [1단]에서 모두 소모해 인형 1개당 아군 전체의 US 포인트를 100 충전합니다.','궁극기는 봉제인형 1개 충전. 고유 능력은 전투 시작 시 1개, 이후 3라운드마다 1개, 일반 스킬 3회마다 1개를 충전합니다. 고유 능력의 일반 스킬 사용 시 US +50은 아군 전체 지급으로 명시되지 않아 전체 지원량에 포함하지 않습니다. 이 연계는 스킬 설명 기준이며, 현재 전투 시뮬레이터는 US를 궁극기 사용 제한에서 제외합니다.');}
 const allKeywords=[...new Set(edges.map(e=>e.key))];
 const terms=JSON.parse(document.getElementById('term-data').textContent).terms;
 function categoryLabels(){return mode==='character'?{all:'전체',incoming:'효과 받기',outgoing:'효과 주기',compete:'자원 경쟁'}:{all:'전체',supply:'부여·활용',buff:'공통 지원',compete:'소모 경쟁'}}
@@ -145,6 +146,7 @@ if(e.key==='저주')return `${from}가 저주를 쌓아 하루의 10중첩 조�
 if(e.key==='연쇄')return `${from}의 연쇄 부여를 루나의 고유 추가 피해와 연결합니다.`;
 if(e.key==='마력 연쇄')return `리리아가 부여한 마력 연쇄를 ${to}의 직접 공격으로 소모해 추가 피해를 냅니다.`;
 if(e.key==='보호막')return `치카게의 파티 보호막·방어력 증가로 ${to}의 생존을 돕습니다.`;
+if(e.key==='US 포인트 지원')return `시온이 봉제인형을 소모해 ${to}의 궁극기에 필요한 US 포인트를 지원합니다.`;
 if(e.key==='AP 지원')return `소우카가 공용 AP를 회복해 ${to}의 다음 행동을 지원합니다.`;
 return `${from}의 [${e.key}] 버프로 ${to}의 적용 대상 공격을 강화합니다.`;}
 function choose(id){mode='character';focus=id;closePicker();selected='';category='all';render()}
@@ -268,6 +270,7 @@ render();
 
 
 </script></body></html>
+
 
 
 

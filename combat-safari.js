@@ -149,7 +149,7 @@ function clearDomainVisual(){$('domain-cut-in').classList.remove('domain-exit');
 function domainRemaining(id){const b=stateFor(id);return b.domainExpiresAt?Math.max(0,b.domainExpiresAt-s.round):0;}
 function recordDomain(kind){const id=activeMember().id,rule=domainRules[id],b=battleState();if(!rule||kind!==rule[0]||domainRemaining(id))return;if(++b.domainCount>=rule[1]){b.domainCount=0;b.domainExpiresAt=s.round+DOMAIN_WINDOW_ROUNDS;b.domainOffer=(b.domainOffer||0)+1;playSfx('domainReady');log(activeMember().name+' 영지 선언 가능 · 3R');}}
 function expireDomains(){for(const [id,b] of Object.entries(s.battleStates)){if(b.domainExpiresAt&&s.round>=b.domainExpiresAt){b.domainExpiresAt=0;b.domainCount=0;log(metadata[id].name+' 영지 선언 기한 만료');}}}
-function domainPatternAllowed(){return s.pattern!=='counter'||s.breakRest||(s.phase==='ENGAGE'&&s.counterSuccessRound===s.round);}
+function domainPatternAllowed(){if(s.breakRest)return true;if(s.phase==='ACTION'&&['counter','assault','unavoidable'].includes(s.pattern))return false;return s.pattern!=='counter'||(s.phase==='ENGAGE'&&s.counterSuccessRound===s.round);}
 function activateDomain(id){if(!domainPatternAllowed())return false;if(s.enemyTransition)return;if(mobileBlocked)return;if(s.domainVisual||s.busy||s.poseTime||s.enemyTime||s.paused||s.ultimateMovie||s.ultimateImpact)return false;const index=s.party.findIndex(n=>roster[n].id===id);if(s.deathTransition||!s.running||!['ACTION','ENGAGE'].includes(s.phase)||s.apClearing||s.charging||index<0||!allyCanAct(index)||!domainRemaining(id))return false;
  const b=stateFor(id),rule=domainRules[id];b.domainExpiresAt=0;b.domainCount=0;b.ct=0;b.ultCT=0;b.stage=id==='akina'&&b.fire===0?3:1;s.ap+=2;grantUS(id,rule[2]);if(id==='luna')grantBuff(id,'domainEcho',3,{echo:true});s.advance=ENGAGE_WAIT_MS;s.lastDomain={character:id,round:s.round};startDomainVisual(id);$('battle').classList.add('domain-locked');playDomainAudio(id);log(metadata[id].name+' 영지 선언 · CT 초기화 / AP +2 / US +'+rule[2]);render();return true;
 }
@@ -949,6 +949,7 @@ battleTouchRoot.addEventListener('click',e=>{
 for(const type of ['gesturestart','gesturechange','gestureend','dblclick'])battleTouchRoot.addEventListener(type,e=>{if(e.cancelable)e.preventDefault();},{passive:false});
 window.mobileAudioStatus=()=>({...BattleAudio.status(),prepared:audioPrepared,preparing:audioPreparing,blocked:mobileBlocked});window.combatSnapshot=()=>JSON.parse(JSON.stringify(s));reset();
 })();
+
 
 
 
