@@ -138,7 +138,7 @@ for(const c of DATA){
  if(c.id!=='chikage'){
  edge('chikage',c.id,'방어력 증가','buff','고유 능력','적에게 받는 피해','치카게가 궁극기를 사용하면 고유 능력으로 아군 전체의 방어력이 12% 증가합니다.','4라운드 유지. 보호막과 별도의 효과이며, 현재 시뮬레이터에서는 BP 피해에 방어력을 적용하지 않습니다.');
  edge('chikage',c.id,'받는 피해 감소','buff','태그 디펜스','적에게 받는 피해','태그 디펜스로 아군 전체의 받는 피해 감소율을 15% 증가시킵니다.','1라운드 유지. 마력 노드의 추가 효과는 포함하지 않습니다.');}
- if(c.id!=='luna')edge('luna',c.id,'영지 추가 피해','buff','영지 선언','일반 스킬 · 배틀 스킬 · 궁극기 등 스킬 사용','루나 영지 선언 후 아군이 스킬을 사용할 때마다 적 1인에게 루나 능력치 기준 200% 추가 피해가 발생합니다.','3라운드 유지. 행동한 아군의 스킬 계수를 올리는 효과가 아닙니다. 현재 시뮬레이터에서는 루나가 생존하고 BREAK 상태가 아닐 때 발동합니다.');
+ if(c.id!=='luna')edge('luna',c.id,'영지 선언 시 추가 피해','buff','영지 선언','일반 스킬 · 배틀 스킬 · 궁극기 등 스킬 사용','루나 영지 선언 후 아군이 스킬을 사용할 때마다 적 1인에게 루나 능력치 기준 200% 추가 피해가 발생합니다.','3라운드 유지. 행동한 아군의 스킬 계수를 올리는 효과가 아닙니다. 현재 시뮬레이터에서는 루나가 생존하고 BREAK 상태가 아닐 때 발동합니다.');
  if(c.id!=='akina')edge('akina',c.id,'AP 지원','buff','고유 능력','AP를 사용하는 행동','아키나 특제 드롭스 사용 시 고유 능력의 AP +1로 파티 공용 AP를 지원합니다.','고유 능력의 50% 확률은 전투 스킬 재사용 대기시간 초기화에 대한 조건입니다. AP는 대상마다 따로 지급하지 않습니다.');
  if(c.id!=='liria')edge(c.id,'liria','마력 연쇄 소모 누적','supply','마력 연쇄를 소모하는 직접 공격','고유 능력','아군의 공격으로 마력 연쇄를 소모하면 리리아 고유 능력의 누적 소모 조건을 돕습니다.','마력 연쇄 소모 20회마다 리리아 자신의 공격력 7.5% 증가, 최대 3중첩입니다. 단순 공격 횟수가 아니라 실제 소모 횟수를 기준으로 하며, 현재 시뮬레이터는 추가 피해의 재소모를 제외합니다.');
 }
@@ -160,7 +160,7 @@ if(e.key==='마력 연쇄')return `리리아가 부여한 마력 연쇄를 ${to}
 if(e.key==='보호막')return `치카게의 파티 보호막으로 ${to}의 생존을 돕습니다.`;
 if(e.key==='US 포인트 지원')return `시온이 봉제인형을 소모해 ${to}의 궁극기에 필요한 US 포인트를 지원합니다.`;
 if(e.key==='AP 지원')return `${from}가 공용 AP를 회복해 ${to}의 다음 행동을 지원합니다.`;
-if(['방어력 증가','받는 피해 감소','타격력 증가','영지 추가 피해','마력 연쇄 소모 누적'].includes(e.key))return e.description;
+if(['방어력 증가','받는 피해 감소','타격력 증가','영지 선언 시 추가 피해','마력 연쇄 소모 누적'].includes(e.key))return e.description;
 return `${from}의 [${e.key}] 버프로 ${to}의 적용 대상 공격을 강화합니다.`;}
 function choose(id){mode='character';focus=id;closePicker();selected='';category='all';render()}
 function render(){const base=BY[focus];$('#modeTitle').setAttribute('aria-label',(mode==='character'?'캐릭터':'키워드')+'로 찾는 스킬 연계');$('#pickerValue').innerHTML=face(base)+`<span class="picker-name">${base.name}${pickerIcons(base)}</span>`;
@@ -172,7 +172,7 @@ $('#results').innerHTML=groups.map(p=>{if(p.broadcast)return groupCard(p);const 
 function memberIdentity(c){return `<article class="member connection-member">${face(c)}<div class="identity-line"><h3>${esc(c.name)}</h3><span class="rarity-tag">${c.rarity}</span>${pickerIcons(c)}</div><button class="linkbutton" data-source="${c.id}">스킬 설명 확인</button></article>`}
 function relationshipArrow(p){if(p.links.some(e=>e.type==='compete'))return'both';const from=p.links[0].from;return p.links.every(e=>e.from===from)?from===p.base?'right':'left':'both'}
 function linkedSkills(e,side){const id=side==='from'?e.from:e.to,hint=side==='from'?e.fromSkill:e.toSkill,all=JSON.parse(document.getElementById('linked-skill-data').textContent)[id];let chosen=[];
-if(side==='to'&&['마력 연쇄','보호막','AP 지원','치명타 확률 증가','타격력 증가','방어력 증가','받는 피해 감소','영지 추가 피해'].includes(e.key))return{rows:[],hint};
+if(side==='to'&&['마력 연쇄','보호막','AP 지원','치명타 확률 증가','타격력 증가','방어력 증가','받는 피해 감소','영지 선언 시 추가 피해'].includes(e.key))return{rows:[],hint};
 if(side==='from'&&e.key==='마력 연쇄 소모 누적')return{rows:[],hint};
 if(side==='to'&&e.key==='저주')chosen=all.filter(s=>['BATTLE SKILL','ULTIMATE'].includes(s.type)&&s.text.includes('저주'));
 else if(side==='to'&&e.key==='연쇄')chosen=all.filter(s=>s.type==='UNIQUE');
