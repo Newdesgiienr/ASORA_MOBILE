@@ -53,6 +53,15 @@
 #selection-screen .trial-page-description p{position:static;display:block;height:auto;min-height:0;margin:0;line-height:1.8}
 #selection-screen .trial-page-description p+p{margin-top:4px}
 </style>
+<style>
+/* Match the centered introduction box on the combat rules page. */
+#selection-screen .trial-page-description{box-sizing:border-box;text-align:center;padding:25px 24px;border:1px solid #d8dee6;border-top:3px solid #d7553e;border-radius:10px;background:#fff;margin-bottom:18px;color:#343d48}
+#selection-screen .trial-page-description p{font-size:15px;line-height:1.85;word-break:keep-all;overflow-wrap:break-word;margin:7px auto;max-width:1000px;text-align:center}
+#selection-screen .trial-page-description p+p{margin-top:7px}
+#selection-screen .trial-page-description p:first-child{font-size:18px;font-weight:700;line-height:1.7;color:#1b2430}
+#selection-screen .trial-page-description strong{background:linear-gradient(transparent 48%,#ffe5a0 48%);color:inherit;padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:800}
+@media(max-width:760px){#selection-screen .trial-page-description{padding:19px 16px}#selection-screen .trial-page-description p{font-size:14px}#selection-screen .trial-page-description p:first-child{font-size:16px}}
+</style>
 </head>
 <body><audio id="battle-bgm" src="assets/combat/audio/battle-bgm.mp3" preload="auto" loop></audio><audio id="trial-sound" src="assets/combat/audio/trial-commenced.mp3" preload="auto"></audio><header class="lab-topbar">
 <div class="lab-brand">
