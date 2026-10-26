@@ -46,7 +46,14 @@
 .trial-page-heading .trial-page-description p{margin:0}.trial-page-heading .trial-page-description p+p{margin-top:4px}
 .trial-page-heading strong{color:#1b2430;font-weight:750;background:linear-gradient(transparent 65%,#ffedb0 65%)}
 @media(max-width:760px){.trial-page-heading h1{font-size:34px}.trial-page-heading .trial-page-description{padding:14px;font-size:14px}}
-</style></head>
+</style><style>
+/* Page copy must stay in normal flow, separate from the battle intro overlay. */
+#selection-screen>.trial-page-heading{position:static;inset:auto;display:block;width:100%;height:auto;min-height:0;z-index:auto;text-align:left}
+#selection-screen .trial-page-description{position:static;inset:auto;display:block;width:100%;height:auto;min-height:0;z-index:auto;transform:none;animation:none;pointer-events:auto;text-align:left}
+#selection-screen .trial-page-description p{position:static;display:block;height:auto;min-height:0;margin:0;line-height:1.8}
+#selection-screen .trial-page-description p+p{margin-top:4px}
+</style>
+</head>
 <body><audio id="battle-bgm" src="assets/combat/audio/battle-bgm.mp3" preload="auto" loop></audio><audio id="trial-sound" src="assets/combat/audio/trial-commenced.mp3" preload="auto"></audio><header class="lab-topbar">
 <div class="lab-brand">
 <a aria-label="Astrae Oratio Battle Lab 캐릭터 페이지" class="lab-brand-mark" href="characters.html"><img src="assets/site-brand-portrait.jpg" alt="" width="46" height="46" fetchpriority="high"></a>
